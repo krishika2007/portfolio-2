@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>B N Krishika | AI & Data Science Student</title>
+    <title>B N Krishika | AI & Data Science</title>
 
     <meta name="description"
         content="B N Krishika — B.Tech Artificial Intelligence and Data Science student at REVA University.">
@@ -20,20 +20,21 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Icons -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          NAVIGATION
-    ========================== -->
+    ====================================================== -->
 
-    <header class="navbar">
+    <header class="navbar" id="navbar">
 
         <div class="container nav-container">
 
@@ -53,8 +54,15 @@
 
             </nav>
 
-            <button class="menu-button" id="menu-button" aria-label="Open navigation menu">
+
+            <button
+                class="menu-button"
+                id="menu-button"
+                aria-label="Open navigation menu"
+                type="button">
+
                 <i data-lucide="menu"></i>
+
             </button>
 
         </div>
@@ -62,9 +70,9 @@
     </header>
 
 
-    <!-- =========================
+    <!-- =====================================================
          MOBILE MENU
-    ========================== -->
+    ====================================================== -->
 
     <div class="mobile-menu" id="mobile-menu">
 
@@ -79,20 +87,38 @@
     </div>
 
 
-    <!-- =========================
+    <!-- =====================================================
          MAIN
-    ========================== -->
+    ====================================================== -->
 
     <main>
 
 
-        <!-- =========================
-             HERO SECTION
-        ========================== -->
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
         <section class="hero" id="home">
 
             <div class="container hero-container">
+
+
+                <!-- PHOTO -->
+
+                <div class="hero-photo reveal">
+
+                    <div class="photo-circle">
+
+                        <img
+                            src="assets/PHOTO-2026-09-01-18-13-21.jpeg"
+                            alt="B N Krishika">
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
 
                 <div class="hero-content reveal">
 
@@ -100,38 +126,108 @@
                         B.TECH AI & DATA SCIENCE STUDENT
                     </p>
 
+
                     <h1>
-                        Hi, I'm <span>B N Krishika</span>
+                        B N <span>Krishika</span>
                     </h1>
 
+
                     <h2>
-                        Artificial Intelligence & Data Science Student
+                        Artificial Intelligence & Data Science
                     </h2>
 
+
                     <p class="hero-description">
-                        I am a B.Tech student at REVA University with an
-                        interest in Artificial Intelligence, Machine Learning,
-                        Python, C Programming and MySQL. I enjoy learning
-                        technology and building practical projects.
+                        I am a B.Tech student at REVA University,
+                        interested in Artificial Intelligence,
+                        Machine Learning, Python, C Programming
+                        and MySQL. I enjoy learning new technologies
+                        and developing practical projects.
                     </p>
+
+
+                    <!-- QUICK INFORMATION -->
+
+                    <div class="hero-details">
+
+                        <div class="hero-detail">
+
+                            <i data-lucide="graduation-cap"></i>
+
+                            <div>
+                                <span>Degree</span>
+                                <strong>
+                                    B.Tech in AI & Data Science
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-detail">
+
+                            <i data-lucide="university"></i>
+
+                            <div>
+                                <span>University</span>
+                                <strong>
+                                    REVA University
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-detail">
+
+                            <i data-lucide="calendar"></i>
+
+                            <div>
+                                <span>Expected Graduation</span>
+                                <strong>
+                                    2029
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
 
                     <div class="hero-buttons">
 
-                        <a href="#projects" class="button primary-button">
-                            View My Projects
+                        <a
+                            href="#projects"
+                            class="button primary-button">
+
+                            View Projects
+
                             <i data-lucide="arrow-right"></i>
+
                         </a>
 
-                        <a href="#contact" class="button secondary-button">
+
+                        <a
+                            href="#contact"
+                            class="button secondary-button">
+
                             Contact Me
+
                             <i data-lucide="mail"></i>
+
                         </a>
 
                     </div>
 
+
+                    <!-- SOCIALS -->
+
                     <div class="hero-socials">
 
-                        <a href="https://linkedin.com/in/krishika-amin"
+                        <a
+                            href="https://linkedin.com/in/krishika-amin"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="LinkedIn">
@@ -140,7 +236,9 @@
 
                         </a>
 
-                        <a href="https://github.com/krishika2007"
+
+                        <a
+                            href="https://github.com/krishika2007"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="GitHub">
@@ -149,7 +247,9 @@
 
                         </a>
 
-                        <a href="mailto:KRISHIKAAMIN@ICLOUD.COM"
+
+                        <a
+                            href="mailto:KRISHIKAAMIN@ICLOUD.COM"
                             aria-label="Email">
 
                             <i data-lucide="mail"></i>
@@ -160,38 +260,20 @@
 
                 </div>
 
-
-                <!-- =========================
-                     PROFILE PHOTO
-                ========================== -->
-
-                <div class="hero-photo reveal">
-
-                    <div class="photo-frame">
-
-                        <img
-                            src="assets/PHOTO-2026-09-01-18-13-21.jpeg"
-                            alt="B N Krishika">
-
-                    </div>
-
-                    <div class="photo-decoration decoration-one"></div>
-                    <div class="photo-decoration decoration-two"></div>
-
-                </div>
-
             </div>
 
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              ABOUT
-        ========================== -->
+        ================================================== -->
 
         <section class="section about" id="about">
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -200,35 +282,41 @@
                     </p>
 
                     <h2>
-                        A student passionate about
-                        <span>technology.</span>
+                        About <span>Me</span>
                     </h2>
+
+                    <p>
+                        A student building my foundation in
+                        Artificial Intelligence and Data Science.
+                    </p>
 
                 </div>
 
 
                 <div class="about-grid">
 
+
                     <div class="about-text reveal">
 
                         <p>
-                            I am B N Krishika, a B.Tech student pursuing
-                            Artificial Intelligence and Data Science at
-                            REVA University.
+                            I am B N Krishika, currently pursuing
+                            a B.Tech in Artificial Intelligence and
+                            Data Science at REVA University.
                         </p>
 
                         <p>
-                            I am interested in Artificial Intelligence,
-                            Machine Learning, programming and database
-                            technologies. I enjoy developing projects that
-                            allow me to apply what I learn in a practical way.
+                            I have knowledge of C Programming,
+                            Python, MySQL and Machine Learning.
+                            I am interested in exploring how
+                            technology and artificial intelligence
+                            can be used to develop useful solutions.
                         </p>
 
                         <p>
-                            I am currently building my technical foundation
-                            in C Programming, Python, MySQL and Machine
-                            Learning while continuing to explore the field
-                            of Artificial Intelligence and Data Science.
+                            Through academic projects and
+                            certifications, I am continuously
+                            developing my technical knowledge
+                            and practical problem-solving skills.
                         </p>
 
                     </div>
@@ -236,13 +324,20 @@
 
                     <div class="about-details reveal">
 
+
                         <div class="detail-card">
 
                             <i data-lucide="graduation-cap"></i>
 
                             <div>
+
                                 <span>Degree</span>
-                                <strong>B.Tech AI & Data Science</strong>
+
+                                <strong>
+                                    B.Tech in Artificial Intelligence
+                                    and Data Science
+                                </strong>
+
                             </div>
 
                         </div>
@@ -250,11 +345,16 @@
 
                         <div class="detail-card">
 
-                            <i data-lucide="university"></i>
+                            <i data-lucide="building-2"></i>
 
                             <div>
+
                                 <span>University</span>
-                                <strong>REVA University</strong>
+
+                                <strong>
+                                    REVA University
+                                </strong>
+
                             </div>
 
                         </div>
@@ -262,11 +362,16 @@
 
                         <div class="detail-card">
 
-                            <i data-lucide="calendar"></i>
+                            <i data-lucide="calendar-days"></i>
 
                             <div>
+
                                 <span>Expected Graduation</span>
-                                <strong>2029</strong>
+
+                                <strong>
+                                    2029
+                                </strong>
+
                             </div>
 
                         </div>
@@ -277,8 +382,14 @@
                             <i data-lucide="map-pin"></i>
 
                             <div>
+
                                 <span>Current Location</span>
-                                <strong>Brigade Eldorado, Bagalur, Karnataka</strong>
+
+                                <strong>
+                                    Brigade Eldorado, Bagalur,
+                                    Karnataka, 560064
+                                </strong>
+
                             </div>
 
                         </div>
@@ -292,27 +403,29 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              SKILLS
-        ========================== -->
+        ================================================== -->
 
         <section class="section skills" id="skills">
 
             <div class="container">
 
+
                 <div class="section-heading reveal">
 
                     <p class="section-label">
-                        MY SKILLS
+                        SKILLS
                     </p>
 
                     <h2>
-                        Technical <span>Knowledge</span>
+                        My Technical <span>Knowledge</span>
                     </h2>
 
                     <p>
-                        Technologies and areas I am currently learning
-                        and working with.
+                        Areas I have knowledge of and am
+                        continuing to develop.
                     </p>
 
                 </div>
@@ -324,14 +437,19 @@
                     <div class="skill-card reveal">
 
                         <div class="skill-icon">
+
                             <i data-lucide="code-2"></i>
+
                         </div>
 
-                        <h3>C Programming</h3>
+                        <h3>
+                            C Programming
+                        </h3>
 
                         <p>
-                            Programming fundamentals, logic building
-                            and problem solving using C.
+                            Programming fundamentals,
+                            logical thinking and
+                            problem solving using C.
                         </p>
 
                     </div>
@@ -340,14 +458,19 @@
                     <div class="skill-card reveal">
 
                         <div class="skill-icon">
+
                             <i data-lucide="terminal"></i>
+
                         </div>
 
-                        <h3>Python</h3>
+                        <h3>
+                            Python
+                        </h3>
 
                         <p>
-                            Python programming and developing a foundation
-                            for data science and machine learning.
+                            Python programming with an
+                            interest in data science and
+                            artificial intelligence.
                         </p>
 
                     </div>
@@ -356,14 +479,18 @@
                     <div class="skill-card reveal">
 
                         <div class="skill-icon">
+
                             <i data-lucide="database"></i>
+
                         </div>
 
-                        <h3>MySQL</h3>
+                        <h3>
+                            MySQL
+                        </h3>
 
                         <p>
-                            Working with databases, SQL queries and
-                            structured data.
+                            Working with databases,
+                            SQL queries and structured data.
                         </p>
 
                     </div>
@@ -372,14 +499,18 @@
                     <div class="skill-card reveal">
 
                         <div class="skill-icon">
+
                             <i data-lucide="brain"></i>
+
                         </div>
 
-                        <h3>Machine Learning</h3>
+                        <h3>
+                            Machine Learning
+                        </h3>
 
                         <p>
-                            Learning machine learning concepts,
-                            classification and AI-based solutions.
+                            Knowledge of machine learning
+                            concepts and AI-based solutions.
                         </p>
 
                     </div>
@@ -391,13 +522,15 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              PROJECTS
-        ========================== -->
+        ================================================== -->
 
         <section class="section projects" id="projects">
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -406,12 +539,12 @@
                     </p>
 
                     <h2>
-                        What I've <span>Worked On</span>
+                        My <span>Projects</span>
                     </h2>
 
                     <p>
-                        Projects that helped me apply my technical
-                        knowledge to practical problems.
+                        Projects I have worked on as part of
+                        my technical learning.
                     </p>
 
                 </div>
@@ -424,35 +557,44 @@
 
                     <article class="project-card reveal">
 
-                        <div class="project-top">
+
+                        <div class="project-header">
 
                             <div class="project-icon">
+
                                 <i data-lucide="lock-keyhole"></i>
+
                             </div>
 
-                            <span class="project-number">
+                            <span>
                                 01
                             </span>
 
                         </div>
 
+
                         <p class="project-category">
-                            IOT / ARDUINO
+                            IOT & EMBEDDED SYSTEMS
                         </p>
+
 
                         <h3>
                             IoT-Based Smart Door Lock System
                             Using Arduino Uno
                         </h3>
 
+
                         <p>
-                            Developed an Arduino-based smart door lock
-                            system that provides secure and password-based
-                            access to a door.
+                            Developed an Arduino-based smart
+                            door lock system that provides secure
+                            and password-based access to the door.
                         </p>
 
 
-                        <h4>Key Features</h4>
+                        <h4>
+                            Key Features
+                        </h4>
+
 
                         <ul class="project-features">
 
@@ -461,8 +603,8 @@
                             </li>
 
                             <li>
-                                Automatic locking and unlocking using
-                                a servo motor
+                                Automatic locking and unlocking
+                                using a servo motor
                             </li>
 
                             <li>
@@ -487,45 +629,56 @@
                             <span>IoT</span>
                             <span>Servo Motor</span>
                             <span>Keypad</span>
+                            <span>LCD</span>
 
                         </div>
 
                     </article>
 
 
+
                     <!-- PROJECT 2 -->
 
                     <article class="project-card reveal">
 
-                        <div class="project-top">
+
+                        <div class="project-header">
 
                             <div class="project-icon">
+
                                 <i data-lucide="scan-eye"></i>
+
                             </div>
 
-                            <span class="project-number">
+                            <span>
                                 02
                             </span>
 
                         </div>
 
+
                         <p class="project-category">
                             ARTIFICIAL INTELLIGENCE
                         </p>
+
 
                         <h3>
                             AI-Based Anemia Detection
                         </h3>
 
+
                         <p>
-                            A healthcare-focused AI solution designed
-                            to provide an early indication of possible
-                            anemia by analysing visible eye pallor
-                            and nail bed pallor.
+                            A healthcare-focused AI solution
+                            designed to provide an early indication
+                            of possible anemia by analysing visible
+                            eye pallor and nail bed pallor.
                         </p>
 
 
-                        <h4>Key Features</h4>
+                        <h4>
+                            Key Features
+                        </h4>
+
 
                         <ul class="project-features">
 
@@ -542,7 +695,7 @@
                             </li>
 
                             <li>
-                                Exploration of visible eye pallor
+                                Analysis of visible eye pallor
                             </li>
 
                         </ul>
@@ -565,13 +718,15 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              EDUCATION
-        ========================== -->
+        ================================================== -->
 
         <section class="section education" id="education">
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -580,7 +735,7 @@
                     </p>
 
                     <h2>
-                        My Academic <span>Journey</span>
+                        Academic <span>Journey</span>
                     </h2>
 
                 </div>
@@ -588,15 +743,17 @@
 
                 <div class="education-card reveal">
 
+
                     <div class="education-icon">
 
                         <i data-lucide="graduation-cap"></i>
 
                     </div>
 
+
                     <div class="education-content">
 
-                        <span class="education-year">
+                        <span class="education-date">
                             2025 — 2029
                         </span>
 
@@ -610,13 +767,14 @@
                         </h4>
 
                         <p>
-                            Currently pursuing my Bachelor of Technology
-                            degree with a focus on Artificial Intelligence
-                            and Data Science.
+                            Currently pursuing my Bachelor of
+                            Technology degree in Artificial
+                            Intelligence and Data Science.
                         </p>
 
                         <p>
-                            Expected Graduation: <strong>2029</strong>
+                            Expected Graduation:
+                            <strong>2029</strong>
                         </p>
 
                     </div>
@@ -628,13 +786,15 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              CERTIFICATIONS
-        ========================== -->
+        ================================================== -->
 
         <section class="section certifications" id="certifications">
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -643,7 +803,7 @@
                     </p>
 
                     <h2>
-                        Learning & <span>Credentials</span>
+                        My <span>Certifications</span>
                     </h2>
 
                 </div>
@@ -652,6 +812,8 @@
                 <div class="certification-grid">
 
 
+                    <!-- IBM -->
+
                     <div class="certification-card reveal">
 
                         <div class="certificate-icon">
@@ -659,6 +821,7 @@
                             <i data-lucide="award"></i>
 
                         </div>
+
 
                         <div>
 
@@ -671,14 +834,17 @@
                             </h3>
 
                             <p>
-                                IBM certification in Python for
-                                Data Science.
+                                IBM certification in Python
+                                for Data Science.
                             </p>
 
                         </div>
 
                     </div>
 
+
+
+                    <!-- WADHWANI -->
 
                     <div class="certification-card reveal">
 
@@ -687,6 +853,7 @@
                             <i data-lucide="award"></i>
 
                         </div>
+
 
                         <div>
 
@@ -699,7 +866,8 @@
                             </h3>
 
                             <p>
-                                Certification from the Wadhwani Foundation.
+                                Certification received from
+                                the Wadhwani Foundation.
                             </p>
 
                         </div>
@@ -713,13 +881,15 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              EXPERIENCE
-        ========================== -->
+        ================================================== -->
 
         <section class="section experience" id="experience">
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -728,7 +898,7 @@
                     </p>
 
                     <h2>
-                        My Professional <span>Journey</span>
+                        Professional <span>Experience</span>
                     </h2>
 
                 </div>
@@ -742,17 +912,23 @@
 
                     </div>
 
+
                     <div>
 
+                        <span class="experience-status">
+                            FRESHER
+                        </span>
+
                         <h3>
-                            Fresher
+                            No Professional Experience Yet
                         </h3>
 
                         <p>
-                            I currently have no professional work
-                            experience and am focused on building my
-                            technical knowledge through academics,
-                            certifications and projects.
+                            I currently have no professional
+                            work experience. I am focused on
+                            developing my technical skills
+                            through academics, certifications
+                            and hands-on projects.
                         </p>
 
                     </div>
@@ -764,28 +940,33 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              CONTACT
-        ========================== -->
+        ================================================== -->
 
         <section class="section contact" id="contact">
 
             <div class="container">
 
+
                 <div class="contact-box reveal">
+
 
                     <div class="contact-content">
 
                         <p class="section-label">
-                            GET IN TOUCH
+                            CONTACT
                         </p>
+
 
                         <h2>
                             Let's <span>Connect.</span>
                         </h2>
 
+
                         <p>
-                            Feel free to reach out to me for
+                            Feel free to contact me regarding
                             opportunities, collaborations or
                             technology-related conversations.
                         </p>
@@ -793,30 +974,39 @@
 
                         <div class="contact-buttons">
 
-                            <a href="mailto:KRISHIKAAMIN@ICLOUD.COM"
+
+                            <a
+                                href="mailto:KRISHIKAAMIN@ICLOUD.COM"
                                 class="button primary-button">
 
                                 <i data-lucide="mail"></i>
+
                                 Email Me
 
                             </a>
 
-                            <a href="https://linkedin.com/in/krishika-amin"
+
+                            <a
+                                href="https://linkedin.com/in/krishika-amin"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="button secondary-button">
 
                                 <i data-lucide="linkedin"></i>
+
                                 LinkedIn
 
                             </a>
 
-                            <a href="https://github.com/krishika2007"
+
+                            <a
+                                href="https://github.com/krishika2007"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="button secondary-button">
 
                                 <i data-lucide="github"></i>
+
                                 GitHub
 
                             </a>
@@ -834,10 +1024,13 @@
                             <i data-lucide="mail"></i>
 
                             <div>
+
                                 <span>Email</span>
+
                                 <strong>
                                     KRISHIKAAMIN@ICLOUD.COM
                                 </strong>
+
                             </div>
 
                         </div>
@@ -848,10 +1041,13 @@
                             <i data-lucide="phone"></i>
 
                             <div>
+
                                 <span>Phone</span>
+
                                 <strong>
                                     9148005839
                                 </strong>
+
                             </div>
 
                         </div>
@@ -862,11 +1058,15 @@
                             <i data-lucide="map-pin"></i>
 
                             <div>
+
                                 <span>Current Location</span>
+
                                 <strong>
-                                    Brigade Eldorado, Bagalur,
-                                    Karnataka, 560064
+                                    Brigade Eldorado,
+                                    Bagalur, Karnataka,
+                                    560064
                                 </strong>
+
                             </div>
 
                         </div>
@@ -877,10 +1077,13 @@
                             <i data-lucide="home"></i>
 
                             <div>
+
                                 <span>Permanent Address</span>
+
                                 <strong>
                                     Coorg, Karnataka, 560064
                                 </strong>
+
                             </div>
 
                         </div>
@@ -896,13 +1099,15 @@
     </main>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          FOOTER
-    ========================== -->
+    ====================================================== -->
 
     <footer class="footer">
 
         <div class="container footer-container">
+
 
             <div>
 
@@ -911,7 +1116,7 @@
                 </a>
 
                 <p>
-                    B.Tech Artificial Intelligence & Data Science Student
+                    B.Tech AI & Data Science Student
                 </p>
 
             </div>
@@ -936,9 +1141,10 @@
     </footer>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          JAVASCRIPT
-    ========================== -->
+    ====================================================== -->
 
     <script src="script.js"></script>
 
