@@ -1,24 +1,83 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
+       LUCIDE ICONS
+    ========================== */
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+
+    /* =========================
+       NAVBAR SCROLL EFFECT
+    ========================== */
+
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    }
+
+
+    /* =========================
        MOBILE MENU
     ========================== */
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
+    const menuButton = document.getElementById("menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
-            menuToggle.classList.toggle("active");
+    if (menuButton && mobileMenu) {
+
+        menuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+
+            const isOpen = mobileMenu.classList.contains("open");
+
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close menu" : "Open menu"
+            );
+
+            menuButton.innerHTML = isOpen
+                ? '<i data-lucide="x"></i>'
+                : '<i data-lucide="menu"></i>';
+
+            if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+            }
         });
 
-        document.querySelectorAll(".nav-links a").forEach(link => {
+
+        /* Close mobile menu after clicking a link */
+
+        mobileMenu.querySelectorAll("a").forEach(link => {
+
             link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-                menuToggle.classList.remove("active");
+
+                mobileMenu.classList.remove("open");
+
+                menuButton.setAttribute(
+                    "aria-label",
+                    "Open menu"
+                );
+
+                menuButton.innerHTML =
+                    '<i data-lucide="menu"></i>';
+
+                if (typeof lucide !== "undefined") {
+                    lucide.createIcons();
+                }
             });
+
         });
+
     }
 
 
@@ -27,32 +86,50 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================== */
 
     const sections = document.querySelectorAll("section[id]");
-    const navigationLinks = document.querySelectorAll(".nav-links a");
+    const navLinks = document.querySelectorAll(".nav-links a");
 
-    window.addEventListener("scroll", () => {
+    function updateActiveNavigation() {
 
-        let current = "";
+        let currentSection = "";
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            const sectionHeight = section.offsetHeight;
+
+            const sectionTop =
+                section.offsetTop - 180;
+
+            const sectionBottom =
+                sectionTop + section.offsetHeight;
 
             if (
                 window.scrollY >= sectionTop &&
-                window.scrollY < sectionTop + sectionHeight
+                window.scrollY < sectionBottom
             ) {
-                current = section.getAttribute("id");
+                currentSection = section.getAttribute("id");
             }
+
         });
 
-        navigationLinks.forEach(link => {
+        navLinks.forEach(link => {
+
             link.classList.remove("active");
 
-            if (link.getAttribute("href") === `#${current}`) {
+            const href =
+                link.getAttribute("href");
+
+            if (href === `#${currentSection}`) {
                 link.classList.add("active");
             }
+
         });
-    });
+
+    }
+
+    window.addEventListener(
+        "scroll",
+        updateActiveNavigation
+    );
+
+    updateActiveNavigation();
 
 
     /* =========================
@@ -63,21 +140,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         anchor.addEventListener("click", function (event) {
 
-            const targetId = this.getAttribute("href");
+            const targetId =
+                this.getAttribute("href");
 
-            if (targetId === "#") return;
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+                return;
+            }
 
-            const target = document.querySelector(targetId);
+            const target =
+                document.querySelector(targetId);
 
             if (target) {
+
                 event.preventDefault();
 
                 target.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
                 });
+
             }
+
         });
+
     });
 
 
@@ -85,31 +173,114 @@ document.addEventListener("DOMContentLoaded", () => {
        SCROLL REVEAL
     ========================== */
 
-    const revealElements = document.querySelectorAll(".reveal");
+    const revealElements =
+        document.querySelectorAll(".reveal");
 
-    if ("IntersectionObserver" in window) {
+    if (
+        "IntersectionObserver" in window &&
+        revealElements.length > 0
+    ) {
 
-        const observer = new IntersectionObserver(
-            (entries, observer) => {
+        const observer =
+            new IntersectionObserver(
+                (entries, observer) => {
 
-                entries.forEach(entry => {
+                    entries.forEach(entry => {
 
-                    if (entry.isIntersecting) {
+                        if (entry.isIntersecting) {
 
-                        entry.target.classList.add("visible");
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-                        observer.unobserve(entry.target);
-                    }
-                });
+                            observer.unobserve(
+                                entry.target
+                            );
 
-            },
-            {
-                threshold: 0.15
-            }
-        );
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
 
         revealElements.forEach(element => {
             observer.observe(element);
         });
+
+    } else {
+
+        revealElements.forEach(element => {
+            element.classList.add("visible");
+        });
+
     }
+
+
+    /* =========================
+       CLOSE MENU ON RESIZE
+    ========================== */
+
+    window.addEventListener("resize", () => {
+
+        if (
+            window.innerWidth > 900 &&
+            mobileMenu
+        ) {
+
+            mobileMenu.classList.remove("open");
+
+            if (menuButton) {
+
+                menuButton.setAttribute(
+                    "aria-label",
+                    "Open menu"
+                );
+
+                menuButton.innerHTML =
+                    '<i data-lucide="menu"></i>';
+
+                if (typeof lucide !== "undefined") {
+                    lucide.createIcons();
+                }
+
+            }
+
+        }
+
+    });
+
+
+    /* =========================
+       EMAIL LINKS
+    ========================== */
+
+    document
+        .querySelectorAll('a[href^="mailto:"]')
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+                console.log(
+                    "Opening email client..."
+                );
+            });
+
+        });
+
+
+    /* =========================
+       CURRENT YEAR
+    ========================== */
+
+    const yearElements =
+        document.querySelectorAll("[data-year]");
+
+    yearElements.forEach(element => {
+        element.textContent =
+            new Date().getFullYear();
+    });
+
 });
