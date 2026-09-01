@@ -1,1045 +1,1169 @@
-```javascript
-/* ==========================================================================
-   KRISHIKA AMIN — PORTFOLIO JAVASCRIPT
-   ========================================================================== */
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-document.addEventListener("DOMContentLoaded", function () {
+    <title>Krishika Amin | AI & Data Science Student</title>
 
-    /* =========================
-       LUCIDE ICONS
-    ========================== */
+    <meta name="description"
+          content="Krishika Amin — B.Tech Artificial Intelligence and Data Science student passionate about AI, Machine Learning, Data Science and Software Development.">
 
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
-    }
+    <meta name="author" content="Krishika Amin">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    /* =========================
-       PARTICLE BACKGROUND
-    ========================== */
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
 
-    const canvas = document.getElementById("particles-canvas");
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    if (canvas) {
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        const ctx = canvas.getContext("2d");
+<body>
 
-        let particles = [];
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-        const mouse = {
-            x: null,
-            y: null,
-            radius: 130
-        };
+<header class="navbar" id="navbar">
 
-        function resizeCanvas() {
+    <div class="container nav-container">
 
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        <a href="#home" class="logo">
+            <span>Krishika</span> Amin
+        </a>
 
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
+        <nav class="nav-links">
 
-            canvas.style.width = window.innerWidth + "px";
-            canvas.style.height = window.innerHeight + "px";
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
 
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        </nav>
 
-            createParticles();
-        }
+        <button class="menu-button" id="menu-button" aria-label="Open menu">
+            <i data-lucide="menu"></i>
+        </button>
 
+    </div>
 
-        class Particle {
+</header>
 
-            constructor() {
 
-                this.size = Math.random() * 1.6 + 0.8;
+<!-- =========================
+     MOBILE MENU
+========================= -->
 
-                this.x =
-                    Math.random() *
-                    (window.innerWidth - this.size * 2) +
-                    this.size;
+<div class="mobile-menu" id="mobile-menu">
 
-                this.y =
-                    Math.random() *
-                    (window.innerHeight - this.size * 2) +
-                    this.size;
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
 
-                this.dx =
-                    (Math.random() - 0.5) * 0.35;
+</div>
 
-                this.dy =
-                    (Math.random() - 0.5) * 0.35;
 
-                this.color =
-                    Math.random() > 0.5
-                        ? "rgba(139, 92, 246, 0.35)"
-                        : "rgba(6, 182, 212, 0.35)";
-            }
+<!-- =========================
+     HERO
+========================= -->
 
+<main>
 
-            draw() {
+<section class="hero" id="home">
 
-                ctx.beginPath();
+    <div class="hero-background"></div>
 
-                ctx.arc(
-                    this.x,
-                    this.y,
-                    this.size,
-                    0,
-                    Math.PI * 2
-                );
+    <div class="container hero-container">
 
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
+        <div class="hero-content reveal">
 
+            <div class="availability">
+                <span class="availability-dot"></span>
+                Open to Learning & Opportunities
+            </div>
 
-            update() {
+            <p class="hero-small-title">
+                Hello, I'm
+            </p>
 
-                if (
-                    this.x >= window.innerWidth ||
-                    this.x <= 0
-                ) {
-                    this.dx *= -1;
-                }
+            <h1>
+                Krishika <span>Amin</span>
+            </h1>
 
-                if (
-                    this.y >= window.innerHeight ||
-                    this.y <= 0
-                ) {
-                    this.dy *= -1;
-                }
+            <h2>
+                AI & Data Science Engineering Student
+            </h2>
 
+            <p class="hero-description">
+                I am a B.Tech Artificial Intelligence and Data Science
+                student at Reva University, passionate about
+                Artificial Intelligence, Machine Learning, Data Science,
+                programming and building practical technology solutions.
+            </p>
 
-                /* Mouse interaction */
+            <div class="hero-buttons">
 
-                if (mouse.x !== null && mouse.y !== null) {
+                <a href="#projects" class="button primary-button">
+                    View My Projects
+                    <i data-lucide="arrow-right"></i>
+                </a>
 
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
+                <a href="#contact" class="button secondary-button">
+                    Contact Me
+                    <i data-lucide="mail"></i>
+                </a>
 
-                    const distance =
-                        Math.sqrt(dx * dx + dy * dy);
+            </div>
 
-                    if (
-                        distance < mouse.radius &&
-                        distance > 0
-                    ) {
+            <div class="hero-socials">
 
-                        const force =
-                            (mouse.radius - distance) /
-                            mouse.radius;
+                <a href="https://github.com/krishika2007"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="GitHub">
+                    <i data-lucide="github"></i>
+                </a>
 
-                        this.x +=
-                            (dx / distance) *
-                            force *
-                            1.5;
+                <a href="https://www.linkedin.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="LinkedIn">
+                    <i data-lucide="linkedin"></i>
+                </a>
 
-                        this.y +=
-                            (dy / distance) *
-                            force *
-                            1.5;
-                    }
-                }
+                <a href="mailto:krishika.amin.edu@gmail.com"
+                   aria-label="Email">
+                    <i data-lucide="mail"></i>
+                </a>
 
+            </div>
 
-                this.x += this.dx;
-                this.y += this.dy;
+        </div>
 
-                this.draw();
-            }
-        }
 
+        <!-- HERO VISUAL -->
 
-        function createParticles() {
+        <div class="hero-visual reveal">
 
-            particles = [];
+            <div class="profile-orbit orbit-one"></div>
+            <div class="profile-orbit orbit-two"></div>
 
-            const area =
-                window.innerWidth *
-                window.innerHeight;
+            <div class="profile-card">
 
-            let count =
-                Math.floor(area / 15000);
+                <div class="profile-placeholder">
 
-            count = Math.min(count, 100);
+                    <div class="profile-initial">
+                        K
+                    </div>
 
-            if (window.innerWidth < 768) {
-                count = Math.min(count, 45);
-            }
+                    <p>
+                        AI & Data Science
+                    </p>
 
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
+                </div>
 
+            </div>
 
-        function drawConnections() {
+            <div class="floating-card floating-card-one">
 
-            const maxDistance =
-                window.innerWidth < 768
-                    ? 110
-                    : 150;
+                <i data-lucide="brain"></i>
 
-            for (let i = 0; i < particles.length; i++) {
+                <div>
+                    <strong>AI & ML</strong>
+                    <small>Learning & Building</small>
+                </div>
 
-                for (
-                    let j = i + 1;
-                    j < particles.length;
-                    j++
-                ) {
+            </div>
 
-                    const dx =
-                        particles[i].x -
-                        particles[j].x;
+            <div class="floating-card floating-card-two">
 
-                    const dy =
-                        particles[i].y -
-                        particles[j].y;
+                <i data-lucide="database"></i>
 
-                    const distance =
-                        Math.sqrt(dx * dx + dy * dy);
+                <div>
+                    <strong>Data Science</strong>
+                    <small>Python • SQL</small>
+                </div>
 
-                    if (distance < maxDistance) {
+            </div>
 
-                        const opacity =
-                            1 - distance / maxDistance;
+        </div>
 
-                        ctx.beginPath();
+    </div>
 
-                        ctx.moveTo(
-                            particles[i].x,
-                            particles[i].y
-                        );
+</section>
 
-                        ctx.lineTo(
-                            particles[j].x,
-                            particles[j].y
-                        );
 
-                        ctx.strokeStyle =
-                            `rgba(139, 92, 246, ${opacity * 0.10})`;
+<!-- =========================
+     ABOUT
+========================= -->
 
-                        ctx.lineWidth = 0.7;
+<section class="section about" id="about">
 
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
+    <div class="container">
 
+        <div class="section-heading reveal">
 
-        function animate() {
+            <span>ABOUT ME</span>
 
-            ctx.clearRect(
-                0,
-                0,
-                window.innerWidth,
-                window.innerHeight
-            );
+            <h2>
+                Turning curiosity into <strong>technology.</strong>
+            </h2>
 
-            particles.forEach(function (particle) {
-                particle.update();
-            });
+            <p>
+                A student developer continuously learning,
+                experimenting and building.
+            </p>
 
-            drawConnections();
+        </div>
 
-            requestAnimationFrame(animate);
-        }
 
+        <div class="about-grid">
 
-        window.addEventListener(
-            "mousemove",
-            function (event) {
+            <div class="about-text reveal">
 
-                mouse.x = event.clientX;
-                mouse.y = event.clientY;
-            }
-        );
+                <p>
+                    I am an Artificial Intelligence and Data Science
+                    engineering student with a strong interest in
+                    programming, machine learning, data analysis,
+                    mathematics and software development.
+                </p>
 
+                <p>
+                    I enjoy learning how technology can solve
+                    real-world problems and turning ideas into
+                    practical projects. I am currently strengthening
+                    my foundations in Python, C, SQL, Data Structures,
+                    Machine Learning and Web Development.
+                </p>
 
-        window.addEventListener(
-            "mouseleave",
-            function () {
+                <p>
+                    My goal is to gain industry experience, work on
+                    meaningful projects and continuously grow as a
+                    technology professional.
+                </p>
 
-                mouse.x = null;
-                mouse.y = null;
-            }
-        );
+            </div>
 
 
-        window.addEventListener(
-            "touchmove",
-            function (event) {
+            <div class="about-details reveal">
 
-                if (event.touches.length > 0) {
+                <div class="detail-card">
 
-                    mouse.x =
-                        event.touches[0].clientX;
+                    <i data-lucide="graduation-cap"></i>
 
-                    mouse.y =
-                        event.touches[0].clientY;
-                }
-            },
-            { passive: true }
-        );
+                    <div>
+                        <span>Degree</span>
+                        <strong>B.Tech AI & Data Science</strong>
+                    </div>
 
+                </div>
 
-        window.addEventListener(
-            "touchend",
-            function () {
 
-                mouse.x = null;
-                mouse.y = null;
-            }
-        );
+                <div class="detail-card">
 
+                    <i data-lucide="building-2"></i>
 
-        window.addEventListener(
-            "resize",
-            resizeCanvas
-        );
+                    <div>
+                        <span>University</span>
+                        <strong>Reva University</strong>
+                    </div>
 
+                </div>
 
-        resizeCanvas();
-        animate();
-    }
 
+                <div class="detail-card">
 
+                    <i data-lucide="map-pin"></i>
 
-    /* =========================
-       MOBILE MENU
-    ========================== */
+                    <div>
+                        <span>Location</span>
+                        <strong>Bengaluru, Karnataka</strong>
+                    </div>
 
-    const mobileToggle =
-        document.getElementById("mobile-toggle");
+                </div>
 
-    const mobileMenu =
-        document.getElementById("mobile-menu");
 
-    const mobileLinks =
-        document.querySelectorAll(".mobile-link");
+                <div class="detail-card">
 
+                    <i data-lucide="github"></i>
 
-    if (mobileToggle && mobileMenu) {
+                    <div>
+                        <span>GitHub</span>
+                        <strong>krishika2007</strong>
+                    </div>
 
-        const menuIcon =
-            mobileToggle.querySelector(".menu-icon");
+                </div>
 
-        const closeIcon =
-            mobileToggle.querySelector(".close-icon");
+            </div>
 
+        </div>
 
-        function openMenu() {
+    </div>
 
-            mobileMenu.style.display = "block";
+</section>
 
-            setTimeout(function () {
-                mobileMenu.classList.add("open");
-            }, 10);
 
-            mobileMenu.setAttribute(
-                "aria-hidden",
-                "false"
-            );
+<!-- =========================
+     SKILLS
+========================= -->
 
-            mobileToggle.setAttribute(
-                "aria-expanded",
-                "true"
-            );
+<section class="section skills" id="skills">
 
-            if (menuIcon) {
-                menuIcon.style.display = "none";
-            }
+    <div class="container">
 
-            if (closeIcon) {
-                closeIcon.style.display = "block";
-            }
+        <div class="section-heading reveal">
 
-            document.body.classList.add("menu-open");
-        }
+            <span>TECHNICAL SKILLS</span>
 
+            <h2>
+                My <strong>Technology Stack</strong>
+            </h2>
 
-        function closeMenu() {
+            <p>
+                Technologies and concepts I am currently learning
+                and working with.
+            </p>
 
-            mobileMenu.classList.remove("open");
+        </div>
 
-            mobileMenu.setAttribute(
-                "aria-hidden",
-                "true"
-            );
 
-            mobileToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+        <div class="skills-grid">
 
-            if (menuIcon) {
-                menuIcon.style.display = "block";
-            }
+            <div class="skill-card reveal">
 
-            if (closeIcon) {
-                closeIcon.style.display = "none";
-            }
+                <div class="skill-icon">
+                    <i data-lucide="code-2"></i>
+                </div>
 
-            document.body.classList.remove("menu-open");
+                <h3>Python</h3>
 
-            setTimeout(function () {
+                <p>
+                    Python programming, NumPy, Pandas,
+                    Matplotlib and basic ML workflows.
+                </p>
 
-                if (
-                    !mobileMenu.classList.contains("open")
-                ) {
-                    mobileMenu.style.display = "none";
-                }
+                <div class="skill-level">
+                    <span style="width:75%"></span>
+                </div>
 
-            }, 400);
-        }
+            </div>
 
 
-        mobileToggle.addEventListener(
-            "click",
-            function () {
+            <div class="skill-card reveal">
 
-                if (
-                    mobileMenu.classList.contains("open")
-                ) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
-            }
-        );
+                <div class="skill-icon">
+                    <i data-lucide="cpu"></i>
+                </div>
 
+                <h3>C Programming</h3>
 
-        mobileLinks.forEach(function (link) {
+                <p>
+                    Arrays, functions, pointers, structures,
+                    recursion and problem solving.
+                </p>
 
-            link.addEventListener(
-                "click",
-                closeMenu
-            );
+                <div class="skill-level">
+                    <span style="width:75%"></span>
+                </div>
 
-        });
+            </div>
 
 
-        document.addEventListener(
-            "keydown",
-            function (event) {
+            <div class="skill-card reveal">
 
-                if (
-                    event.key === "Escape" &&
-                    mobileMenu.classList.contains("open")
-                ) {
-                    closeMenu();
-                }
-            }
-        );
+                <div class="skill-icon">
+                    <i data-lucide="brain"></i>
+                </div>
 
+                <h3>Artificial Intelligence</h3>
 
-        window.addEventListener(
-            "resize",
-            function () {
+                <p>
+                    AI fundamentals, intelligent systems,
+                    search strategies and problem solving.
+                </p>
 
-                if (window.innerWidth > 900) {
-                    closeMenu();
-                }
-            }
-        );
-    }
+                <div class="skill-level">
+                    <span style="width:65%"></span>
+                </div>
 
+            </div>
 
 
-    /* =========================
-       SCROLL REVEAL
-    ========================== */
+            <div class="skill-card reveal">
 
-    const revealElements =
-        document.querySelectorAll(".scroll-reveal");
+                <div class="skill-icon">
+                    <i data-lucide="network"></i>
+                </div>
 
+                <h3>Machine Learning</h3>
 
-    if ("IntersectionObserver" in window) {
+                <p>
+                    Regression, classification, preprocessing,
+                    scaling and model evaluation.
+                </p>
 
-        const observer =
-            new IntersectionObserver(
-                function (entries, observer) {
+                <div class="skill-level">
+                    <span style="width:65%"></span>
+                </div>
 
-                    entries.forEach(function (entry) {
+            </div>
 
-                        if (entry.isIntersecting) {
 
-                            entry.target.classList.add(
-                                "revealed"
-                            );
+            <div class="skill-card reveal">
 
-                            observer.unobserve(
-                                entry.target
-                            );
-                        }
-                    });
+                <div class="skill-icon">
+                    <i data-lucide="database"></i>
+                </div>
 
-                },
-                {
-                    threshold: 0.12,
-                    rootMargin: "0px 0px -40px 0px"
-                }
-            );
+                <h3>MySQL & SQL</h3>
 
+                <p>
+                    Queries, joins, filtering, aggregation,
+                    databases and table design.
+                </p>
 
-        revealElements.forEach(function (element) {
-            observer.observe(element);
-        });
+                <div class="skill-level">
+                    <span style="width:70%"></span>
+                </div>
 
-    } else {
+            </div>
 
-        revealElements.forEach(function (element) {
-            element.classList.add("revealed");
-        });
-    }
 
+            <div class="skill-card reveal">
 
+                <div class="skill-icon">
+                    <i data-lucide="git-branch"></i>
+                </div>
 
-    /* =========================
-       HEADER + SCROLL PROGRESS
-    ========================== */
+                <h3>Data Structures</h3>
 
-    const header =
-        document.getElementById("header");
+                <p>
+                    Arrays, strings, sorting, searching,
+                    linked lists, stacks, queues and recursion.
+                </p>
 
-    const scrollProgress =
-        document.getElementById("scroll-progress");
+                <div class="skill-level">
+                    <span style="width:70%"></span>
+                </div>
 
-    const sections =
-        document.querySelectorAll("main section");
+            </div>
 
-    const navLinks =
-        document.querySelectorAll(".nav-link");
 
+            <div class="skill-card reveal">
 
-    function updateScrollUI() {
+                <div class="skill-icon">
+                    <i data-lucide="globe"></i>
+                </div>
 
-        const scrollTop =
-            window.scrollY;
+                <h3>Web Development</h3>
 
-        const documentHeight =
-            document.documentElement.scrollHeight -
-            window.innerHeight;
+                <p>
+                    HTML, CSS and JavaScript with responsive
+                    layouts and interactive interfaces.
+                </p>
 
+                <div class="skill-level">
+                    <span style="width:70%"></span>
+                </div>
 
-        /* Progress */
+            </div>
 
-        if (scrollProgress) {
 
-            const progress =
-                documentHeight > 0
-                    ? (scrollTop / documentHeight) * 100
-                    : 0;
+            <div class="skill-card reveal">
 
-            scrollProgress.style.width =
-                progress + "%";
-        }
+                <div class="skill-icon">
+                    <i data-lucide="github"></i>
+                </div>
 
+                <h3>Git & GitHub</h3>
 
-        /* Header */
+                <p>
+                    Repositories, commits, version control,
+                    project management and collaboration.
+                </p>
 
-        if (header) {
+                <div class="skill-level">
+                    <span style="width:65%"></span>
+                </div>
 
-            if (scrollTop > 40) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        }
+            </div>
 
+        </div>
 
-        /* Active navigation */
+    </div>
 
-        let currentSection = "";
+</section>
 
 
-        sections.forEach(function (section) {
+<!-- =========================
+     PROJECTS
+========================= -->
 
-            const sectionTop =
-                section.offsetTop - 160;
+<section class="section projects" id="projects">
 
-            const sectionBottom =
-                sectionTop +
-                section.offsetHeight;
+    <div class="container">
 
-            if (
-                scrollTop >= sectionTop &&
-                scrollTop < sectionBottom
-            ) {
-                currentSection = section.id;
-            }
-        });
+        <div class="section-heading reveal">
 
+            <span>PROJECTS</span>
 
-        navLinks.forEach(function (link) {
+            <h2>
+                Things I've <strong>Built</strong>
+            </h2>
 
-            link.classList.remove("active");
+            <p>
+                Practical projects that reflect my learning
+                across AI, software and web development.
+            </p>
 
-            const target =
-                link.getAttribute("href");
+        </div>
 
-            if (
-                target === "#" + currentSection
-            ) {
-                link.classList.add("active");
-            }
-        });
-    }
 
+        <div class="projects-grid">
 
-    window.addEventListener(
-        "scroll",
-        updateScrollUI,
-        { passive: true }
-    );
 
-    updateScrollUI();
+            <!-- PROJECT 1 -->
 
+            <article class="project-card reveal">
 
+                <div class="project-number">
+                    01
+                </div>
 
-    /* =========================
-       PROJECT FILTERS
-    ========================== */
+                <div class="project-icon">
+                    <i data-lucide="eye"></i>
+                </div>
 
-    const filterButtons =
-        document.querySelectorAll(".filter-btn");
+                <span class="project-type">
+                    AI / MACHINE LEARNING
+                </span>
 
-    const projectCards =
-        document.querySelectorAll(".project-card");
+                <h3>
+                    AI-Based Anemia Detection
+                </h3>
 
+                <p>
+                    An AI-based healthcare project concept exploring
+                    computer vision and machine learning techniques
+                    to identify visual indicators associated with
+                    anemia, including eye appearance and nail pallor.
+                </p>
 
-    filterButtons.forEach(function (button) {
+                <div class="project-tags">
 
-        button.addEventListener(
-            "click",
-            function () {
+                    <span>Python</span>
+                    <span>Machine Learning</span>
+                    <span>Computer Vision</span>
 
-                filterButtons.forEach(
-                    function (btn) {
-                        btn.classList.remove("active");
-                    }
-                );
+                </div>
 
-                button.classList.add("active");
+                <a href="https://github.com/krishika2007"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="project-link">
 
+                    View on GitHub
+                    <i data-lucide="arrow-up-right"></i>
 
-                const selectedFilter =
-                    button.getAttribute("data-filter");
+                </a>
 
+            </article>
 
-                projectCards.forEach(
-                    function (card) {
 
-                        const category =
-                            card.getAttribute("data-category");
+            <!-- PROJECT 2 -->
 
+            <article class="project-card reveal">
 
-                        const show =
-                            selectedFilter === "all" ||
-                            category === selectedFilter;
+                <div class="project-number">
+                    02
+                </div>
 
+                <div class="project-icon">
+                    <i data-lucide="lock"></i>
+                </div>
 
-                        if (show) {
+                <span class="project-type">
+                    IoT / EMBEDDED SYSTEMS
+                </span>
 
-                            card.classList.remove(
-                                "project-hidden"
-                            );
+                <h3>
+                    Smart Door Lock System
+                </h3>
 
-                            card.style.display = "flex";
+                <p>
+                    An IoT-based smart door lock system using
+                    Arduino Uno to demonstrate electronic access
+                    control, automation and security concepts.
+                </p>
 
-                            setTimeout(function () {
+                <div class="project-tags">
 
-                                card.style.opacity = "1";
+                    <span>Arduino Uno</span>
+                    <span>IoT</span>
+                    <span>Embedded Systems</span>
 
-                                card.style.transform =
-                                    "scale(1)";
+                </div>
 
-                            }, 10);
+                <a href="https://github.com/krishika2007"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="project-link">
 
-                        } else {
+                    View on GitHub
+                    <i data-lucide="arrow-up-right"></i>
 
-                            card.style.opacity = "0";
+                </a>
 
-                            card.style.transform =
-                                "scale(0.94)";
+            </article>
 
-                            setTimeout(function () {
 
-                                if (
-                                    card.style.opacity === "0"
-                                ) {
-                                    card.style.display =
-                                        "none";
-                                }
+            <!-- PROJECT 3 -->
 
-                            }, 300);
-                        }
-                    }
-                );
-            }
-        );
-    });
+            <article class="project-card reveal">
 
+                <div class="project-number">
+                    03
+                </div>
 
+                <div class="project-icon">
+                    <i data-lucide="bus"></i>
+                </div>
 
-    /* =========================
-       GLOW EFFECT
-    ========================== */
+                <span class="project-type">
+                    SOFTWARE DEVELOPMENT
+                </span>
 
-    const glowCards =
-        document.querySelectorAll("[data-glow]");
+                <h3>
+                    Online Bus Ticket Reservation
+                </h3>
 
+                <p>
+                    A software project designed to manage bus routes,
+                    passenger information, ticket reservations and
+                    basic booking operations.
+                </p>
 
-    glowCards.forEach(function (card) {
+                <div class="project-tags">
 
-        card.addEventListener(
-            "mousemove",
-            function (event) {
+                    <span>C</span>
+                    <span>Data Structures</span>
+                    <span>Database</span>
 
-                const rect =
-                    card.getBoundingClientRect();
+                </div>
 
-                const x =
-                    event.clientX - rect.left;
+                <a href="https://github.com/krishika2007"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="project-link">
 
-                const y =
-                    event.clientY - rect.top;
+                    View on GitHub
+                    <i data-lucide="arrow-up-right"></i>
 
+                </a>
 
-                card.style.setProperty(
-                    "--mouse-x",
-                    x + "px"
-                );
+            </article>
 
-                card.style.setProperty(
-                    "--mouse-y",
-                    y + "px"
-                );
-            }
-        );
 
+            <!-- PROJECT 4 -->
 
-        card.addEventListener(
-            "mouseleave",
-            function () {
+            <article class="project-card reveal">
 
-                card.style.removeProperty("--mouse-x");
-                card.style.removeProperty("--mouse-y");
-            }
-        );
-    });
+                <div class="project-number">
+                    04
+                </div>
 
+                <div class="project-icon">
+                    <i data-lucide="layout"></i>
+                </div>
 
+                <span class="project-type">
+                    WEB DEVELOPMENT
+                </span>
 
-    /* =========================
-       COPY EMAIL
-    ========================== */
+                <h3>
+                    Personal Portfolio Website
+                </h3>
 
-    const copyEmailButton =
-        document.getElementById("copy-email-btn");
+                <p>
+                    A responsive portfolio website designed to
+                    showcase my skills, projects, certifications,
+                    education and professional journey.
+                </p>
 
-    const emailElement =
-        document.getElementById("email-text");
+                <div class="project-tags">
 
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
 
-    if (copyEmailButton && emailElement) {
+                </div>
 
-        const copyIcon =
-            copyEmailButton.querySelector(".copy-icon");
+                <a href="https://github.com/krishika2007"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="project-link">
 
-        const checkIcon =
-            copyEmailButton.querySelector(".check-icon");
+                    View on GitHub
+                    <i data-lucide="arrow-up-right"></i>
 
+                </a>
 
-        copyEmailButton.addEventListener(
-            "click",
-            async function () {
+            </article>
 
-                const email =
-                    emailElement.textContent.trim();
+        </div>
 
+    </div>
 
-                try {
+</section>
 
-                    await navigator.clipboard.writeText(
-                        email
-                    );
 
-                } catch (error) {
+<!-- =========================
+     CERTIFICATIONS
+========================= -->
 
-                    const input =
-                        document.createElement("input");
+<section class="section certifications" id="certifications">
 
-                    input.value = email;
+    <div class="container">
 
-                    document.body.appendChild(input);
+        <div class="section-heading reveal">
 
-                    input.select();
+            <span>CERTIFICATIONS</span>
 
-                    document.execCommand("copy");
+            <h2>
+                Learning & <strong>Credentials</strong>
+            </h2>
 
-                    input.remove();
-                }
+            <p>
+                Certifications and structured learning experiences
+                supporting my technical journey.
+            </p>
 
+        </div>
 
-                if (copyIcon) {
-                    copyIcon.style.display = "none";
-                }
 
-                if (checkIcon) {
-                    checkIcon.style.display = "block";
-                }
+        <div class="certification-grid">
 
 
-                copyEmailButton.setAttribute(
-                    "aria-label",
-                    "Email copied"
-                );
+            <div class="certification-card reveal">
 
+                <div class="certificate-icon">
+                    <i data-lucide="award"></i>
+                </div>
 
-                setTimeout(function () {
+                <div>
 
-                    if (copyIcon) {
-                        copyIcon.style.display = "block";
-                    }
+                    <span class="certificate-issuer">
+                        IBM
+                    </span>
 
-                    if (checkIcon) {
-                        checkIcon.style.display = "none";
-                    }
+                    <h3>
+                        IBM Certification
+                    </h3>
 
-                    copyEmailButton.setAttribute(
-                        "aria-label",
-                        "Copy email to clipboard"
-                    );
+                    <p>
+                        Professional certification demonstrating
+                        structured technical learning.
+                    </p>
 
-                }, 2000);
-            }
-        );
-    }
+                </div>
 
+            </div>
 
 
-    /* =========================
-       CONTACT FORM
-    ========================== */
+            <div class="certification-card reveal">
 
-    const contactForm =
-        document.getElementById("contact-form");
+                <div class="certificate-icon">
+                    <i data-lucide="award"></i>
+                </div>
 
-    const formStatus =
-        document.getElementById("form-status");
+                <div>
 
+                    <span class="certificate-issuer">
+                        WADHWANI FOUNDATION
+                    </span>
 
-    function showFormStatus(message, type) {
+                    <h3>
+                        Wadhwani Foundation Certification
+                    </h3>
 
-        if (!formStatus) {
-            return;
-        }
+                    <p>
+                        Certification supporting professional,
+                        entrepreneurial and employability skills.
+                    </p>
 
-        formStatus.textContent = message;
+                </div>
 
-        formStatus.className =
-            "form-status " + type;
+            </div>
 
-        formStatus.style.display = "block";
-    }
 
+            <div class="certification-card reveal">
 
-    if (contactForm) {
+                <div class="certificate-icon">
+                    <i data-lucide="book-open"></i>
+                </div>
 
-        contactForm.addEventListener(
-            "submit",
-            function (event) {
+                <div>
 
-                event.preventDefault();
+                    <span class="certificate-issuer">
+                        NPTEL
+                    </span>
 
+                    <h3>
+                        Programming, Data Structures and Algorithms Using Python
+                    </h3>
 
-                const name =
-                    document.getElementById("name")?.value.trim();
+                    <p>
+                        Structured learning in Python programming,
+                        data structures and algorithms.
+                    </p>
 
-                const email =
-                    document.getElementById("email")?.value.trim();
+                </div>
 
-                const subject =
-                    document.getElementById("subject")?.value.trim();
+            </div>
 
-                const message =
-                    document.getElementById("message")?.value.trim();
+        </div>
 
+    </div>
 
-                if (
-                    !name ||
-                    !email ||
-                    !subject ||
-                    !message
-                ) {
+</section>
 
-                    showFormStatus(
-                        "Please fill in all the required fields.",
-                        "error"
-                    );
 
-                    return;
-                }
+<!-- =========================
+     EDUCATION
+========================= -->
 
+<section class="section education" id="education">
 
-                const emailRegex =
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    <div class="container">
 
+        <div class="section-heading reveal">
 
-                if (!emailRegex.test(email)) {
+            <span>EDUCATION</span>
 
-                    showFormStatus(
-                        "Please enter a valid email address.",
-                        "error"
-                    );
+            <h2>
+                My <strong>Academic Journey</strong>
+            </h2>
 
-                    return;
-                }
+        </div>
 
 
-                if (message.length < 10) {
+        <div class="education-timeline">
 
-                    showFormStatus(
-                        "Please enter at least 10 characters.",
-                        "error"
-                    );
 
-                    return;
-                }
+            <div class="education-item reveal">
 
+                <div class="education-dot"></div>
 
-                const submitButton =
-                    contactForm.querySelector(
-                        ".form-submit-btn"
-                    );
+                <div class="education-content">
 
-                const submitText =
-                    submitButton?.querySelector("span");
+                    <span class="education-date">
+                        2025 — Present
+                    </span>
 
+                    <h3>
+                        Bachelor of Technology
+                    </h3>
 
-                if (submitButton) {
-                    submitButton.disabled = true;
-                }
+                    <h4>
+                        Artificial Intelligence & Data Science
+                    </h4>
 
-                if (submitText) {
-                    submitText.textContent = "Sending...";
-                }
+                    <p class="education-institution">
+                        Reva University
+                    </p>
 
+                    <p>
+                        School of Computer Science and Engineering.
+                        Building foundations in programming, data
+                        structures, databases, artificial intelligence,
+                        machine learning, mathematics and software
+                        development.
+                    </p>
 
-                /*
-                 IMPORTANT:
+                </div>
 
-                 This is only frontend validation.
-                 It does NOT actually send an email.
+            </div>
 
-                 To receive messages, connect the form
-                 to a service such as Formspree, Web3Forms,
-                 EmailJS, or your own backend.
-                */
 
+            <div class="education-item reveal">
 
-                setTimeout(function () {
+                <div class="education-dot"></div>
 
-                    showFormStatus(
-                        "Thank you! Your message has been received.",
-                        "success"
-                    );
+                <div class="education-content">
 
-                    contactForm.reset();
+                    <span class="education-date">
+                        Pre-University
+                    </span>
 
+                    <h3>
+                        Higher Secondary Education
+                    </h3>
 
-                    if (submitButton) {
-                        submitButton.disabled = false;
-                    }
+                    <h4>
+                        Science / Computer Science
+                    </h4>
 
-                    if (submitText) {
-                        submitText.textContent = "Send Message";
-                    }
+                    <p>
+                        Completed higher secondary education with
+                        a foundation in mathematics, science and
+                        computer science.
+                    </p>
 
-                }, 1000);
-            }
-        );
-    }
+                </div>
 
+            </div>
 
+        </div>
 
-    /* =========================
-       SMOOTH SCROLL
-    ========================== */
+    </div>
 
-    const anchorLinks =
-        document.querySelectorAll('a[href^="#"]');
+</section>
 
 
-    anchorLinks.forEach(function (link) {
+<!-- =========================
+     ACHIEVEMENTS
+========================= -->
 
-        link.addEventListener(
-            "click",
-            function (event) {
+<section class="section achievements" id="achievements">
 
-                const targetId =
-                    link.getAttribute("href");
+    <div class="container">
 
+        <div class="section-heading reveal">
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
+            <span>ACHIEVEMENTS</span>
 
+            <h2>
+                My <strong>Progress</strong>
+            </h2>
 
-                const target =
-                    document.querySelector(targetId);
+        </div>
 
 
-                if (target) {
+        <div class="achievement-grid">
 
-                    event.preventDefault();
 
+            <div class="achievement-card reveal">
 
-                    const headerHeight =
-                        header?.offsetHeight || 80;
+                <i data-lucide="code-2"></i>
 
+                <h3>
+                    Coding Practice
+                </h3>
 
-                    const position =
-                        target.offsetTop -
-                        headerHeight -
-                        15;
+                <p>
+                    Practicing programming and problem solving
+                    through platforms such as LeetCode and
+                    HackerRank.
+                </p>
 
+            </div>
 
-                    window.scrollTo({
-                        top: Math.max(position, 0),
-                        behavior: "smooth"
-                    });
-                }
-            }
-        );
-    });
 
+            <div class="achievement-card reveal">
 
+                <i data-lucide="brain"></i>
 
-    /* =========================
-       REDUCED MOTION
-    ========================== */
+                <h3>
+                    AI & Data Projects
+                </h3>
 
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
+                <p>
+                    Exploring artificial intelligence, machine
+                    learning, IoT and data-driven technology
+                    through academic and personal projects.
+                </p>
 
+            </div>
 
-    if (reducedMotion.matches) {
 
-        revealElements.forEach(function (element) {
+            <div class="achievement-card reveal">
 
-            element.classList.add("revealed");
+                <i data-lucide="rocket"></i>
 
-        });
-    }
+                <h3>
+                    Continuous Learning
+                </h3>
 
-});
+                <p>
+                    Continuously developing technical skills through
+                    certifications, projects, coding practice and
+                    hands-on experimentation.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="section contact" id="contact">
+
+    <div class="container">
+
+        <div class="contact-box reveal">
+
+            <div class="contact-content">
+
+                <span>LET'S CONNECT</span>
+
+                <h2>
+                    Have an idea or opportunity?
+                    <strong>Let's talk.</strong>
+                </h2>
+
+                <p>
+                    I am always interested in learning,
+                    collaborating on projects and exploring
+                    opportunities related to technology,
+                    AI and Data Science.
+                </p>
+
+
+                <div class="contact-buttons">
+
+                    <a href="mailto:krishika.amin.edu@gmail.com"
+                       class="button primary-button">
+
+                        Send Me an Email
+                        <i data-lucide="send"></i>
+
+                    </a>
+
+                    <a href="https://github.com/krishika2007"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="button secondary-button">
+
+                        GitHub
+                        <i data-lucide="github"></i>
+
+                    </a>
+
+                    <a href="https://www.linkedin.com/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="button secondary-button">
+
+                        LinkedIn
+                        <i data-lucide="linkedin"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-info">
+
+                <div>
+
+                    <i data-lucide="mail"></i>
+
+                    <span>
+                        krishika.amin.edu@gmail.com
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i data-lucide="map-pin"></i>
+
+                    <span>
+                        Bengaluru, Karnataka, India
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i data-lucide="github"></i>
+
+                    <span>
+                        github.com/krishika2007
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+        <div>
+
+            <a href="#home" class="logo">
+                <span>Krishika</span> Amin
+            </a>
+
+            <p>
+                AI & Data Science Engineering Student
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+
+        <p class="copyright">
+            © 2026 Krishika Amin. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- Main JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
 ```
