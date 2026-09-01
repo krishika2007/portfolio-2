@@ -111,5 +111,5 @@ document.addEventListener("DOMContentLoaded", () => {
         revealElements.forEach(element => {
             observer.observe(element);
         });
-
-   
+    }
+});
