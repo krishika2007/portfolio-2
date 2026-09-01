@@ -1,5 +1,6 @@
+```javascript
 /* ==========================================================================
-   KRISHIKA AMIN PORTFOLIO - MAIN JAVASCRIPT
+   KRISHIKA AMIN — PORTFOLIO JAVASCRIPT
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,25 +28,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const mouse = {
       x: null,
       y: null,
-      radius: 120
+      radius: 130
     };
 
     let animationFrame;
+
 
     /* --------------------------------------------------------------------------
        Resize Canvas
        -------------------------------------------------------------------------- */
 
     function resizeCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      canvas.width = window.innerWidth * devicePixelRatio;
+      canvas.height = window.innerHeight * devicePixelRatio;
 
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${window.innerHeight}px`;
 
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.setTransform(
+        devicePixelRatio,
+        0,
+        0,
+        devicePixelRatio,
+        0,
+        0
+      );
 
       initParticles();
     }
@@ -57,21 +66,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     class Particle {
 
-      constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
+      constructor() {
 
-        this.directionX = directionX;
-        this.directionY = directionY;
+        this.size = Math.random() * 1.6 + 0.8;
 
-        this.size = size;
-        this.color = color;
+        this.x =
+          Math.random() *
+          (window.innerWidth - this.size * 2) +
+          this.size;
+
+        this.y =
+          Math.random() *
+          (window.innerHeight - this.size * 2) +
+          this.size;
+
+        this.directionX =
+          (Math.random() - 0.5) * 0.35;
+
+        this.directionY =
+          (Math.random() - 0.5) * 0.35;
+
+        this.color =
+          Math.random() > 0.5
+            ? "rgba(139, 92, 246, 0.35)"
+            : "rgba(6, 182, 212, 0.35)";
       }
 
 
-      /* Draw Particle */
+      /* ------------------------------------------------------------------------
+         Draw Particle
+         ------------------------------------------------------------------------ */
 
       draw() {
+
         ctx.beginPath();
 
         ctx.arc(
@@ -87,27 +114,35 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /* Update Particle */
+      /* ------------------------------------------------------------------------
+         Update Particle
+         ------------------------------------------------------------------------ */
 
       update() {
 
-        /* Screen boundary collision */
+        /* Screen boundaries */
 
-        if (this.x + this.size >= window.innerWidth || this.x - this.size <= 0) {
+        if (
+          this.x + this.size >= window.innerWidth ||
+          this.x - this.size <= 0
+        ) {
           this.directionX *= -1;
         }
 
-        if (this.y + this.size >= window.innerHeight || this.y - this.size <= 0) {
+        if (
+          this.y + this.size >= window.innerHeight ||
+          this.y - this.size <= 0
+        ) {
           this.directionY *= -1;
         }
 
 
-        /* Mouse repulsion */
+        /* Mouse interaction */
 
         if (mouse.x !== null && mouse.y !== null) {
 
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
 
           const distance = Math.sqrt(
             dx * dx + dy * dy
@@ -115,13 +150,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (distance < mouse.radius && distance > 0) {
 
-            const force = (mouse.radius - distance) / mouse.radius;
+            const force =
+              (mouse.radius - distance) /
+              mouse.radius;
 
-            const moveX = (dx / distance) * force * 2;
-            const moveY = (dy / distance) * force * 2;
+            const pushX = dx / distance;
+            const pushY = dy / distance;
 
-            this.x -= moveX;
-            this.y -= moveY;
+            this.x += pushX * force * 1.8;
+            this.y += pushY * force * 1.8;
           }
         }
 
@@ -144,67 +181,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
       particles = [];
 
-      const area = window.innerWidth * window.innerHeight;
+      const area =
+        window.innerWidth * window.innerHeight;
 
-      let numberOfParticles = Math.floor(area / 16000);
+      let particleCount =
+        Math.floor(area / 15000);
 
-      /* Keep particle count reasonable */
+      /* Desktop maximum */
 
-      numberOfParticles = Math.max(
-        30,
-        Math.min(numberOfParticles, 110)
+      particleCount = Math.min(
+        particleCount,
+        100
       );
 
+      /* Fewer particles on small screens */
 
-      for (let i = 0; i < numberOfParticles; i++) {
-
-        const size = Math.random() * 1.8 + 0.8;
-
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * window.innerHeight;
-
-        const directionX = (Math.random() - 0.5) * 0.35;
-        const directionY = (Math.random() - 0.5) * 0.35;
-
-        const color =
-          Math.random() > 0.5
-            ? "rgba(139, 92, 246, 0.30)"
-            : "rgba(6, 182, 212, 0.30)";
-
-
-        particles.push(
-          new Particle(
-            x,
-            y,
-            directionX,
-            directionY,
-            size,
-            color
-          )
+      if (window.innerWidth < 768) {
+        particleCount = Math.min(
+          particleCount,
+          45
         );
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
       }
     }
 
 
     /* --------------------------------------------------------------------------
-       Draw Connections
+       Draw Connecting Lines
        -------------------------------------------------------------------------- */
 
     function drawLines() {
 
-      const maxDistance = 150;
+      const maxDistance =
+        window.innerWidth < 768
+          ? 110
+          : 150;
 
       for (let a = 0; a < particles.length; a++) {
 
         for (let b = a + 1; b < particles.length; b++) {
 
-          const dx = particles[a].x - particles[b].x;
-          const dy = particles[a].y - particles[b].y;
+          const dx =
+            particles[a].x -
+            particles[b].x;
 
-          const distance = Math.sqrt(
-            dx * dx + dy * dy
-          );
+          const dy =
+            particles[a].y -
+            particles[b].y;
 
+          const distance =
+            Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
 
@@ -224,9 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             ctx.strokeStyle =
-              `rgba(139, 92, 246, ${opacity * 0.08})`;
+              `rgba(139, 92, 246, ${opacity * 0.10})`;
 
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.7;
 
             ctx.stroke();
           }
@@ -236,12 +265,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* --------------------------------------------------------------------------
-       Animation Loop
+       Animation
        -------------------------------------------------------------------------- */
 
     function animate() {
-
-      animationFrame = requestAnimationFrame(animate);
 
       ctx.clearRect(
         0,
@@ -250,13 +277,14 @@ document.addEventListener("DOMContentLoaded", () => {
         window.innerHeight
       );
 
+      particles.forEach(
+        particle => particle.update()
+      );
 
       drawLines();
 
-
-      particles.forEach(particle => {
-        particle.update();
-      });
+      animationFrame =
+        requestAnimationFrame(animate);
     }
 
 
@@ -282,43 +310,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* Touch devices */
 
-    window.addEventListener("touchmove", (event) => {
-
-      if (event.touches.length > 0) {
-
-        mouse.x = event.touches[0].clientX;
-        mouse.y = event.touches[0].clientY;
-
-      }
-
-    }, { passive: true });
-
-
-    window.addEventListener("touchend", () => {
-
-      mouse.x = null;
-      mouse.y = null;
-
-    });
-
-
-    /* Resize */
-
     window.addEventListener(
-      "resize",
-      resizeCanvas
+      "touchmove",
+      (event) => {
+
+        if (event.touches.length > 0) {
+
+          mouse.x =
+            event.touches[0].clientX;
+
+          mouse.y =
+            event.touches[0].clientY;
+        }
+
+      },
+      { passive: true }
     );
 
 
-    /* Initialize */
+    window.addEventListener(
+      "touchend",
+      () => {
+
+        mouse.x = null;
+        mouse.y = null;
+
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        cancelAnimationFrame(animationFrame);
+        resizeCanvas();
+        animate();
+
+      }
+    );
+
+
+    /* Start particle system */
 
     resizeCanvas();
     animate();
   }
 
 
+
   /* ==========================================================================
-     MOBILE NAVIGATION
+     HEADER & MOBILE NAVIGATION
      ========================================================================== */
 
   const mobileToggle =
@@ -329,7 +371,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const mobileLinks =
     document.querySelectorAll(".mobile-link");
-
 
   if (mobileToggle && mobileMenu) {
 
@@ -342,7 +383,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openMenu() {
 
-      mobileMenu.classList.add("open");
+      mobileMenu.style.display = "block";
+
+      requestAnimationFrame(() => {
+        mobileMenu.classList.add("open");
+      });
 
       mobileMenu.setAttribute(
         "aria-hidden",
@@ -353,7 +398,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "aria-expanded",
         "true"
       );
-
 
       if (menuIcon) {
         menuIcon.style.display = "none";
@@ -381,7 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "false"
       );
 
-
       if (menuIcon) {
         menuIcon.style.display = "block";
       }
@@ -391,52 +434,85 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       document.body.classList.remove("menu-open");
+
+      setTimeout(() => {
+
+        if (
+          !mobileMenu.classList.contains("open")
+        ) {
+          mobileMenu.style.display = "none";
+        }
+
+      }, 400);
     }
 
 
-    mobileToggle.addEventListener("click", () => {
+    mobileToggle.addEventListener(
+      "click",
+      () => {
 
-      const isOpen =
-        mobileMenu.classList.contains("open");
+        const isOpen =
+          mobileMenu.classList.contains("open");
 
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+
       }
+    );
 
-    });
 
-
-    /* Close menu after clicking a link */
+    /* Close menu after selecting a section */
 
     mobileLinks.forEach(link => {
 
-      link.addEventListener("click", () => {
-        closeMenu();
-      });
+      link.addEventListener(
+        "click",
+        () => {
+          closeMenu();
+        }
+      );
 
     });
 
 
-    /* Close menu with Escape */
+    /* Close with Escape */
 
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener(
+      "keydown",
+      (event) => {
 
-      if (
-        event.key === "Escape" &&
-        mobileMenu.classList.contains("open")
-      ) {
-        closeMenu();
+        if (
+          event.key === "Escape" &&
+          mobileMenu.classList.contains("open")
+        ) {
+          closeMenu();
+        }
+
       }
+    );
 
-    });
 
+    /* Close if resized to desktop */
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (window.innerWidth > 900) {
+          closeMenu();
+        }
+
+      }
+    );
   }
 
 
+
   /* ==========================================================================
-     HEADER + SCROLL PROGRESS + ACTIVE NAVIGATION
+     SCROLL SYSTEM
      ========================================================================== */
 
   const header =
@@ -446,134 +522,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("scroll-progress");
 
   const sections =
-    document.querySelectorAll("section[id]");
+    document.querySelectorAll("main section");
 
   const navLinks =
     document.querySelectorAll(".nav-link");
 
 
-  function updateScrollSystem() {
-
-    const scrollTop =
-      window.scrollY;
-
-    const documentHeight =
-      document.documentElement.scrollHeight;
-
-    const windowHeight =
-      window.innerHeight;
-
-
-    /* --------------------------------------------------------------------------
-       Scroll Progress
-       -------------------------------------------------------------------------- */
-
-    const scrollableHeight =
-      documentHeight - windowHeight;
-
-
-    const scrollPercentage =
-      scrollableHeight > 0
-        ? (scrollTop / scrollableHeight) * 100
-        : 0;
-
-
-    if (scrollProgress) {
-
-      scrollProgress.style.width =
-        `${Math.min(scrollPercentage, 100)}%`;
-
-    }
-
-
-    /* --------------------------------------------------------------------------
-       Header Background
-       -------------------------------------------------------------------------- */
-
-    if (header) {
-
-      if (scrollTop > 50) {
-
-        header.classList.add("scrolled");
-
-        header.style.background =
-          "rgba(3, 0, 20, 0.88)";
-
-        header.style.boxShadow =
-          "0 10px 30px rgba(0, 0, 0, 0.3)";
-
-      } else {
-
-        header.classList.remove("scrolled");
-
-        header.style.background =
-          "rgba(3, 0, 20, 0.6)";
-
-        header.style.boxShadow =
-          "none";
-
-      }
-
-    }
-
-
-    /* --------------------------------------------------------------------------
-       Active Navigation Link
-       -------------------------------------------------------------------------- */
-
-    let currentSection = "";
-
-
-    sections.forEach(section => {
-
-      const sectionTop =
-        section.offsetTop - 160;
-
-      const sectionBottom =
-        sectionTop + section.offsetHeight;
-
-
-      if (
-        scrollTop >= sectionTop &&
-        scrollTop < sectionBottom
-      ) {
-
-        currentSection =
-          section.getAttribute("id");
-
-      }
-
-    });
-
-
-    navLinks.forEach(link => {
-
-      const href =
-        link.getAttribute("href");
-
-      link.classList.toggle(
-        "active",
-        href === `#${currentSection}`
-      );
-
-    });
-
-  }
-
-
-  window.addEventListener(
-    "scroll",
-    updateScrollSystem,
-    { passive: true }
-  );
-
-
-  updateScrollSystem();
-
-
-  /* ==========================================================================
-     SCROLL REVEAL ANIMATION
-     ========================================================================== */
+  /* --------------------------------------------------------------------------
+     Scroll Reveal
+     -------------------------------------------------------------------------- */
 
   const revealElements =
     document.querySelectorAll(".scroll-reveal");
@@ -596,7 +553,6 @@ document.addEventListener("DOMContentLoaded", () => {
               observer.unobserve(
                 entry.target
               );
-
             }
 
           });
@@ -604,7 +560,8 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
           threshold: 0.12,
-          rootMargin: "0px 0px -50px 0px"
+          rootMargin:
+            "0px 0px -40px 0px"
         }
       );
 
@@ -617,15 +574,111 @@ document.addEventListener("DOMContentLoaded", () => {
 
   } else {
 
-    /* Fallback for older browsers */
-
     revealElements.forEach(element => {
 
       element.classList.add("revealed");
 
     });
-
   }
+
+
+
+  /* --------------------------------------------------------------------------
+     Update Scroll UI
+     -------------------------------------------------------------------------- */
+
+  function updateScrollUI() {
+
+    const scrollTop =
+      window.scrollY;
+
+    const documentHeight =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
+
+
+    /* Scroll progress */
+
+    if (scrollProgress) {
+
+      const progress =
+        documentHeight > 0
+          ? (scrollTop / documentHeight) * 100
+          : 0;
+
+      scrollProgress.style.width =
+        `${progress}%`;
+    }
+
+
+    /* Header background */
+
+    if (header) {
+
+      if (scrollTop > 40) {
+
+        header.classList.add(
+          "scrolled"
+        );
+
+      } else {
+
+        header.classList.remove(
+          "scrolled"
+        );
+      }
+    }
+
+
+    /* Active navigation */
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+
+      const sectionTop =
+        section.offsetTop - 160;
+
+      const sectionBottom =
+        sectionTop +
+        section.offsetHeight;
+
+      if (
+        scrollTop >= sectionTop &&
+        scrollTop < sectionBottom
+      ) {
+        currentSection =
+          section.id;
+      }
+
+    });
+
+
+    navLinks.forEach(link => {
+
+      link.classList.remove("active");
+
+      const target =
+        link.getAttribute("href");
+
+      if (
+        target === `#${currentSection}`
+      ) {
+        link.classList.add("active");
+      }
+
+    });
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateScrollUI,
+    { passive: true }
+  );
+
+  updateScrollUI();
+
 
 
   /* ==========================================================================
@@ -641,121 +694,145 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filterButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      /* Active filter button */
+        /* Active button */
 
-      filterButtons.forEach(btn => {
-        btn.classList.remove("active");
-      });
+        filterButtons.forEach(btn => {
 
-      button.classList.add("active");
+          btn.classList.remove(
+            "active"
+          );
 
+        });
 
-      const selectedFilter =
-        button.getAttribute("data-filter");
-
-
-      projectCards.forEach(card => {
-
-        const category =
-          card.getAttribute("data-category");
+        button.classList.add("active");
 
 
-        const shouldShow =
-          selectedFilter === "all" ||
-          category === selectedFilter;
+        const selectedFilter =
+          button.getAttribute(
+            "data-filter"
+          );
 
 
-        if (shouldShow) {
+        projectCards.forEach(card => {
 
-          card.style.display = "flex";
-
-          requestAnimationFrame(() => {
-
-            card.style.opacity = "1";
-            card.style.transform = "scale(1)";
-
-          });
-
-        } else {
-
-          card.style.opacity = "0";
-          card.style.transform = "scale(0.95)";
+          const category =
+            card.getAttribute(
+              "data-category"
+            );
 
 
-          setTimeout(() => {
+          const shouldShow =
+            selectedFilter === "all" ||
+            category === selectedFilter;
 
-            if (
-              card.style.opacity === "0"
-            ) {
-              card.style.display = "none";
-            }
 
-          }, 300);
+          if (shouldShow) {
 
-        }
+            card.classList.remove(
+              "project-hidden"
+            );
 
-      });
+            card.style.display = "flex";
 
-    });
+            requestAnimationFrame(() => {
+
+              card.style.opacity = "1";
+              card.style.transform =
+                "scale(1)";
+
+            });
+
+          } else {
+
+            card.style.opacity = "0";
+            card.style.transform =
+              "scale(0.94)";
+
+            setTimeout(() => {
+
+              if (
+                card.style.opacity === "0"
+              ) {
+                card.style.display =
+                  "none";
+              }
+
+            }, 300);
+          }
+
+        });
+
+      }
+    );
 
   });
 
 
+
   /* ==========================================================================
-     GLOWING CURSOR CARD EFFECT
+     GLOWING CURSOR EFFECT
      ========================================================================== */
 
   const glowCards =
-    document.querySelectorAll("[data-glow]");
+    document.querySelectorAll(
+      "[data-glow]"
+    );
 
 
   glowCards.forEach(card => {
 
-    card.addEventListener("mousemove", event => {
+    card.addEventListener(
+      "mousemove",
+      (event) => {
 
-      const rect =
-        card.getBoundingClientRect();
+        const rect =
+          card.getBoundingClientRect();
 
+        const x =
+          event.clientX - rect.left;
 
-      const x =
-        event.clientX - rect.left;
-
-      const y =
-        event.clientY - rect.top;
-
-
-      card.style.setProperty(
-        "--mouse-x",
-        `${x}px`
-      );
-
-      card.style.setProperty(
-        "--mouse-y",
-        `${y}px`
-      );
-
-    });
+        const y =
+          event.clientY - rect.top;
 
 
-    card.addEventListener("mouseleave", () => {
+        card.style.setProperty(
+          "--mouse-x",
+          `${x}px`
+        );
 
-      card.style.removeProperty(
-        "--mouse-x"
-      );
+        card.style.setProperty(
+          "--mouse-y",
+          `${y}px`
+        );
+      }
+    );
 
-      card.style.removeProperty(
-        "--mouse-y"
-      );
 
-    });
+    card.addEventListener(
+      "mouseleave",
+      () => {
+
+        card.style.removeProperty(
+          "--mouse-x"
+        );
+
+        card.style.removeProperty(
+          "--mouse-y"
+        );
+
+      }
+    );
 
   });
 
 
+
   /* ==========================================================================
-     EMAIL COPY FUNCTION
+     EMAIL COPY FUNCTIONALITY
      ========================================================================== */
 
   const copyEmailButton =
@@ -769,7 +846,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  if (copyEmailButton && emailElement) {
+  if (
+    copyEmailButton &&
+    emailElement
+  ) {
 
     const copyIcon =
       copyEmailButton.querySelector(
@@ -792,50 +872,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-          if (
-            navigator.clipboard &&
-            window.isSecureContext
-          ) {
+          await navigator.clipboard.writeText(
+            email
+          );
 
-            await navigator.clipboard.writeText(
-              email
-            );
-
-          } else {
-
-            /* Fallback for non-secure environments */
-
-            const temporaryInput =
-              document.createElement("textarea");
-
-            temporaryInput.value = email;
-
-            temporaryInput.style.position =
-              "fixed";
-
-            temporaryInput.style.opacity = "0";
-
-            document.body.appendChild(
-              temporaryInput
-            );
-
-            temporaryInput.select();
-
-            document.execCommand("copy");
-
-            temporaryInput.remove();
-
-          }
-
-
-          /* Change icon */
 
           if (copyIcon) {
-            copyIcon.style.display = "none";
+            copyIcon.style.display =
+              "none";
           }
 
           if (checkIcon) {
-            checkIcon.style.display = "block";
+            checkIcon.style.display =
+              "block";
           }
 
 
@@ -848,11 +897,13 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
 
             if (copyIcon) {
-              copyIcon.style.display = "block";
+              copyIcon.style.display =
+                "block";
             }
 
             if (checkIcon) {
-              checkIcon.style.display = "none";
+              checkIcon.style.display =
+                "none";
             }
 
             copyEmailButton.setAttribute(
@@ -865,21 +916,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
 
-          console.error(
-            "Unable to copy email:",
-            error
+          /* Fallback for unsupported browsers */
+
+          const temporaryInput =
+            document.createElement(
+              "input"
+            );
+
+          temporaryInput.value =
+            email;
+
+          document.body.appendChild(
+            temporaryInput
           );
+
+          temporaryInput.select();
+
+          document.execCommand(
+            "copy"
+          );
+
+          temporaryInput.remove();
 
         }
 
       }
     );
-
   }
 
 
+
   /* ==========================================================================
-     CONTACT FORM
+     CONTACT FORM VALIDATION
      ========================================================================== */
 
   const contactForm =
@@ -893,11 +961,11 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  if (contactForm && formStatus) {
+  if (contactForm) {
 
     contactForm.addEventListener(
       "submit",
-      event => {
+      async (event) => {
 
         event.preventDefault();
 
@@ -907,18 +975,15 @@ document.addEventListener("DOMContentLoaded", () => {
             "name"
           )?.value.trim();
 
-
         const email =
           document.getElementById(
             "email"
           )?.value.trim();
 
-
         const subject =
           document.getElementById(
             "subject"
           )?.value.trim();
-
 
         const message =
           document.getElementById(
@@ -941,7 +1006,6 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
           return;
-
         }
 
 
@@ -959,11 +1023,10 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
           return;
-
         }
 
 
-        /* Message length validation */
+        /* Message length */
 
         if (message.length < 10) {
 
@@ -973,11 +1036,8 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
           return;
-
         }
 
-
-        /* Submit button */
 
         const submitButton =
           contactForm.querySelector(
@@ -995,18 +1055,17 @@ document.addEventListener("DOMContentLoaded", () => {
           submitButton.disabled = true;
         }
 
-
         if (submitText) {
           submitText.textContent =
-            "Sending Message...";
+            "Sending...";
         }
 
 
         /*
-         * NOTE:
-         * This currently displays a success message locally.
-         * To actually receive messages by email, connect this
-         * form to a backend or form service.
+         * IMPORTANT:
+         * This currently validates the form locally.
+         * To actually receive messages, connect this form
+         * to Formspree, Web3Forms, EmailJS, or your own backend.
          */
 
         setTimeout(() => {
@@ -1016,14 +1075,13 @@ document.addEventListener("DOMContentLoaded", () => {
             "success"
           );
 
-
           contactForm.reset();
 
 
           if (submitButton) {
-            submitButton.disabled = false;
+            submitButton.disabled =
+              false;
           }
-
 
           if (submitText) {
             submitText.textContent =
@@ -1033,8 +1091,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           setTimeout(() => {
 
-            formStatus.style.display =
-              "none";
+            if (formStatus) {
+              formStatus.style.display =
+                "none";
+            }
 
           }, 5000);
 
@@ -1042,7 +1102,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
-
   }
 
 
@@ -1050,38 +1109,42 @@ document.addEventListener("DOMContentLoaded", () => {
      Form Status Helper
      -------------------------------------------------------------------------- */
 
-  function showFormStatus(message, type) {
+  function showFormStatus(
+    message,
+    type
+  ) {
 
     if (!formStatus) {
       return;
     }
 
-
     formStatus.textContent =
       message;
-
 
     formStatus.className =
       `form-status ${type}`;
 
-
     formStatus.style.display =
       "block";
-
   }
+
 
 
   /* ==========================================================================
      SMOOTH SCROLLING
      ========================================================================== */
 
-  document.querySelectorAll(
-    'a[href^="#"]'
-  ).forEach(link => {
+  const allAnchorLinks =
+    document.querySelectorAll(
+      'a[href^="#"]'
+    );
+
+
+  allAnchorLinks.forEach(link => {
 
     link.addEventListener(
       "click",
-      event => {
+      (event) => {
 
         const targetId =
           link.getAttribute("href");
@@ -1101,31 +1164,29 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-        if (!target) {
-          return;
+        if (target) {
+
+          event.preventDefault();
+
+          const headerHeight =
+            header?.offsetHeight || 80;
+
+          const targetPosition =
+            target.offsetTop -
+            headerHeight -
+            15;
+
+
+          window.scrollTo({
+            top:
+              Math.max(
+                targetPosition,
+                0
+              ),
+            behavior: "smooth"
+          });
+
         }
-
-
-        event.preventDefault();
-
-
-        const headerHeight =
-          document.getElementById(
-            "header"
-          )?.offsetHeight || 0;
-
-
-        const targetPosition =
-          target.getBoundingClientRect().top +
-          window.scrollY -
-          headerHeight -
-          15;
-
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth"
-        });
 
       }
     );
@@ -1133,8 +1194,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+
   /* ==========================================================================
-     RESUME / CONTACT BUTTON
+     RESUME / GET IN TOUCH BUTTON
      ========================================================================== */
 
   const resumeButton =
@@ -1150,54 +1212,40 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         /*
-         * The button currently points to #contact.
-         * This keeps the existing website behavior.
-         *
-         * If you later add:
-         *
-         * assets/Krishika-Amin-Resume.pdf
-         *
-         * this button can be changed into a real
-         * resume download button.
+         * The HTML currently uses this button
+         * as "Get in Touch", so it scrolls
+         * naturally to the contact section.
          */
 
       }
     );
-
   }
 
 
+
   /* ==========================================================================
-     PAGE VISIBILITY PERFORMANCE
+     ACCESSIBILITY — REDUCED MOTION
      ========================================================================== */
 
-  document.addEventListener(
-    "visibilitychange",
-    () => {
+  const prefersReducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
 
-      if (
-        document.hidden &&
-        typeof animationFrame !== "undefined"
-      ) {
 
-        cancelAnimationFrame(
-          animationFrame
+  if (prefersReducedMotion.matches) {
+
+    document
+      .querySelectorAll(".scroll-reveal")
+      .forEach(element => {
+
+        element.classList.add(
+          "revealed"
         );
 
-      }
-
-    }
-  );
-
-
-  /* ==========================================================================
-     FINAL ICON REFRESH
-     ========================================================================== */
-
-  if (typeof lucide !== "undefined") {
-
-    lucide.createIcons();
+      });
 
   }
 
 });
+```
