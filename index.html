@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,28 +9,29 @@
   <!-- Primary SEO Meta Tags -->
   <title>Krishika Amin | AI & Data Science Engineering Portfolio</title>
   <meta name="description"
-    content="Portfolio of Krishika Amin, an AI & Data Science Engineering student passionate about machine learning, software engineering, mathematics, and building intelligent solutions.">
+    content="Portfolio of Krishika Amin, an AI & Data Science Engineering student passionate about machine learning, software development, data science, and building intelligent solutions.">
   <meta name="keywords"
-    content="Krishika Amin, AI Engineering, Data Science Student, Portfolio, Machine Learning, Python, Web Developer">
+    content="Krishika Amin, AI, Data Science, Machine Learning, Python, C, SQL, Web Development, Portfolio">
   <meta name="author" content="Krishika Amin">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Krishika Amin | AI & Data Science Engineering Portfolio">
   <meta property="og:description"
-    content="Explore projects, skills, certifications, and academic milestones of Krishika Amin, a tech student building futuristic AI solutions.">
+    content="Explore the projects, skills, certifications, education, and achievements of Krishika Amin.">
   <meta property="og:image" content="assets/avatar.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="Krishika Amin | AI & Data Science Engineering Portfolio">
   <meta property="twitter:description"
-    content="Explore projects, skills, certifications, and academic milestones of Krishika Amin.">
+    content="Explore the projects, skills, certifications, education, and achievements of Krishika Amin.">
   <meta property="twitter:image" content="assets/avatar.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
@@ -37,695 +39,1645 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Lucide Icons CDN -->
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
-  <!-- Dynamic Canvas Background for Particles -->
+  <!-- =========================
+       BACKGROUND
+  ========================== -->
+
   <canvas id="particles-canvas"></canvas>
 
-  <!-- Ambient Glow Effects -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
 
-  <!-- Header Navigation -->
+
+  <!-- =========================
+       HEADER / NAVIGATION
+  ========================== -->
+
   <header id="header">
+
     <div class="nav-container">
+
       <a href="#hero" class="logo">
-        <span class="logo-accent">&lt;</span>Krishika<span class="logo-dot">.</span>Amin<span
-          class="logo-accent">/&gt;</span>
+        <span class="logo-accent">&lt;</span>
+        Krishika
+        <span class="logo-dot">.</span>
+        Amin
+        <span class="logo-accent">/&gt;</span>
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Navigation -->
       <nav class="nav-links" aria-label="Main Navigation">
+
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#certifications" class="nav-link">Certifications</a>
         <a href="#education" class="nav-link">Education</a>
         <a href="#achievements" class="nav-link">Achievements</a>
-        <a href="#contact" class="nav-btn">Contact Me</a>
+
+        <a href="#contact" class="nav-btn">
+          Contact Me
+        </a>
+
       </nav>
 
-      <!-- Hamburger Menu Button -->
-      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation menu" id="mobile-toggle">
+      <!-- Mobile Menu Button -->
+      <button
+        class="mobile-toggle"
+        id="mobile-toggle"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu">
+
         <i data-lucide="menu" class="menu-icon"></i>
         <i data-lucide="x" class="close-icon" style="display: none;"></i>
+
       </button>
+
     </div>
 
-    <!-- Scroll Progress Bar -->
+    <!-- Scroll Progress -->
     <div class="scroll-progress-bar" id="scroll-progress"></div>
+
   </header>
 
-  <!-- Mobile Dropdown Navigation -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+
+  <!-- =========================
+       MOBILE NAVIGATION
+  ========================== -->
+
+  <div
+    class="mobile-menu"
+    id="mobile-menu"
+    aria-hidden="true">
+
     <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+
       <a href="#about" class="mobile-link">About</a>
       <a href="#skills" class="mobile-link">Skills</a>
       <a href="#projects" class="mobile-link">Projects</a>
       <a href="#certifications" class="mobile-link">Certifications</a>
       <a href="#education" class="mobile-link">Education</a>
       <a href="#achievements" class="mobile-link">Achievements</a>
-      <a href="#contact" class="mobile-link mobile-btn">Contact Me</a>
+
+      <a href="#contact" class="mobile-link mobile-btn">
+        Contact Me
+      </a>
+
     </nav>
+
   </div>
 
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
   <main>
-    <!-- Hero Section -->
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
     <section id="hero" class="hero-section">
+
       <div class="hero-container container">
+
+        <!-- Hero Text -->
         <div class="hero-content scroll-reveal">
+
           <div class="badge-container">
+
             <span class="status-badge">
-              <span class="pulse-dot"></span> Open for Opportunities
+              <span class="pulse-dot"></span>
+              Open for Opportunities
             </span>
+
           </div>
+
           <h1 class="hero-title">
-            Hi, I'm <span class="highlight-text">Krishika Amin</span>
+            Hi, I'm
+            <span class="highlight-text">
+              Krishika Amin
+            </span>
           </h1>
-          <h2 class="hero-subtitle">AI & Data Science Engineering Student</h2>
+
+          <h2 class="hero-subtitle">
+            AI &amp; Data Science Engineering Student
+          </h2>
+
           <p class="hero-description">
-            Fascinated by the intersection of algorithms, data patterns, and real-world intelligence. I design clean
-            code architectures, analytical systems, and intelligent machine learning pipelines.
+            I am passionate about Artificial Intelligence, Data Science,
+            machine learning, software development, and problem solving.
+            I enjoy transforming ideas into practical and intelligent
+            technology solutions.
           </p>
+
           <div class="hero-actions">
+
             <a href="#projects" class="btn btn-primary">
               <span>View Projects</span>
               <i data-lucide="arrow-right"></i>
             </a>
-            <!-- Simple action: print window or open resume mockup -->
-            <a href="#contact" class="btn btn-secondary" id="resume-download-btn">
+
+            <a href="#contact" class="btn btn-secondary">
               <span>Get in Touch</span>
               <i data-lucide="send"></i>
             </a>
+
           </div>
+
         </div>
+
+
+        <!-- Hero Image -->
         <div class="hero-visual scroll-reveal">
+
           <div class="avatar-glow-wrapper">
+
             <div class="avatar-card">
-              <img src="assets/avatar.png" alt="Krishika Amin - AI & Data Science Student Portrait" class="avatar-img">
+
+              <img
+                src="assets/avatar.png"
+                alt="Krishika Amin - AI and Data Science Engineering Student"
+                class="avatar-img">
+
             </div>
+
             <div class="floating-badge badge-top-right">
+
               <i data-lucide="brain"></i>
-              <span>AI Models</span>
+              <span>AI &amp; ML</span>
+
             </div>
+
             <div class="floating-badge badge-bottom-left">
+
               <i data-lucide="bar-chart-2"></i>
-              <span>Data Analytics</span>
+              <span>Data Science</span>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
-      <a href="#about" class="scroll-down" aria-label="Scroll to about section">
-        <i data-lucide="chevrons-down" class="scroll-down-icon"></i>
+
+
+      <a
+        href="#about"
+        class="scroll-down"
+        aria-label="Scroll to About section">
+
+        <i
+          data-lucide="chevrons-down"
+          class="scroll-down-icon"></i>
+
       </a>
+
     </section>
 
-    <!-- About Me Section -->
-    <section id="about" class="about-section container section-padding">
+
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================== -->
+
+    <section
+      id="about"
+      class="about-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">Background</span>
-        <h2 class="section-title">About Me</h2>
+
+        <span class="section-tagline">
+          Background
+        </span>
+
+        <h2 class="section-title">
+          About Me
+        </h2>
+
         <div class="divider"></div>
+
       </div>
+
+
       <div class="about-grid">
+
+
         <div class="about-text-wrapper scroll-reveal">
+
           <p class="about-p">
-            I am a dedicated engineering student deeply invested in **Artificial Intelligence**, **Data Science**, and
-            mathematical problem-solving. My journey is driven by curiosity—I love decoding complex datasets and
-            teaching machines to think, learn, and solve critical challenges.
+            I am an Artificial Intelligence and Data Science engineering
+            student with a strong interest in programming, machine learning,
+            data analysis, and mathematical problem-solving. I enjoy learning
+            how data can be transformed into meaningful insights and how
+            intelligent systems can solve real-world problems.
           </p>
+
           <p class="about-p">
-            My career goal is to build a successful track record in the tech industry by continuously applying my
-            analytical skills, developing reliable software products, and learning from seasoned professionals. Whether
-            it's training neural networks or writing highly optimized C/Python scripts, I aim for excellence.
+            My goal is to build strong technical skills and gain practical
+            industry experience by working on meaningful projects. I
+            continuously improve my knowledge of Python, C, SQL, data
+            structures, machine learning, and web technologies.
           </p>
+
+
           <div class="focus-cards-container">
+
+
+            <!-- Problem Solving -->
             <div class="focus-card glass-card">
+
               <div class="focus-icon-box cyan-bg">
                 <i data-lucide="binary"></i>
               </div>
-              <h3>Problem Solving</h3>
-              <p>Formulating algorithms and designing structured code structures to tackle logic puzzles.</p>
+
+              <h3>
+                Problem Solving
+              </h3>
+
+              <p>
+                Developing logical thinking and efficient algorithms to
+                solve programming and real-world problems.
+              </p>
+
             </div>
+
+
+            <!-- Data & Mathematics -->
             <div class="focus-card glass-card">
+
               <div class="focus-icon-box purple-bg">
                 <i data-lucide="sigma"></i>
               </div>
-              <h3>Mathematics</h3>
-              <p>Applying statistical methods, calculus, and linear algebra to optimize machine learning models.</p>
+
+              <h3>
+                Data &amp; Mathematics
+              </h3>
+
+              <p>
+                Applying mathematics, statistics, and analytical thinking
+                to understand data and machine learning models.
+              </p>
+
             </div>
+
           </div>
+
         </div>
+
+
+        <!-- About Stats -->
         <div class="about-stats-wrapper scroll-reveal">
+
           <div class="stat-box glass-card">
-            <span class="stat-num">AI / DS</span>
-            <span class="stat-lbl">Engineering Specialization</span>
+
+            <span class="stat-num">
+              AI / DS
+            </span>
+
+            <span class="stat-lbl">
+              Engineering Specialization
+            </span>
+
           </div>
+
+
           <div class="info-list-card glass-card">
-            <h3>Quick Details</h3>
+
+            <h3>
+              Quick Details
+            </h3>
+
             <ul class="info-list">
+
               <li>
-                <span class="info-label">Current Role:</span>
-                <span class="info-val">B.E. AI & Data Science Student</span>
+                <span class="info-label">
+                  Current Role:
+                </span>
+
+                <span class="info-val">
+                  B.Tech AI &amp; Data Science Student
+                </span>
               </li>
+
               <li>
-                <span class="info-label">Core Focus:</span>
-                <span class="info-val">Machine Learning & Analysis</span>
+                <span class="info-label">
+                  Core Focus:
+                </span>
+
+                <span class="info-val">
+                  Machine Learning &amp; Data Analysis
+                </span>
               </li>
+
               <li>
-                <span class="info-label">Interests:</span>
-                <span class="info-val">Algorithms, Deep Learning, SQL</span>
+                <span class="info-label">
+                  Programming:
+                </span>
+
+                <span class="info-val">
+                  Python, C, SQL
+                </span>
               </li>
+
               <li>
-                <span class="info-label">Location:</span>
-                <span class="info-val">Maharashtra, India</span>
+                <span class="info-label">
+                  Interests:
+                </span>
+
+                <span class="info-val">
+                  AI, Data Science, Algorithms &amp; Software
+                </span>
               </li>
+
+              <li>
+                <span class="info-label">
+                  Location:
+                </span>
+
+                <span class="info-val">
+                  Bengaluru, Karnataka, India
+                </span>
+              </li>
+
             </ul>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section container section-padding">
+
+
+    <!-- =========================
+         SKILLS SECTION
+    ========================== -->
+
+    <section
+      id="skills"
+      class="skills-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">My Toolbox</span>
-        <h2 class="section-title">Technical Expertise</h2>
+
+        <span class="section-tagline">
+          My Toolbox
+        </span>
+
+        <h2 class="section-title">
+          Technical Skills
+        </h2>
+
         <div class="divider"></div>
+
       </div>
+
+
       <div class="skills-grid">
+
+
         <!-- Python -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap python-color">
                 <i data-lucide="terminal"></i>
               </div>
-              <span class="skill-percentage">90%</span>
+
+              <span class="skill-percentage">
+                75%
+              </span>
+
             </div>
-            <h3 class="skill-name">Python</h3>
-            <p class="skill-desc">Pandas, NumPy, Scikit-learn, and basic AI scripting libraries.</p>
+
+            <h3 class="skill-name">
+              Python
+            </h3>
+
+            <p class="skill-desc">
+              Python programming with NumPy, Pandas, Matplotlib,
+              Scikit-learn, and basic machine learning workflows.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 90%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 75%;">
+              </div>
             </div>
+
           </div>
+
         </div>
 
-        <!-- C Programming -->
+
+        <!-- C -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap c-color">
                 <i data-lucide="cpu"></i>
               </div>
-              <span class="skill-percentage">85%</span>
+
+              <span class="skill-percentage">
+                75%
+              </span>
+
             </div>
-            <h3 class="skill-name">C Programming</h3>
-            <p class="skill-desc">Strong foundational code logic, memory management, and system concepts.</p>
+
+            <h3 class="skill-name">
+              C Programming
+            </h3>
+
+            <p class="skill-desc">
+              Strong foundation in C programming, functions, arrays,
+              pointers, structures, recursion, and problem solving.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 85%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 75%;">
+              </div>
             </div>
+
           </div>
+
         </div>
+
 
         <!-- Data Structures -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap ds-color">
                 <i data-lucide="git-branch"></i>
               </div>
-              <span class="skill-percentage">80%</span>
+
+              <span class="skill-percentage">
+                70%
+              </span>
+
             </div>
-            <h3 class="skill-name">Data Structures</h3>
-            <p class="skill-desc">Trees, Linked Lists, Graphs, Stacks, Queues, and search/sort algorithms.</p>
+
+            <h3 class="skill-name">
+              Data Structures
+            </h3>
+
+            <p class="skill-desc">
+              Arrays, strings, sorting, searching, linked lists,
+              stacks, queues, recursion, and algorithmic thinking.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 80%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 70%;">
+              </div>
             </div>
+
           </div>
+
         </div>
+
 
         <!-- Artificial Intelligence -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap ai-color">
                 <i data-lucide="bot"></i>
               </div>
-              <span class="skill-percentage">80%</span>
+
+              <span class="skill-percentage">
+                65%
+              </span>
+
             </div>
-            <h3 class="skill-name">Artificial Intelligence</h3>
-            <p class="skill-desc">Search strategies, NLP basics, logic representation, and agents.</p>
+
+            <h3 class="skill-name">
+              Artificial Intelligence
+            </h3>
+
+            <p class="skill-desc">
+              Fundamentals of artificial intelligence, intelligent
+              systems, search strategies, and AI problem solving.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 80%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 65%;">
+              </div>
             </div>
+
           </div>
+
         </div>
+
 
         <!-- Machine Learning -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap ml-color">
                 <i data-lucide="network"></i>
               </div>
-              <span class="skill-percentage">75%</span>
+
+              <span class="skill-percentage">
+                65%
+              </span>
+
             </div>
-            <h3 class="skill-name">Machine Learning</h3>
-            <p class="skill-desc">Regression models, decision trees, clustering, and neural network basics.</p>
+
+            <h3 class="skill-name">
+              Machine Learning
+            </h3>
+
+            <p class="skill-desc">
+              Fundamentals of regression, classification, model evaluation,
+              preprocessing, and basic machine learning workflows.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 75%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 65%;">
+              </div>
             </div>
+
           </div>
+
         </div>
 
-        <!-- SQL & Databases -->
+
+        <!-- SQL -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap sql-color">
                 <i data-lucide="database"></i>
               </div>
-              <span class="skill-percentage">85%</span>
+
+              <span class="skill-percentage">
+                70%
+              </span>
+
             </div>
-            <h3 class="skill-name">SQL & Databases</h3>
-            <p class="skill-desc">Relational queries, schema designing, joins, indexes, and performance.</p>
+
+            <h3 class="skill-name">
+              MySQL &amp; SQL
+            </h3>
+
+            <p class="skill-desc">
+              Database fundamentals, queries, joins, filtering,
+              aggregation, table design, and relational databases.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 85%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 70%;">
+              </div>
             </div>
+
           </div>
+
         </div>
 
-        <!-- Web Technologies -->
+
+        <!-- Web Development -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap web-color">
                 <i data-lucide="code-2"></i>
               </div>
-              <span class="skill-percentage">80%</span>
+
+              <span class="skill-percentage">
+                70%
+              </span>
+
             </div>
-            <h3 class="skill-name">HTML, CSS, JS</h3>
-            <p class="skill-desc">Structuring modern layouts, standard grid designs, animations, and behaviors.</p>
+
+            <h3 class="skill-name">
+              HTML, CSS &amp; JavaScript
+            </h3>
+
+            <p class="skill-desc">
+              Building responsive websites with modern layouts,
+              animations, interactive elements, and clean interfaces.
+            </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 80%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 70%;">
+              </div>
             </div>
+
           </div>
+
         </div>
 
-        <!-- Git & Version Control -->
+
+        <!-- GitHub -->
         <div class="skill-card glass-card scroll-reveal" data-glow>
+
           <div class="skill-card-inner">
+
             <div class="skill-header">
+
               <div class="skill-icon-wrap git-color">
                 <i data-lucide="git-fork"></i>
               </div>
-              <span class="skill-percentage">85%</span>
+
+              <span class="skill-percentage">
+                65%
+              </span>
+
             </div>
-            <h3 class="skill-name">Git & GitHub</h3>
-            <p class="skill-desc">Branch branching, code tracking, pull requests, and codebase collaborative management.
+
+            <h3 class="skill-name">
+              Git &amp; GitHub
+            </h3>
+
+            <p class="skill-desc">
+              Version control, repositories, commits, branches,
+              project management, and maintaining coding projects.
             </p>
+
             <div class="skill-progress-bar">
-              <div class="skill-progress-fill" style="--width: 85%;"></div>
+              <div
+                class="skill-progress-fill"
+                style="--width: 65%;">
+              </div>
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section container section-padding">
+
+
+    <!-- =========================
+         PROJECTS SECTION
+    ========================== -->
+
+    <section
+      id="projects"
+      class="projects-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">My Creations</span>
-        <h2 class="section-title">Projects Showcase</h2>
+
+        <span class="section-tagline">
+          My Creations
+        </span>
+
+        <h2 class="section-title">
+          Projects Showcase
+        </h2>
+
         <div class="divider"></div>
+
       </div>
 
-      <!-- Filters -->
+
+      <!-- Project Filters -->
       <div class="project-filters scroll-reveal">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="ai-ml">AI & ML</button>
-        <button class="filter-btn" data-filter="software">Software Development</button>
-        <button class="filter-btn" data-filter="web">Web Applications</button>
+
+        <button
+          class="filter-btn active"
+          data-filter="all">
+          All Projects
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="ai-ml">
+          AI &amp; ML
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="software">
+          Software Development
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="web">
+          Web Applications
+        </button>
+
       </div>
 
-      <!-- Projects Grid -->
+
       <div class="projects-grid">
-        <!-- Project 1: AI Chatbot -->
-        <div class="project-card glass-card scroll-reveal" data-category="ai-ml">
+
+
+        <!-- Project 1 -->
+        <div
+          class="project-card glass-card scroll-reveal"
+          data-category="ai-ml">
+
           <div class="project-img-wrapper">
+
             <div class="project-glow"></div>
+
             <div class="project-img-placeholder purple-gradient">
-              <i data-lucide="messages-square" class="proj-placeholder-icon"></i>
+              <i
+                data-lucide="eye"
+                class="proj-placeholder-icon">
+              </i>
             </div>
-            <div class="project-category-tag">AI & ML</div>
+
+            <div class="project-category-tag">
+              AI &amp; ML
+            </div>
+
           </div>
+
           <div class="project-info">
-            <h3 class="project-title">AI Conversational Chatbot</h3>
+
+            <h3 class="project-title">
+              AI-Based Anemia Detection
+            </h3>
+
             <p class="project-description">
-              An intelligent chatbot leveraging Natural Language Processing to simulate user flows, answer frequently
-              asked questions, and analyze intent.
+              An AI-based healthcare concept designed to explore anemia
+              detection using visual indicators such as eye color and
+              nail pallor, with the goal of supporting early screening.
             </p>
+
             <div class="project-tags">
+
               <span class="tag">Python</span>
-              <span class="tag">NLP</span>
-              <span class="tag">Transformers</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Computer Vision</span>
+
             </div>
+
             <div class="project-links">
-              <a href="#" class="proj-link" aria-label="View AI Chatbot source code"><i data-lucide="github"></i>
-                Code</a>
-              <a href="#" class="proj-link" aria-label="View AI Chatbot demo"><i data-lucide="external-link"></i> Live
-                Demo</a>
+
+              <a
+                href="#"
+                class="proj-link"
+                aria-label="View anemia detection source code">
+
+                <i data-lucide="github"></i>
+                Code
+
+              </a>
+
+              <a
+                href="#"
+                class="proj-link"
+                aria-label="View anemia detection project">
+
+                <i data-lucide="external-link"></i>
+                Details
+
+              </a>
+
             </div>
+
           </div>
+
         </div>
 
-        <!-- Project 2: Student Management System -->
-        <div class="project-card glass-card scroll-reveal" data-category="software">
+
+        <!-- Project 2 -->
+        <div
+          class="project-card glass-card scroll-reveal"
+          data-category="software">
+
           <div class="project-img-wrapper">
+
             <div class="project-glow"></div>
+
             <div class="project-img-placeholder cyan-gradient">
-              <i data-lucide="graduation-cap" class="proj-placeholder-icon"></i>
+
+              <i
+                data-lucide="lock"
+                class="proj-placeholder-icon">
+              </i>
+
             </div>
-            <div class="project-category-tag">Software Development</div>
+
+            <div class="project-category-tag">
+              Software Development
+            </div>
+
           </div>
+
           <div class="project-info">
-            <h3 class="project-title">Student Management System</h3>
+
+            <h3 class="project-title">
+              Smart Door Lock System
+            </h3>
+
             <p class="project-description">
-              A comprehensive system designed for academic administrators to manage student lists, database grades,
-              tracking progress, and automated reporting.
+              An IoT-based smart door lock system developed using
+              Arduino Uno to demonstrate electronic access control
+              and automated security.
             </p>
+
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">Tkinter</span>
+
+              <span class="tag">Arduino Uno</span>
+              <span class="tag">IoT</span>
+              <span class="tag">Embedded Systems</span>
+
             </div>
+
             <div class="project-links">
-              <a href="#" class="proj-link" aria-label="View Student Management System code"><i
-                  data-lucide="github"></i> Code</a>
-              <a href="#" class="proj-link" aria-label="View Student Management System demo"><i
-                  data-lucide="external-link"></i> Details</a>
+
+              <a
+                href="#"
+                class="proj-link"
+                aria-label="View smart door lock source code">
+
+                <i data-lucide="github"></i>
+                Code
+
+              </a>
+
+              <a
+                href="#"
+                class="proj-link"
+                aria-label="View smart door lock project">
+
+                <i data-lucide="external-link"></i>
+                Details
+
+              </a>
+
             </div>
+
           </div>
+
         </div>
 
-        <!-- Project 3: Data Analytics Dashboard -->
-        <div class="project-card glass-card scroll-reveal" data-category="ai-ml">
+
+        <!-- Project 3 -->
+        <div
+          class="project-card glass-card scroll-reveal"
+          data-category="software">
+
           <div class="project-img-wrapper">
+
             <div class="project-glow"></div>
+
             <div class="project-img-placeholder blue-gradient">
-              <i data-lucide="line-chart" class="proj-placeholder-icon"></i>
+
+              <i
+                data-lucide="bus"
+                class="proj-placeholder-icon">
+              </i>
+
             </div>
-            <div class="project-category-tag">AI & ML</div>
+
+            <div class="project-category-tag">
+              Software Development
+            </div>
+
           </div>
+
           <div class="project-info">
-            <h3 class="project-title">Data Analytics Dashboard</h3>
+
+            <h3 class="project-title">
+              Online Bus Ticket Reservation System
+            </h3>
+
             <p class="project-description">
-              An interactive visual analytics platform aggregating metrics, performing correlation studies, and
-              representing trends in chart graphics.
+              A software project focused on managing bus routes,
+              passenger details, ticket reservations, and basic
+              booking operations.
             </p>
+
             <div class="project-tags">
-              <span class="tag">Pandas</span>
-              <span class="tag">Streamlit</span>
-              <span class="tag">Plotly</span>
+
+              <span class="tag">C</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Database</span>
+
             </div>
+
             <div class="project-links">
-              <a href="#" class="proj-link" aria-label="View Data Analytics Dashboard code"><i data-lucide="github"></i>
-                Code</a>
-              <a href="#" class="proj-link" aria-label="View Data Analytics Dashboard demo"><i
-                  data-lucide="external-link"></i> Live Demo</a>
+
+              <a
+                href="#"
+                class="proj-link"
+                aria-label="View bus reservation source code">
+
+                <i data-lucide="github"></i>
+                Code
+
+              </a>
+
+              <a
+                href="#"
+                class="proj-link"
+                aria-label="View bus reservation project">
+
+                <i data-lucide="external-link"></i>
+                Details
+
+              </a>
+
             </div>
+
           </div>
+
         </div>
 
-        <!-- Project 4: Portfolio Website -->
-        <div class="project-card glass-card scroll-reveal" data-category="web">
+
+        <!-- Project 4 -->
+        <div
+          class="project-card glass-card scroll-reveal"
+          data-category="web">
+
           <div class="project-img-wrapper">
+
             <div class="project-glow"></div>
+
             <div class="project-img-placeholder mixed-gradient">
-              <i data-lucide="layout" class="proj-placeholder-icon"></i>
+
+              <i
+                data-lucide="layout"
+                class="proj-placeholder-icon">
+              </i>
+
             </div>
-            <div class="project-category-tag">Web Applications</div>
+
+            <div class="project-category-tag">
+              Web Applications
+            </div>
+
           </div>
+
           <div class="project-info">
-            <h3 class="project-title">Responsive Glassmorphic Portfolio</h3>
+
+            <h3 class="project-title">
+              Personal Portfolio Website
+            </h3>
+
             <p class="project-description">
-              A premium personal website built to display qualifications, projects, and certifications using interactive
-              animations and modern styling layout.
+              A responsive personal portfolio website designed to
+              showcase my technical skills, projects, certifications,
+              education, and achievements.
             </p>
+
             <div class="project-tags">
+
               <span class="tag">HTML5</span>
               <span class="tag">CSS3</span>
-              <span class="tag">Vanilla JS</span>
+              <span class="tag">JavaScript</span>
+
             </div>
+
             <div class="project-links">
-              <a href="#" class="proj-link" aria-label="View portfolio source code"><i data-lucide="github"></i>
-                Code</a>
-              <a href="#" class="proj-link" aria-label="View live portfolio"><i data-lucide="external-link"></i> Live
-                Demo</a>
+
+              <a
+                href="https://github.com/krishika2007"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="proj-link"
+                aria-label="View portfolio source code">
+
+                <i data-lucide="github"></i>
+                Code
+
+              </a>
+
+              <a
+                href="#hero"
+                class="proj-link"
+                aria-label="View live portfolio">
+
+                <i data-lucide="external-link"></i>
+                Live Demo
+
+              </a>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications-section container section-padding">
+
+
+    <!-- =========================
+         CERTIFICATIONS
+    ========================== -->
+
+    <section
+      id="certifications"
+      class="certifications-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">Validation</span>
-        <h2 class="section-title">Certifications</h2>
+
+        <span class="section-tagline">
+          Validation
+        </span>
+
+        <h2 class="section-title">
+          Certifications
+        </h2>
+
         <div class="divider"></div>
+
       </div>
+
+
       <div class="certs-grid">
-        <!-- Cert 1 -->
+
+
+        <!-- IBM -->
         <div class="cert-card glass-card scroll-reveal" data-glow>
+
           <div class="cert-icon-box">
             <i data-lucide="award"></i>
           </div>
+
           <div class="cert-details">
-            <h3>Machine Learning & Data Science Foundations</h3>
-            <p class="cert-issuer">Offered by Coursera / Authorized Partner</p>
-            <span class="cert-date">Issued: Jan 2026</span>
+
+            <h3>
+              IBM Certification
+            </h3>
+
+            <p class="cert-issuer">
+              IBM
+            </p>
+
+            <span class="cert-date">
+              Professional Certification
+            </span>
+
           </div>
+
         </div>
 
-        <!-- Cert 2 -->
+
+        <!-- Wadhwani -->
         <div class="cert-card glass-card scroll-reveal" data-glow>
+
           <div class="cert-icon-box">
             <i data-lucide="award"></i>
           </div>
+
           <div class="cert-details">
-            <h3>Database & SQL Advanced Querying</h3>
-            <p class="cert-issuer">Offered by Hackerrank Academy</p>
-            <span class="cert-date">Issued: Nov 2025</span>
+
+            <h3>
+              Wadhwani Foundation Certification
+            </h3>
+
+            <p class="cert-issuer">
+              Wadhwani Foundation
+            </p>
+
+            <span class="cert-date">
+              Professional Certification
+            </span>
+
           </div>
+
         </div>
 
-        <!-- Cert 3 -->
+
+        <!-- NPTEL -->
         <div class="cert-card glass-card scroll-reveal" data-glow>
+
           <div class="cert-icon-box">
             <i data-lucide="award"></i>
           </div>
+
           <div class="cert-details">
-            <h3>Python Core Certification</h3>
-            <p class="cert-issuer">Offered by Technical Training Institute</p>
-            <span class="cert-date">Issued: Aug 2025</span>
+
+            <h3>
+              Programming, Data Structures and Algorithms Using Python
+            </h3>
+
+            <p class="cert-issuer">
+              NPTEL
+            </p>
+
+            <span class="cert-date">
+              Course / Certification
+            </span>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education-section container section-padding">
+
+
+    <!-- =========================
+         EDUCATION
+    ========================== -->
+
+    <section
+      id="education"
+      class="education-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">Learning Pathway</span>
-        <h2 class="section-title">Education History</h2>
+
+        <span class="section-tagline">
+          Learning Pathway
+        </span>
+
+        <h2 class="section-title">
+          Education
+        </h2>
+
         <div class="divider"></div>
+
       </div>
+
+
       <div class="timeline">
+
         <div class="timeline-line"></div>
 
-        <!-- Timeline Item 1 -->
+
+        <!-- B.Tech -->
         <div class="timeline-item scroll-reveal">
+
           <div class="timeline-dot"></div>
+
           <div class="timeline-content glass-card">
-            <span class="timeline-date">2023 - Present</span>
-            <h3>Bachelor of Engineering (B.E.)</h3>
-            <h4>Artificial Intelligence & Data Science Engineering</h4>
-            <p>Developing expertise in mathematical modeling, algorithms design, neural networks, and modern software
-              architectures. Participating in coding events and core engineering workshops.</p>
+
+            <span class="timeline-date">
+              2025 - Present
+            </span>
+
+            <h3>
+              Bachelor of Technology (B.Tech)
+            </h3>
+
+            <h4>
+              Artificial Intelligence &amp; Data Science
+            </h4>
+
+            <p>
+              Reva University, School of Computer Science and Engineering.
+              Currently developing skills in programming, data structures,
+              databases, artificial intelligence, machine learning,
+              mathematics, and software development.
+            </p>
+
           </div>
+
         </div>
 
-        <!-- Timeline Item 2 -->
+
+        <!-- Pre-University -->
         <div class="timeline-item scroll-reveal">
+
           <div class="timeline-dot"></div>
+
           <div class="timeline-content glass-card">
-            <span class="timeline-date">2021 - 2023</span>
-            <h3>Higher Secondary Certificate (HSC)</h3>
-            <h4>Science Stream with Computer Science focus</h4>
-            <p>Completed pre-engineering studies with an emphasis on Mathematics, Physics, and foundational Computer
-              Science principles.</p>
+
+            <span class="timeline-date">
+              Pre-University
+            </span>
+
+            <h3>
+              Higher Secondary Education
+            </h3>
+
+            <h4>
+              Science / Computer Science
+            </h4>
+
+            <p>
+              Completed higher secondary education with a foundation
+              in mathematics, science, and computer science.
+            </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- Achievements Section -->
-    <section id="achievements" class="achievements-section container section-padding">
+
+
+    <!-- =========================
+         ACHIEVEMENTS
+    ========================== -->
+
+    <section
+      id="achievements"
+      class="achievements-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">Milestones</span>
-        <h2 class="section-title">Key Achievements</h2>
+
+        <span class="section-tagline">
+          Milestones
+        </span>
+
+        <h2 class="section-title">
+          Achievements
+        </h2>
+
         <div class="divider"></div>
+
       </div>
+
+
       <div class="achieve-grid">
-        <!-- Achieve 1 -->
-        <div class="achieve-card glass-card scroll-reveal">
-          <div class="achieve-badge">
-            <i data-lucide="trophy"></i>
-          </div>
-          <h3>Hackathon Finalist</h3>
-          <p>Participated in college tech hackathon building an automated utility web application within 24 hours.</p>
-        </div>
 
-        <!-- Achieve 2 -->
-        <div class="achieve-card glass-card scroll-reveal">
-          <div class="achieve-badge">
-            <i data-lucide="users"></i>
-          </div>
-          <h3>Technical Workshops</h3>
-          <p>Attended hands-on seminars covering cloud infrastructure pipelines and advanced Python algorithms.</p>
-        </div>
 
-        <!-- Achieve 3 -->
+        <!-- Achievement 1 -->
         <div class="achieve-card glass-card scroll-reveal">
+
           <div class="achieve-badge">
-            <i data-lucide="star"></i>
+            <i data-lucide="code-2"></i>
           </div>
-          <h3>Academic Excellence</h3>
-          <p>Recognized for outstanding grade performance in core mathematics, data structures, and database classes.
+
+          <h3>
+            Coding Practice
+          </h3>
+
+          <p>
+            Regularly practicing programming and problem solving
+            through coding platforms such as LeetCode and HackerRank.
           </p>
+
         </div>
+
+
+        <!-- Achievement 2 -->
+        <div class="achieve-card glass-card scroll-reveal">
+
+          <div class="achieve-badge">
+            <i data-lucide="brain"></i>
+          </div>
+
+          <h3>
+            AI &amp; Data Science Projects
+          </h3>
+
+          <p>
+            Worked on projects exploring artificial intelligence,
+            machine learning, IoT, software development, and data-driven
+            solutions.
+          </p>
+
+        </div>
+
+
+        <!-- Achievement 3 -->
+        <div class="achieve-card glass-card scroll-reveal">
+
+          <div class="achieve-badge">
+            <i data-lucide="rocket"></i>
+          </div>
+
+          <h3>
+            Continuous Learning
+          </h3>
+
+          <p>
+            Continuously building technical knowledge through
+            certifications, academic projects, coding practice,
+            and hands-on learning.
+          </p>
+
+        </div>
+
       </div>
+
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section container section-padding">
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section
+      id="contact"
+      class="contact-section container section-padding">
+
       <div class="section-header scroll-reveal">
-        <span class="section-tagline">Get In Touch</span>
-        <h2 class="section-title">Contact Me</h2>
+
+        <span class="section-tagline">
+          Get In Touch
+        </span>
+
+        <h2 class="section-title">
+          Contact Me
+        </h2>
+
         <div class="divider"></div>
+
       </div>
+
+
       <div class="contact-grid">
-        <!-- Contact Details -->
+
+
+        <!-- Contact Information -->
         <div class="contact-info-column scroll-reveal">
-          <h3>Let's collaborate on AI & Data initiatives!</h3>
-          <p class="contact-info-subtitle">Feel free to reach out via email or connect through professional socials.</p>
+
+          <h3>
+            Let's collaborate on AI &amp; Data initiatives!
+          </h3>
+
+          <p class="contact-info-subtitle">
+            Feel free to reach out through email or connect with me
+            on professional platforms.
+          </p>
+
 
           <div class="contact-details-list">
+
+
             <!-- Email -->
             <div class="contact-detail-item">
+
               <div class="contact-detail-icon">
                 <i data-lucide="mail"></i>
               </div>
+
               <div class="contact-detail-text">
-                <span class="label">Email Address</span>
+
+                <span class="label">
+                  Email Address
+                </span>
+
                 <div class="email-copy-wrapper">
-                  <span class="value" id="email-text">krishika.amin.edu@gmail.com</span>
-                  <button class="copy-btn" id="copy-email-btn" aria-label="Copy email to clipboard">
-                    <i data-lucide="copy" class="copy-icon"></i>
-                    <i data-lucide="check" class="check-icon" style="display: none;"></i>
+
+                  <span
+                    class="value"
+                    id="email-text">
+                    krishika.amin.edu@gmail.com
+                  </span>
+
+                  <button
+                    class="copy-btn"
+                    id="copy-email-btn"
+                    aria-label="Copy email to clipboard">
+
+                    <i
+                      data-lucide="copy"
+                      class="copy-icon">
+                    </i>
+
+                    <i
+                      data-lucide="check"
+                      class="check-icon"
+                      style="display: none;">
+                    </i>
+
                   </button>
+
                 </div>
+
               </div>
+
             </div>
 
-            <!-- Phone -->
-            <div class="contact-detail-item">
-              <div class="contact-detail-icon">
-                <i data-lucide="phone"></i>
-              </div>
-              <div class="contact-detail-text">
-                <span class="label">Phone / Mobile</span>
-                <span class="value">+91 98765 43210</span>
-              </div>
-            </div>
 
             <!-- Location -->
             <div class="contact-detail-item">
+
               <div class="contact-detail-icon">
                 <i data-lucide="map-pin"></i>
               </div>
+
               <div class="contact-detail-text">
-                <span class="label">Location</span>
-                <span class="value">Mumbai, Maharashtra, India</span>
+
+                <span class="label">
+                  Location
+                </span>
+
+                <span class="value">
+                  Bengaluru, Karnataka, India
+                </span>
+
               </div>
+
             </div>
+
+
           </div>
 
-          <!-- Social Handles -->
+
+          <!-- Social Links -->
           <div class="social-links">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon"
+
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
               aria-label="LinkedIn Profile">
+
               <i data-lucide="linkedin"></i>
+
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon"
+
+            <a
+              href="https://github.com/krishika2007"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
               aria-label="GitHub Profile">
+
               <i data-lucide="github"></i>
+
             </a>
+
           </div>
+
         </div>
+
+
 
         <!-- Contact Form -->
         <div class="contact-form-column scroll-reveal">
-          <form class="contact-form glass-card" id="contact-form">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" required placeholder="Enter your full name">
-            </div>
+
+          <form
+            class="contact-form glass-card"
+            id="contact-form">
 
             <div class="form-group">
-              <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email address">
+
+              <label for="name">
+                Your Name
+              </label>
+
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Enter your full name">
+
             </div>
 
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" required placeholder="Project collaboration, hiring, etc.">
-            </div>
 
             <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required
+
+              <label for="email">
+                Your Email
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Enter your email address">
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="subject">
+                Subject
+              </label>
+
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                placeholder="Project collaboration, hiring, etc.">
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="message">
+                Message
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
                 placeholder="Type your message here..."></textarea>
+
             </div>
 
-            <button type="submit" class="btn btn-primary form-submit-btn">
-              <span>Send Message</span>
+
+            <button
+              type="submit"
+              class="btn btn-primary form-submit-btn">
+
+              <span>
+                Send Message
+              </span>
+
               <i data-lucide="send"></i>
+
             </button>
-            <div class="form-status" id="form-status" style="display: none;"></div>
+
+
+            <div
+              class="form-status"
+              id="form-status"
+              style="display: none;">
+            </div>
+
           </form>
+
         </div>
+
       </div>
+
     </section>
+
   </main>
 
-  <!-- Footer -->
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer class="footer">
+
     <div class="container footer-content">
-      <p class="footer-copyright">&copy; 2026 Krishika Amin. All rights reserved.</p>
-      <p class="footer-design">Designed with <span class="heart-icon">&hearts;</span> for AI & Data Science Engineering
+
+      <p class="footer-copyright">
+        &copy; 2026 Krishika Amin. All rights reserved.
       </p>
+
+      <p class="footer-design">
+        Designed with
+        <span class="heart-icon">&hearts;</span>
+        for AI &amp; Data Science
+      </p>
+
     </div>
+
   </footer>
 
-  <!-- Scripts -->
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script src="script.js"></script>
+
 </body>
 
 </html>
+```
