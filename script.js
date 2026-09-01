@@ -1,26 +1,22 @@
-```javascript
-/* ==========================================================================
-   KRISHIKA AMIN — PORTFOLIO JAVASCRIPT
-   ========================================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ==========================================================================
+  /* =========================
      LUCIDE ICONS
-     ========================================================================== */
+  ========================= */
 
   if (typeof lucide !== "undefined") {
     lucide.createIcons();
   }
 
 
-  /* ==========================================================================
-     PARTICLE NETWORK CANVAS SYSTEM
-     ========================================================================== */
+  /* =========================
+     PARTICLE BACKGROUND
+  ========================= */
 
   const canvas = document.getElementById("particles-canvas");
 
   if (canvas) {
+
     const ctx = canvas.getContext("2d");
 
     let particles = [];
@@ -34,35 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let animationFrame;
 
 
-    /* --------------------------------------------------------------------------
-       Resize Canvas
-       -------------------------------------------------------------------------- */
-
     function resizeCanvas() {
-      const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
-      canvas.width = window.innerWidth * devicePixelRatio;
-      canvas.height = window.innerHeight * devicePixelRatio;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
 
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${window.innerHeight}px`;
 
-      ctx.setTransform(
-        devicePixelRatio,
-        0,
-        0,
-        devicePixelRatio,
-        0,
-        0
-      );
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       initParticles();
     }
 
-
-    /* --------------------------------------------------------------------------
-       Particle Class
-       -------------------------------------------------------------------------- */
 
     class Particle {
 
@@ -93,10 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /* ------------------------------------------------------------------------
-         Draw Particle
-         ------------------------------------------------------------------------ */
-
       draw() {
 
         ctx.beginPath();
@@ -110,17 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         ctx.fillStyle = this.color;
+
         ctx.fill();
       }
 
 
-      /* ------------------------------------------------------------------------
-         Update Particle
-         ------------------------------------------------------------------------ */
-
       update() {
-
-        /* Screen boundaries */
 
         if (
           this.x + this.size >= window.innerWidth ||
@@ -137,33 +110,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Mouse interaction */
-
         if (mouse.x !== null && mouse.y !== null) {
 
           const dx = this.x - mouse.x;
           const dy = this.y - mouse.y;
 
-          const distance = Math.sqrt(
-            dx * dx + dy * dy
-          );
+          const distance =
+            Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < mouse.radius && distance > 0) {
+          if (
+            distance < mouse.radius &&
+            distance > 0
+          ) {
 
             const force =
               (mouse.radius - distance) /
               mouse.radius;
 
-            const pushX = dx / distance;
-            const pushY = dy / distance;
+            this.x +=
+              (dx / distance) *
+              force *
+              1.8;
 
-            this.x += pushX * force * 1.8;
-            this.y += pushY * force * 1.8;
+            this.y +=
+              (dy / distance) *
+              force *
+              1.8;
           }
         }
 
-
-        /* Normal movement */
 
         this.x += this.directionX;
         this.y += this.directionY;
@@ -173,45 +148,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* --------------------------------------------------------------------------
-       Initialize Particles
-       -------------------------------------------------------------------------- */
-
     function initParticles() {
 
       particles = [];
 
       const area =
-        window.innerWidth * window.innerHeight;
+        window.innerWidth *
+        window.innerHeight;
 
       let particleCount =
         Math.floor(area / 15000);
 
-      /* Desktop maximum */
-
-      particleCount = Math.min(
-        particleCount,
-        100
-      );
-
-      /* Fewer particles on small screens */
+      particleCount =
+        Math.min(particleCount, 100);
 
       if (window.innerWidth < 768) {
-        particleCount = Math.min(
-          particleCount,
-          45
-        );
+
+        particleCount =
+          Math.min(particleCount, 45);
       }
 
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+      for (
+        let i = 0;
+        i < particleCount;
+        i++
+      ) {
+
+        particles.push(
+          new Particle()
+        );
       }
     }
 
-
-    /* --------------------------------------------------------------------------
-       Draw Connecting Lines
-       -------------------------------------------------------------------------- */
 
     function drawLines() {
 
@@ -220,9 +188,17 @@ document.addEventListener("DOMContentLoaded", () => {
           ? 110
           : 150;
 
-      for (let a = 0; a < particles.length; a++) {
+      for (
+        let a = 0;
+        a < particles.length;
+        a++
+      ) {
 
-        for (let b = a + 1; b < particles.length; b++) {
+        for (
+          let b = a + 1;
+          b < particles.length;
+          b++
+        ) {
 
           const dx =
             particles[a].x -
@@ -264,10 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* --------------------------------------------------------------------------
-       Animation
-       -------------------------------------------------------------------------- */
-
     function animate() {
 
       ctx.clearRect(
@@ -288,31 +260,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* --------------------------------------------------------------------------
-       Mouse Events
-       -------------------------------------------------------------------------- */
+    window.addEventListener(
+      "mousemove",
+      event => {
 
-    window.addEventListener("mousemove", (event) => {
-
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-
-    });
+        mouse.x = event.clientX;
+        mouse.y = event.clientY;
+      }
+    );
 
 
-    window.addEventListener("mouseleave", () => {
+    window.addEventListener(
+      "mouseleave",
+      () => {
 
-      mouse.x = null;
-      mouse.y = null;
+        mouse.x = null;
+        mouse.y = null;
+      }
+    );
 
-    });
-
-
-    /* Touch devices */
 
     window.addEventListener(
       "touchmove",
-      (event) => {
+      event => {
 
         if (event.touches.length > 0) {
 
@@ -322,7 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
           mouse.y =
             event.touches[0].clientY;
         }
-
       },
       { passive: true }
     );
@@ -334,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mouse.x = null;
         mouse.y = null;
-
       }
     );
 
@@ -344,24 +312,23 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         cancelAnimationFrame(animationFrame);
-        resizeCanvas();
-        animate();
 
+        resizeCanvas();
+
+        animate();
       }
     );
 
 
-    /* Start particle system */
-
     resizeCanvas();
+
     animate();
   }
 
 
-
-  /* ==========================================================================
-     HEADER & MOBILE NAVIGATION
-     ========================================================================== */
+  /* =========================
+     MOBILE MENU
+  ========================= */
 
   const mobileToggle =
     document.getElementById("mobile-toggle");
@@ -371,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const mobileLinks =
     document.querySelectorAll(".mobile-link");
+
 
   if (mobileToggle && mobileMenu) {
 
@@ -386,6 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileMenu.style.display = "block";
 
       requestAnimationFrame(() => {
+
         mobileMenu.classList.add("open");
       });
 
@@ -407,7 +376,9 @@ document.addEventListener("DOMContentLoaded", () => {
         closeIcon.style.display = "block";
       }
 
-      document.body.classList.add("menu-open");
+      document.body.classList.add(
+        "menu-open"
+      );
     }
 
 
@@ -433,14 +404,18 @@ document.addEventListener("DOMContentLoaded", () => {
         closeIcon.style.display = "none";
       }
 
-      document.body.classList.remove("menu-open");
+      document.body.classList.remove(
+        "menu-open"
+      );
 
       setTimeout(() => {
 
         if (
           !mobileMenu.classList.contains("open")
         ) {
-          mobileMenu.style.display = "none";
+
+          mobileMenu.style.display =
+            "none";
         }
 
       }, 400);
@@ -451,89 +426,88 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       () => {
 
-        const isOpen =
-          mobileMenu.classList.contains("open");
+        if (
+          mobileMenu.classList.contains("open")
+        ) {
 
-        if (isOpen) {
           closeMenu();
+
         } else {
+
           openMenu();
         }
-
       }
     );
 
-
-    /* Close menu after selecting a section */
 
     mobileLinks.forEach(link => {
 
       link.addEventListener(
         "click",
-        () => {
-          closeMenu();
-        }
+        closeMenu
       );
-
     });
 
 
-    /* Close with Escape */
-
     document.addEventListener(
       "keydown",
-      (event) => {
+      event => {
 
         if (
           event.key === "Escape" &&
           mobileMenu.classList.contains("open")
         ) {
+
           closeMenu();
         }
-
       }
     );
 
-
-    /* Close if resized to desktop */
 
     window.addEventListener(
       "resize",
       () => {
 
         if (window.innerWidth > 900) {
+
           closeMenu();
         }
-
       }
     );
   }
 
 
-
-  /* ==========================================================================
+  /* =========================
      SCROLL SYSTEM
-     ========================================================================== */
+  ========================= */
 
   const header =
     document.getElementById("header");
 
   const scrollProgress =
-    document.getElementById("scroll-progress");
+    document.getElementById(
+      "scroll-progress"
+    );
 
   const sections =
-    document.querySelectorAll("main section");
+    document.querySelectorAll(
+      "main section"
+    );
 
   const navLinks =
-    document.querySelectorAll(".nav-link");
+    document.querySelectorAll(
+      ".nav-link"
+    );
 
 
-  /* --------------------------------------------------------------------------
-     Scroll Reveal
-     -------------------------------------------------------------------------- */
+  /* =========================
+     SCROLL REVEAL
+  ========================= */
 
   const revealElements =
-    document.querySelectorAll(".scroll-reveal");
+    document.querySelectorAll(
+      ".scroll-reveal"
+    );
 
 
   if ("IntersectionObserver" in window) {
@@ -554,7 +528,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 entry.target
               );
             }
-
           });
 
         },
@@ -566,26 +539,31 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    revealElements.forEach(element => {
+    revealElements.forEach(
+      element => {
 
-      revealObserver.observe(element);
-
-    });
+        revealObserver.observe(
+          element
+        );
+      }
+    );
 
   } else {
 
-    revealElements.forEach(element => {
+    revealElements.forEach(
+      element => {
 
-      element.classList.add("revealed");
-
-    });
+        element.classList.add(
+          "revealed"
+        );
+      }
+    );
   }
 
 
-
-  /* --------------------------------------------------------------------------
-     Update Scroll UI
-     -------------------------------------------------------------------------- */
+  /* =========================
+     SCROLL UI
+  ========================= */
 
   function updateScrollUI() {
 
@@ -596,8 +574,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.documentElement.scrollHeight -
       window.innerHeight;
 
-
-    /* Scroll progress */
 
     if (scrollProgress) {
 
@@ -610,8 +586,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `${progress}%`;
     }
 
-
-    /* Header background */
 
     if (header) {
 
@@ -630,9 +604,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* Active navigation */
-
     let currentSection = "";
+
 
     sections.forEach(section => {
 
@@ -647,26 +620,31 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollTop >= sectionTop &&
         scrollTop < sectionBottom
       ) {
+
         currentSection =
           section.id;
       }
-
     });
 
 
     navLinks.forEach(link => {
 
-      link.classList.remove("active");
+      link.classList.remove(
+        "active"
+      );
 
       const target =
         link.getAttribute("href");
 
       if (
-        target === `#${currentSection}`
+        target ===
+        `#${currentSection}`
       ) {
-        link.classList.add("active");
-      }
 
+        link.classList.add(
+          "active"
+        );
+      }
     });
   }
 
@@ -680,16 +658,19 @@ document.addEventListener("DOMContentLoaded", () => {
   updateScrollUI();
 
 
-
-  /* ==========================================================================
-     PROJECT FILTER SYSTEM
-     ========================================================================== */
+  /* =========================
+     PROJECT FILTER
+  ========================= */
 
   const filterButtons =
-    document.querySelectorAll(".filter-btn");
+    document.querySelectorAll(
+      ".filter-btn"
+    );
 
   const projectCards =
-    document.querySelectorAll(".project-card");
+    document.querySelectorAll(
+      ".project-card"
+    );
 
 
   filterButtons.forEach(button => {
@@ -698,17 +679,18 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       () => {
 
-        /* Active button */
+        filterButtons.forEach(
+          btn => {
 
-        filterButtons.forEach(btn => {
+            btn.classList.remove(
+              "active"
+            );
+          }
+        );
 
-          btn.classList.remove(
-            "active"
-          );
-
-        });
-
-        button.classList.add("active");
+        button.classList.add(
+          "active"
+        );
 
 
         const selectedFilter =
@@ -717,65 +699,69 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-        projectCards.forEach(card => {
+        projectCards.forEach(
+          card => {
 
-          const category =
-            card.getAttribute(
-              "data-category"
-            );
+            const category =
+              card.getAttribute(
+                "data-category"
+              );
+
+            const shouldShow =
+              selectedFilter === "all" ||
+              category === selectedFilter;
 
 
-          const shouldShow =
-            selectedFilter === "all" ||
-            category === selectedFilter;
+            if (shouldShow) {
 
+              card.classList.remove(
+                "project-hidden"
+              );
 
-          if (shouldShow) {
+              card.style.display =
+                "flex";
 
-            card.classList.remove(
-              "project-hidden"
-            );
+              requestAnimationFrame(
+                () => {
 
-            card.style.display = "flex";
+                  card.style.opacity =
+                    "1";
 
-            requestAnimationFrame(() => {
+                  card.style.transform =
+                    "scale(1)";
+                }
+              );
 
-              card.style.opacity = "1";
+            } else {
+
+              card.style.opacity =
+                "0";
+
               card.style.transform =
-                "scale(1)";
+                "scale(0.94)";
 
-            });
+              setTimeout(() => {
 
-          } else {
+                if (
+                  card.style.opacity === "0"
+                ) {
 
-            card.style.opacity = "0";
-            card.style.transform =
-              "scale(0.94)";
+                  card.style.display =
+                    "none";
+                }
 
-            setTimeout(() => {
-
-              if (
-                card.style.opacity === "0"
-              ) {
-                card.style.display =
-                  "none";
-              }
-
-            }, 300);
+              }, 300);
+            }
           }
-
-        });
-
+        );
       }
     );
-
   });
 
 
-
-  /* ==========================================================================
-     GLOWING CURSOR EFFECT
-     ========================================================================== */
+  /* =========================
+     GLOW EFFECT
+  ========================= */
 
   const glowCards =
     document.querySelectorAll(
@@ -787,7 +773,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     card.addEventListener(
       "mousemove",
-      (event) => {
+      event => {
 
         const rect =
           card.getBoundingClientRect();
@@ -823,17 +809,14 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.removeProperty(
           "--mouse-y"
         );
-
       }
     );
-
   });
 
 
-
-  /* ==========================================================================
-     EMAIL COPY FUNCTIONALITY
-     ========================================================================== */
+  /* =========================
+     COPY EMAIL
+  ========================= */
 
   const copyEmailButton =
     document.getElementById(
@@ -876,79 +859,72 @@ document.addEventListener("DOMContentLoaded", () => {
             email
           );
 
-
-          if (copyIcon) {
-            copyIcon.style.display =
-              "none";
-          }
-
-          if (checkIcon) {
-            checkIcon.style.display =
-              "block";
-          }
-
-
-          copyEmailButton.setAttribute(
-            "aria-label",
-            "Email copied"
-          );
-
-
-          setTimeout(() => {
-
-            if (copyIcon) {
-              copyIcon.style.display =
-                "block";
-            }
-
-            if (checkIcon) {
-              checkIcon.style.display =
-                "none";
-            }
-
-            copyEmailButton.setAttribute(
-              "aria-label",
-              "Copy email to clipboard"
-            );
-
-          }, 2000);
-
-
         } catch (error) {
 
-          /* Fallback for unsupported browsers */
-
-          const temporaryInput =
+          const input =
             document.createElement(
               "input"
             );
 
-          temporaryInput.value =
-            email;
+          input.value = email;
 
           document.body.appendChild(
-            temporaryInput
+            input
           );
 
-          temporaryInput.select();
+          input.select();
 
           document.execCommand(
             "copy"
           );
 
-          temporaryInput.remove();
-
+          input.remove();
         }
 
+
+        if (copyIcon) {
+          copyIcon.style.display =
+            "none";
+        }
+
+        if (checkIcon) {
+          checkIcon.style.display =
+            "block";
+        }
+
+
+        copyEmailButton.setAttribute(
+          "aria-label",
+          "Email copied"
+        );
+
+
+        setTimeout(() => {
+
+          if (copyIcon) {
+            copyIcon.style.display =
+              "block";
+          }
+
+          if (checkIcon) {
+            checkIcon.style.display =
+              "none";
+          }
+
+          copyEmailButton.setAttribute(
+            "aria-label",
+            "Copy email to clipboard"
+          );
+
+        }, 2000);
       }
     );
   }
 
 
-
-  /* ==========================================================================
-     CONTACT FORM VALIDATION
-     ========================================================================== */
+  /* =========================
+     CONTACT FORM
+  ========================= */
 
   const contactForm =
     document.getElementById(
@@ -965,7 +941,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     contactForm.addEventListener(
       "submit",
-      async (event) => {
+      event => {
 
         event.preventDefault();
 
@@ -991,8 +967,6 @@ document.addEventListener("DOMContentLoaded", () => {
           )?.value.trim();
 
 
-        /* Required field validation */
-
         if (
           !name ||
           !email ||
@@ -1009,8 +983,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Email validation */
-
         const emailRegex =
           /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -1026,12 +998,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Message length */
-
         if (message.length < 10) {
 
           showFormStatus(
-            "Please enter a message with at least 10 characters.",
+            "Please enter at least 10 characters.",
             "error"
           );
 
@@ -1044,7 +1014,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ".form-submit-btn"
           );
 
-
         const submitText =
           submitButton?.querySelector(
             "span"
@@ -1052,7 +1021,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (submitButton) {
-          submitButton.disabled = true;
+          submitButton.disabled =
+            true;
         }
 
         if (submitText) {
@@ -1060,13 +1030,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "Sending...";
         }
 
-
-        /*
-         * IMPORTANT:
-         * This currently validates the form locally.
-         * To actually receive messages, connect this form
-         * to Formspree, Web3Forms, EmailJS, or your own backend.
-         */
 
         setTimeout(() => {
 
@@ -1088,26 +1051,11 @@ document.addEventListener("DOMContentLoaded", () => {
               "Send Message";
           }
 
-
-          setTimeout(() => {
-
-            if (formStatus) {
-              formStatus.style.display =
-                "none";
-            }
-
-          }, 5000);
-
         }, 1000);
-
       }
     );
   }
 
-
-  /* --------------------------------------------------------------------------
-     Form Status Helper
-     -------------------------------------------------------------------------- */
 
   function showFormStatus(
     message,
@@ -1129,10 +1077,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
-  /* ==========================================================================
-     SMOOTH SCROLLING
-     ========================================================================== */
+  /* =========================
+     SMOOTH SCROLL
+  ========================= */
 
   const allAnchorLinks =
     document.querySelectorAll(
@@ -1144,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     link.addEventListener(
       "click",
-      (event) => {
+      event => {
 
         const targetId =
           link.getAttribute("href");
@@ -1178,54 +1125,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           window.scrollTo({
-            top:
-              Math.max(
-                targetPosition,
-                0
-              ),
+            top: Math.max(
+              targetPosition,
+              0
+            ),
             behavior: "smooth"
           });
-
         }
-
       }
     );
-
   });
 
 
-
-  /* ==========================================================================
-     RESUME / GET IN TOUCH BUTTON
-     ========================================================================== */
-
-  const resumeButton =
-    document.getElementById(
-      "resume-download-btn"
-    );
-
-
-  if (resumeButton) {
-
-    resumeButton.addEventListener(
-      "click",
-      () => {
-
-        /*
-         * The HTML currently uses this button
-         * as "Get in Touch", so it scrolls
-         * naturally to the contact section.
-         */
-
-      }
-    );
-  }
-
-
-
-  /* ==========================================================================
-     ACCESSIBILITY — REDUCED MOTION
-     ========================================================================== */
+  /* =========================
+     REDUCED MOTION
+  ========================= */
 
   const prefersReducedMotion =
     window.matchMedia(
@@ -1236,16 +1150,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (prefersReducedMotion.matches) {
 
     document
-      .querySelectorAll(".scroll-reveal")
+      .querySelectorAll(
+        ".scroll-reveal"
+      )
       .forEach(element => {
 
         element.classList.add(
           "revealed"
         );
-
       });
-
   }
 
 });
-```
