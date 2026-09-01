@@ -1,403 +1,1203 @@
 /* ==========================================================================
-   PARTICLE NETWORK CANVAS SYSTEM
+   KRISHIKA AMIN PORTFOLIO - MAIN JAVASCRIPT
    ========================================================================== */
 
-const canvas = document.getElementById('particles-canvas');
-const ctx = canvas.getContext('2d');
+document.addEventListener("DOMContentLoaded", () => {
 
-let particles = [];
-let mouse = {
-  x: null,
-  y: null,
-  radius: 120
-};
+  /* ==========================================================================
+     LUCIDE ICONS
+     ========================================================================== */
 
-// Handle window size update
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  initParticles();
-}
-
-class Particle {
-  constructor(x, y, directionX, directionY, size, color) {
-    this.x = x;
-    this.y = y;
-    this.directionX = directionX;
-    this.directionY = directionY;
-    this.size = size;
-    this.color = color;
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
   }
 
-  // Draw individual particle
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-  }
 
-  // Update position and check mouse interactions
-  update() {
-    // Check screen boundary collision
-    if (this.x > canvas.width || this.x < 0) {
-      this.directionX = -this.directionX;
-    }
-    if (this.y > canvas.height || this.y < 0) {
-      this.directionY = -this.directionY;
-    }
+  /* ==========================================================================
+     PARTICLE NETWORK CANVAS SYSTEM
+     ========================================================================== */
 
-    // Mouse interactive movement (Repulsion effect)
-    let dx = mouse.x - this.x;
-    let dy = mouse.y - this.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
+  const canvas = document.getElementById("particles-canvas");
 
-    if (distance < mouse.radius + this.size) {
-      if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-        this.x += 2;
-      }
-      if (mouse.x > this.x && this.x > this.size * 10) {
-        this.x -= 2;
-      }
-      if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-        this.y += 2;
-      }
-      if (mouse.y > this.y && this.y > this.size * 10) {
-        this.y -= 2;
-      }
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+
+    const mouse = {
+      x: null,
+      y: null,
+      radius: 120
+    };
+
+    let animationFrame;
+
+    /* --------------------------------------------------------------------------
+       Resize Canvas
+       -------------------------------------------------------------------------- */
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      initParticles();
     }
 
-    // Regular speed factor translation
-    this.x += this.directionX;
-    this.y += this.directionY;
-    this.draw();
-  }
-}
 
-// Generate particle population
-function initParticles() {
-  particles = [];
-  // Adjust density based on resolution to maintain performance
-  let numberOfParticles = (canvas.width * canvas.height) / 14000;
-  numberOfParticles = Math.min(numberOfParticles, 120); // Limit maximum nodes
+    /* --------------------------------------------------------------------------
+       Particle Class
+       -------------------------------------------------------------------------- */
 
-  for (let i = 0; i < numberOfParticles; i++) {
-    let size = Math.random() * 2 + 1;
-    let x = Math.random() * (canvas.width - size * 2 - size * 2) + size * 2;
-    let y = Math.random() * (canvas.height - size * 2 - size * 2) + size * 2;
-    let directionX = (Math.random() * 0.4) - 0.2;
-    let directionY = (Math.random() * 0.4) - 0.2;
-    // Glow theme matching violet/cyan translucent
-    let color = Math.random() > 0.5 ? 'rgba(139, 92, 246, 0.25)' : 'rgba(6, 182, 212, 0.25)';
+    class Particle {
 
-    particles.push(new Particle(x, y, directionX, directionY, size, color));
-  }
-}
+      constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
 
-// Connection line drawing between close particles
-function drawLines() {
-  let maxDistance = 150;
-  for (let a = 0; a < particles.length; a++) {
-    for (let b = a; b < particles.length; b++) {
-      let dx = particles[a].x - particles[b].x;
-      let dy = particles[a].y - particles[b].y;
-      let distance = Math.sqrt(dx * dx + dy * dy);
+        this.directionX = directionX;
+        this.directionY = directionY;
 
-      if (distance < maxDistance) {
-        // Line transparency drops as distance increases
-        let opacity = 1 - (distance / maxDistance);
-        ctx.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.08})`;
-        ctx.lineWidth = 1;
+        this.size = size;
+        this.color = color;
+      }
+
+
+      /* Draw Particle */
+
+      draw() {
         ctx.beginPath();
-        ctx.moveTo(particles[a].x, particles[a].y);
-        ctx.lineTo(particles[b].x, particles[b].y);
-        ctx.stroke();
+
+        ctx.arc(
+          this.x,
+          this.y,
+          this.size,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+
+      /* Update Particle */
+
+      update() {
+
+        /* Screen boundary collision */
+
+        if (this.x + this.size >= window.innerWidth || this.x - this.size <= 0) {
+          this.directionX *= -1;
+        }
+
+        if (this.y + this.size >= window.innerHeight || this.y - this.size <= 0) {
+          this.directionY *= -1;
+        }
+
+
+        /* Mouse repulsion */
+
+        if (mouse.x !== null && mouse.y !== null) {
+
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+
+          const distance = Math.sqrt(
+            dx * dx + dy * dy
+          );
+
+          if (distance < mouse.radius && distance > 0) {
+
+            const force = (mouse.radius - distance) / mouse.radius;
+
+            const moveX = (dx / distance) * force * 2;
+            const moveY = (dy / distance) * force * 2;
+
+            this.x -= moveX;
+            this.y -= moveY;
+          }
+        }
+
+
+        /* Normal movement */
+
+        this.x += this.directionX;
+        this.y += this.directionY;
+
+        this.draw();
       }
     }
-  }
-}
-
-// Animation loop
-function animate() {
-  requestAnimationFrame(animate);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let i = 0; i < particles.length; i++) {
-    particles[i].update();
-  }
-  drawLines();
-}
-
-// Event Listeners for canvas mouse movements
-window.addEventListener('mousemove', (event) => {
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
-});
-
-window.addEventListener('mouseleave', () => {
-  mouse.x = null;
-  mouse.y = null;
-});
-
-window.addEventListener('resize', resizeCanvas);
-
-// Initialize system
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-initParticles();
-animate();
 
 
-/* ==========================================================================
-   NAVIGATION & MOBILE DRAWER
-   ========================================================================== */
+    /* --------------------------------------------------------------------------
+       Initialize Particles
+       -------------------------------------------------------------------------- */
 
-const mobileToggle = document.getElementById('mobile-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const menuIcon = mobileToggle.querySelector('.menu-icon');
-const closeIcon = mobileToggle.querySelector('.close-icon');
-const mobileLinks = document.querySelectorAll('.mobile-link');
+    function initParticles() {
 
-function toggleMenu() {
-  const isOpen = mobileMenu.classList.contains('open');
-  if (isOpen) {
-    mobileMenu.classList.remove('open');
-    mobileMenu.style.transform = 'translateY(-100%)';
-    setTimeout(() => {
-      mobileMenu.style.display = 'none';
-      mobileMenu.setAttribute('aria-hidden', 'true');
-    }, 400);
-    menuIcon.style.display = 'block';
-    closeIcon.style.display = 'none';
-    mobileToggle.setAttribute('aria-expanded', 'false');
-  } else {
-    mobileMenu.style.display = 'block';
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    // Simple delay to trigger transform transition
-    setTimeout(() => {
-      mobileMenu.classList.add('open');
-      mobileMenu.style.transform = 'translateY(0)';
-    }, 10);
-    menuIcon.style.display = 'none';
-    closeIcon.style.display = 'block';
-    mobileToggle.setAttribute('aria-expanded', 'true');
-  }
-}
+      particles = [];
 
-mobileToggle.addEventListener('click', toggleMenu);
+      const area = window.innerWidth * window.innerHeight;
 
-// Close menu drawer on navigating click
-mobileLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('open')) {
-      toggleMenu();
-    }
-  });
-});
+      let numberOfParticles = Math.floor(area / 16000);
+
+      /* Keep particle count reasonable */
+
+      numberOfParticles = Math.max(
+        30,
+        Math.min(numberOfParticles, 110)
+      );
 
 
-/* ==========================================================================
-   SCROLL SYSTEM (HEADER PROGRESS, REVEALS, ACTIVE MARKS)
-   ========================================================================== */
+      for (let i = 0; i < numberOfParticles; i++) {
 
-const header = document.getElementById('header');
-const scrollProgress = document.getElementById('scroll-progress');
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
+        const size = Math.random() * 1.8 + 0.8;
 
-// Scroll reveal using IntersectionObserver
-const revealCallback = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      // Once revealed, no need to track it again
-      observer.unobserve(entry.target);
-    }
-  });
-};
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
 
-const revealObserver = new IntersectionObserver(revealCallback, {
-  root: null,
-  threshold: 0.15,
-  rootMargin: '0px 0px -50px 0px'
-});
+        const directionX = (Math.random() - 0.5) * 0.35;
+        const directionY = (Math.random() - 0.5) * 0.35;
 
-document.querySelectorAll('.scroll-reveal').forEach(el => {
-  revealObserver.observe(el);
-});
-
-// Scroll Event Handler (Progress & Nav state updates)
-window.addEventListener('scroll', () => {
-  // 1. Update scroll progress indicator
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPct = (scrollTop / docHeight) * 100;
-  scrollProgress.style.width = `${scrollPct}%`;
-
-  // 2. Sticky header styling modifier
-  if (scrollTop > 50) {
-    header.style.background = 'rgba(3, 0, 20, 0.85)';
-    header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
-  } else {
-    header.style.background = 'rgba(3, 0, 20, 0.6)';
-    header.style.boxShadow = 'none';
-  }
-
-  // 3. Highlight current active section in nav links
-  let currentSectionId = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    const sectionHeight = section.offsetHeight;
-    if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
-      currentSectionId = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${currentSectionId}`) {
-      link.classList.add('active');
-    }
-  });
-});
+        const color =
+          Math.random() > 0.5
+            ? "rgba(139, 92, 246, 0.30)"
+            : "rgba(6, 182, 212, 0.30)";
 
 
-/* ==========================================================================
-   PROJECTS FILTER SYSTEM
-   ========================================================================== */
-
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Toggling active state on buttons
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const selectedFilter = btn.getAttribute('data-filter');
-
-    // Filter project list items
-    projectCards.forEach(card => {
-      const cardCategory = card.getAttribute('data-category');
-
-      // Use scale animation to fade-out and hide unselected cards
-      if (selectedFilter === 'all' || cardCategory === selectedFilter) {
-        card.style.display = 'flex';
-        setTimeout(() => {
-          card.style.opacity = '1';
-          card.style.transform = 'scale(1)';
-        }, 50);
-      } else {
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          card.style.display = 'none';
-        }, 300);
+        particles.push(
+          new Particle(
+            x,
+            y,
+            directionX,
+            directionY,
+            size,
+            color
+          )
+        );
       }
+    }
+
+
+    /* --------------------------------------------------------------------------
+       Draw Connections
+       -------------------------------------------------------------------------- */
+
+    function drawLines() {
+
+      const maxDistance = 150;
+
+      for (let a = 0; a < particles.length; a++) {
+
+        for (let b = a + 1; b < particles.length; b++) {
+
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+
+          const distance = Math.sqrt(
+            dx * dx + dy * dy
+          );
+
+
+          if (distance < maxDistance) {
+
+            const opacity =
+              1 - distance / maxDistance;
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+              particles[a].x,
+              particles[a].y
+            );
+
+            ctx.lineTo(
+              particles[b].x,
+              particles[b].y
+            );
+
+            ctx.strokeStyle =
+              `rgba(139, 92, 246, ${opacity * 0.08})`;
+
+            ctx.lineWidth = 1;
+
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+
+    /* --------------------------------------------------------------------------
+       Animation Loop
+       -------------------------------------------------------------------------- */
+
+    function animate() {
+
+      animationFrame = requestAnimationFrame(animate);
+
+      ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+      );
+
+
+      drawLines();
+
+
+      particles.forEach(particle => {
+        particle.update();
+      });
+    }
+
+
+    /* --------------------------------------------------------------------------
+       Mouse Events
+       -------------------------------------------------------------------------- */
+
+    window.addEventListener("mousemove", (event) => {
+
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
+
     });
-  });
-});
 
 
-/* ==========================================================================
-   GLOWING CURSOR POSITIONING CARD HANDLER
-   ========================================================================== */
+    window.addEventListener("mouseleave", () => {
 
-const glowCards = document.querySelectorAll('[data-glow]');
+      mouse.x = null;
+      mouse.y = null;
 
-glowCards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-  });
-});
+    });
 
 
-/* ==========================================================================
-   EMAIL CLIPBOARD COPY FUNCTIONALITY
-   ========================================================================== */
+    /* Touch devices */
 
-const copyEmailBtn = document.getElementById('copy-email-btn');
-const emailText = document.getElementById('email-text').textContent;
-const copyIcon = copyEmailBtn.querySelector('.copy-icon');
-const checkIcon = copyEmailBtn.querySelector('.check-icon');
+    window.addEventListener("touchmove", (event) => {
 
-copyEmailBtn.addEventListener('click', () => {
-  // Write text value into user's clipboard buffer
-  navigator.clipboard.writeText(emailText).then(() => {
-    // Visual toggle representation
-    copyIcon.style.display = 'none';
-    checkIcon.style.display = 'block';
+      if (event.touches.length > 0) {
 
-    setTimeout(() => {
-      copyIcon.style.display = 'block';
-      checkIcon.style.display = 'none';
-    }, 2000);
-  }).catch(err => {
-    console.error('Failed to copy text: ', err);
-  });
-});
+        mouse.x = event.touches[0].clientX;
+        mouse.y = event.touches[0].clientY;
+
+      }
+
+    }, { passive: true });
 
 
-/* ==========================================================================
-   CONTACT FORM VALIDATION & SUBMIT SIMULATION
-   ========================================================================== */
+    window.addEventListener("touchend", () => {
 
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
+      mouse.x = null;
+      mouse.y = null;
 
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault(); // Intercept default reload action
+    });
 
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const subject = document.getElementById('subject').value.trim();
-  const message = document.getElementById('message').value.trim();
 
-  // Basic validation checks
-  if (!name || !email || !subject || !message) {
-    showStatus('Please fill in all the required form fields.', 'error');
-    return;
+    /* Resize */
+
+    window.addEventListener(
+      "resize",
+      resizeCanvas
+    );
+
+
+    /* Initialize */
+
+    resizeCanvas();
+    animate();
   }
 
-  // Simple email format check regex
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    showStatus('Please enter a valid email address.', 'error');
-    return;
+
+  /* ==========================================================================
+     MOBILE NAVIGATION
+     ========================================================================== */
+
+  const mobileToggle =
+    document.getElementById("mobile-toggle");
+
+  const mobileMenu =
+    document.getElementById("mobile-menu");
+
+  const mobileLinks =
+    document.querySelectorAll(".mobile-link");
+
+
+  if (mobileToggle && mobileMenu) {
+
+    const menuIcon =
+      mobileToggle.querySelector(".menu-icon");
+
+    const closeIcon =
+      mobileToggle.querySelector(".close-icon");
+
+
+    function openMenu() {
+
+      mobileMenu.classList.add("open");
+
+      mobileMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      mobileToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      if (menuIcon) {
+        menuIcon.style.display = "none";
+      }
+
+      if (closeIcon) {
+        closeIcon.style.display = "block";
+      }
+
+      document.body.classList.add("menu-open");
+    }
+
+
+    function closeMenu() {
+
+      mobileMenu.classList.remove("open");
+
+      mobileMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      mobileToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      if (menuIcon) {
+        menuIcon.style.display = "block";
+      }
+
+      if (closeIcon) {
+        closeIcon.style.display = "none";
+      }
+
+      document.body.classList.remove("menu-open");
+    }
+
+
+    mobileToggle.addEventListener("click", () => {
+
+      const isOpen =
+        mobileMenu.classList.contains("open");
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+
+    });
+
+
+    /* Close menu after clicking a link */
+
+    mobileLinks.forEach(link => {
+
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+
+    });
+
+
+    /* Close menu with Escape */
+
+    document.addEventListener("keydown", (event) => {
+
+      if (
+        event.key === "Escape" &&
+        mobileMenu.classList.contains("open")
+      ) {
+        closeMenu();
+      }
+
+    });
+
   }
 
-  // Form submit simulation
-  const submitBtn = contactForm.querySelector('.form-submit-btn');
-  const submitBtnText = submitBtn.querySelector('span');
 
-  submitBtn.disabled = true;
-  submitBtnText.textContent = 'Sending Message...';
+  /* ==========================================================================
+     HEADER + SCROLL PROGRESS + ACTIVE NAVIGATION
+     ========================================================================== */
 
-  // Simulating network request speed
-  setTimeout(() => {
-    showStatus('Thank you! Your message has been sent successfully.', 'success');
-    contactForm.reset();
-    submitBtn.disabled = false;
-    submitBtnText.textContent = 'Send Message';
+  const header =
+    document.getElementById("header");
 
-    // Auto-clear message status after 5 seconds
-    setTimeout(() => {
-      formStatus.style.display = 'none';
-    }, 5000);
-  }, 1500);
+  const scrollProgress =
+    document.getElementById("scroll-progress");
+
+  const sections =
+    document.querySelectorAll("section[id]");
+
+  const navLinks =
+    document.querySelectorAll(".nav-link");
+
+
+  function updateScrollSystem() {
+
+    const scrollTop =
+      window.scrollY;
+
+    const documentHeight =
+      document.documentElement.scrollHeight;
+
+    const windowHeight =
+      window.innerHeight;
+
+
+    /* --------------------------------------------------------------------------
+       Scroll Progress
+       -------------------------------------------------------------------------- */
+
+    const scrollableHeight =
+      documentHeight - windowHeight;
+
+
+    const scrollPercentage =
+      scrollableHeight > 0
+        ? (scrollTop / scrollableHeight) * 100
+        : 0;
+
+
+    if (scrollProgress) {
+
+      scrollProgress.style.width =
+        `${Math.min(scrollPercentage, 100)}%`;
+
+    }
+
+
+    /* --------------------------------------------------------------------------
+       Header Background
+       -------------------------------------------------------------------------- */
+
+    if (header) {
+
+      if (scrollTop > 50) {
+
+        header.classList.add("scrolled");
+
+        header.style.background =
+          "rgba(3, 0, 20, 0.88)";
+
+        header.style.boxShadow =
+          "0 10px 30px rgba(0, 0, 0, 0.3)";
+
+      } else {
+
+        header.classList.remove("scrolled");
+
+        header.style.background =
+          "rgba(3, 0, 20, 0.6)";
+
+        header.style.boxShadow =
+          "none";
+
+      }
+
+    }
+
+
+    /* --------------------------------------------------------------------------
+       Active Navigation Link
+       -------------------------------------------------------------------------- */
+
+    let currentSection = "";
+
+
+    sections.forEach(section => {
+
+      const sectionTop =
+        section.offsetTop - 160;
+
+      const sectionBottom =
+        sectionTop + section.offsetHeight;
+
+
+      if (
+        scrollTop >= sectionTop &&
+        scrollTop < sectionBottom
+      ) {
+
+        currentSection =
+          section.getAttribute("id");
+
+      }
+
+    });
+
+
+    navLinks.forEach(link => {
+
+      const href =
+        link.getAttribute("href");
+
+      link.classList.toggle(
+        "active",
+        href === `#${currentSection}`
+      );
+
+    });
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateScrollSystem,
+    { passive: true }
+  );
+
+
+  updateScrollSystem();
+
+
+  /* ==========================================================================
+     SCROLL REVEAL ANIMATION
+     ========================================================================== */
+
+  const revealElements =
+    document.querySelectorAll(".scroll-reveal");
+
+
+  if ("IntersectionObserver" in window) {
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "revealed"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -50px 0px"
+        }
+      );
+
+
+    revealElements.forEach(element => {
+
+      revealObserver.observe(element);
+
+    });
+
+  } else {
+
+    /* Fallback for older browsers */
+
+    revealElements.forEach(element => {
+
+      element.classList.add("revealed");
+
+    });
+
+  }
+
+
+  /* ==========================================================================
+     PROJECT FILTER SYSTEM
+     ========================================================================== */
+
+  const filterButtons =
+    document.querySelectorAll(".filter-btn");
+
+  const projectCards =
+    document.querySelectorAll(".project-card");
+
+
+  filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      /* Active filter button */
+
+      filterButtons.forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+
+      const selectedFilter =
+        button.getAttribute("data-filter");
+
+
+      projectCards.forEach(card => {
+
+        const category =
+          card.getAttribute("data-category");
+
+
+        const shouldShow =
+          selectedFilter === "all" ||
+          category === selectedFilter;
+
+
+        if (shouldShow) {
+
+          card.style.display = "flex";
+
+          requestAnimationFrame(() => {
+
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+
+          });
+
+        } else {
+
+          card.style.opacity = "0";
+          card.style.transform = "scale(0.95)";
+
+
+          setTimeout(() => {
+
+            if (
+              card.style.opacity === "0"
+            ) {
+              card.style.display = "none";
+            }
+
+          }, 300);
+
+        }
+
+      });
+
+    });
+
+  });
+
+
+  /* ==========================================================================
+     GLOWING CURSOR CARD EFFECT
+     ========================================================================== */
+
+  const glowCards =
+    document.querySelectorAll("[data-glow]");
+
+
+  glowCards.forEach(card => {
+
+    card.addEventListener("mousemove", event => {
+
+      const rect =
+        card.getBoundingClientRect();
+
+
+      const x =
+        event.clientX - rect.left;
+
+      const y =
+        event.clientY - rect.top;
+
+
+      card.style.setProperty(
+        "--mouse-x",
+        `${x}px`
+      );
+
+      card.style.setProperty(
+        "--mouse-y",
+        `${y}px`
+      );
+
+    });
+
+
+    card.addEventListener("mouseleave", () => {
+
+      card.style.removeProperty(
+        "--mouse-x"
+      );
+
+      card.style.removeProperty(
+        "--mouse-y"
+      );
+
+    });
+
+  });
+
+
+  /* ==========================================================================
+     EMAIL COPY FUNCTION
+     ========================================================================== */
+
+  const copyEmailButton =
+    document.getElementById(
+      "copy-email-btn"
+    );
+
+  const emailElement =
+    document.getElementById(
+      "email-text"
+    );
+
+
+  if (copyEmailButton && emailElement) {
+
+    const copyIcon =
+      copyEmailButton.querySelector(
+        ".copy-icon"
+      );
+
+    const checkIcon =
+      copyEmailButton.querySelector(
+        ".check-icon"
+      );
+
+
+    copyEmailButton.addEventListener(
+      "click",
+      async () => {
+
+        const email =
+          emailElement.textContent.trim();
+
+
+        try {
+
+          if (
+            navigator.clipboard &&
+            window.isSecureContext
+          ) {
+
+            await navigator.clipboard.writeText(
+              email
+            );
+
+          } else {
+
+            /* Fallback for non-secure environments */
+
+            const temporaryInput =
+              document.createElement("textarea");
+
+            temporaryInput.value = email;
+
+            temporaryInput.style.position =
+              "fixed";
+
+            temporaryInput.style.opacity = "0";
+
+            document.body.appendChild(
+              temporaryInput
+            );
+
+            temporaryInput.select();
+
+            document.execCommand("copy");
+
+            temporaryInput.remove();
+
+          }
+
+
+          /* Change icon */
+
+          if (copyIcon) {
+            copyIcon.style.display = "none";
+          }
+
+          if (checkIcon) {
+            checkIcon.style.display = "block";
+          }
+
+
+          copyEmailButton.setAttribute(
+            "aria-label",
+            "Email copied"
+          );
+
+
+          setTimeout(() => {
+
+            if (copyIcon) {
+              copyIcon.style.display = "block";
+            }
+
+            if (checkIcon) {
+              checkIcon.style.display = "none";
+            }
+
+            copyEmailButton.setAttribute(
+              "aria-label",
+              "Copy email to clipboard"
+            );
+
+          }, 2000);
+
+
+        } catch (error) {
+
+          console.error(
+            "Unable to copy email:",
+            error
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* ==========================================================================
+     CONTACT FORM
+     ========================================================================== */
+
+  const contactForm =
+    document.getElementById(
+      "contact-form"
+    );
+
+  const formStatus =
+    document.getElementById(
+      "form-status"
+    );
+
+
+  if (contactForm && formStatus) {
+
+    contactForm.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        const name =
+          document.getElementById(
+            "name"
+          )?.value.trim();
+
+
+        const email =
+          document.getElementById(
+            "email"
+          )?.value.trim();
+
+
+        const subject =
+          document.getElementById(
+            "subject"
+          )?.value.trim();
+
+
+        const message =
+          document.getElementById(
+            "message"
+          )?.value.trim();
+
+
+        /* Required field validation */
+
+        if (
+          !name ||
+          !email ||
+          !subject ||
+          !message
+        ) {
+
+          showFormStatus(
+            "Please fill in all the required fields.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* Email validation */
+
+        const emailRegex =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (!emailRegex.test(email)) {
+
+          showFormStatus(
+            "Please enter a valid email address.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* Message length validation */
+
+        if (message.length < 10) {
+
+          showFormStatus(
+            "Please enter a message with at least 10 characters.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* Submit button */
+
+        const submitButton =
+          contactForm.querySelector(
+            ".form-submit-btn"
+          );
+
+
+        const submitText =
+          submitButton?.querySelector(
+            "span"
+          );
+
+
+        if (submitButton) {
+          submitButton.disabled = true;
+        }
+
+
+        if (submitText) {
+          submitText.textContent =
+            "Sending Message...";
+        }
+
+
+        /*
+         * NOTE:
+         * This currently displays a success message locally.
+         * To actually receive messages by email, connect this
+         * form to a backend or form service.
+         */
+
+        setTimeout(() => {
+
+          showFormStatus(
+            "Thank you! Your message has been received.",
+            "success"
+          );
+
+
+          contactForm.reset();
+
+
+          if (submitButton) {
+            submitButton.disabled = false;
+          }
+
+
+          if (submitText) {
+            submitText.textContent =
+              "Send Message";
+          }
+
+
+          setTimeout(() => {
+
+            formStatus.style.display =
+              "none";
+
+          }, 5000);
+
+        }, 1000);
+
+      }
+    );
+
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Form Status Helper
+     -------------------------------------------------------------------------- */
+
+  function showFormStatus(message, type) {
+
+    if (!formStatus) {
+      return;
+    }
+
+
+    formStatus.textContent =
+      message;
+
+
+    formStatus.className =
+      `form-status ${type}`;
+
+
+    formStatus.style.display =
+      "block";
+
+  }
+
+
+  /* ==========================================================================
+     SMOOTH SCROLLING
+     ========================================================================== */
+
+  document.querySelectorAll(
+    'a[href^="#"]'
+  ).forEach(link => {
+
+    link.addEventListener(
+      "click",
+      event => {
+
+        const targetId =
+          link.getAttribute("href");
+
+
+        if (
+          !targetId ||
+          targetId === "#"
+        ) {
+          return;
+        }
+
+
+        const target =
+          document.querySelector(
+            targetId
+          );
+
+
+        if (!target) {
+          return;
+        }
+
+
+        event.preventDefault();
+
+
+        const headerHeight =
+          document.getElementById(
+            "header"
+          )?.offsetHeight || 0;
+
+
+        const targetPosition =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          headerHeight -
+          15;
+
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+  });
+
+
+  /* ==========================================================================
+     RESUME / CONTACT BUTTON
+     ========================================================================== */
+
+  const resumeButton =
+    document.getElementById(
+      "resume-download-btn"
+    );
+
+
+  if (resumeButton) {
+
+    resumeButton.addEventListener(
+      "click",
+      () => {
+
+        /*
+         * The button currently points to #contact.
+         * This keeps the existing website behavior.
+         *
+         * If you later add:
+         *
+         * assets/Krishika-Amin-Resume.pdf
+         *
+         * this button can be changed into a real
+         * resume download button.
+         */
+
+      }
+    );
+
+  }
+
+
+  /* ==========================================================================
+     PAGE VISIBILITY PERFORMANCE
+     ========================================================================== */
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if (
+        document.hidden &&
+        typeof animationFrame !== "undefined"
+      ) {
+
+        cancelAnimationFrame(
+          animationFrame
+        );
+
+      }
+
+    }
+  );
+
+
+  /* ==========================================================================
+     FINAL ICON REFRESH
+     ========================================================================== */
+
+  if (typeof lucide !== "undefined") {
+
+    lucide.createIcons();
+
+  }
+
 });
-
-function showStatus(msg, type) {
-  formStatus.textContent = msg;
-  formStatus.className = `form-status ${type}`;
-  formStatus.style.display = 'block';
-}
-
-// Initialize Lucide Icons render helper
-lucide.createIcons();
