@@ -6,27 +6,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Primary SEO Meta Tags -->
-  <title>Krishika Amin | AI & Data Science Engineering Portfolio</title>
+  <title>Krishika Amin | AI & Data Science Portfolio</title>
+
   <meta name="description"
-    content="Portfolio of Krishika Amin, an AI & Data Science Engineering student passionate about machine learning, software development, data science, and building intelligent solutions.">
+    content="Krishika Amin is an Artificial Intelligence and Data Science engineering student interested in machine learning, data science, software development, and intelligent technology solutions.">
+
   <meta name="keywords"
-    content="Krishika Amin, AI, Data Science, Machine Learning, Python, C, SQL, Web Development, Portfolio">
+    content="Krishika Amin, AI Data Science, Machine Learning, Python, C Programming, SQL, GitHub, Portfolio, Bengaluru">
+
   <meta name="author" content="Krishika Amin">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Krishika Amin | AI & Data Science Engineering Portfolio">
+  <meta property="og:title" content="Krishika Amin | AI & Data Science Portfolio">
   <meta property="og:description"
-    content="Explore the projects, skills, certifications, education, and achievements of Krishika Amin.">
+    content="Explore Krishika Amin's projects, technical skills, certifications, education, and achievements.">
   <meta property="og:image" content="assets/avatar.png">
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Krishika Amin | AI & Data Science Engineering Portfolio">
-  <meta property="twitter:description"
-    content="Explore the projects, skills, certifications, education, and achievements of Krishika Amin.">
-  <meta property="twitter:image" content="assets/avatar.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Krishika Amin | AI & Data Science Portfolio">
+  <meta name="twitter:description"
+    content="Explore Krishika Amin's projects, technical skills, certifications, education, and achievements.">
+  <meta name="twitter:image" content="assets/avatar.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +38,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <!-- Stylesheet -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Lucide Icons -->
@@ -46,24 +48,24 @@
 <body>
 
   <!-- =========================
-       BACKGROUND
+       PARTICLE BACKGROUND
   ========================== -->
 
-  <canvas id="particles-canvas"></canvas>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
 
 
   <!-- =========================
-       HEADER / NAVIGATION
+       HEADER
   ========================== -->
 
   <header id="header">
 
     <div class="nav-container">
 
-      <a href="#hero" class="logo">
+      <a href="#hero" class="logo" aria-label="Krishika Amin Home">
         <span class="logo-accent">&lt;</span>
         Krishika
         <span class="logo-dot">.</span>
@@ -72,14 +74,26 @@
       </a>
 
       <!-- Desktop Navigation -->
+
       <nav class="nav-links" aria-label="Main Navigation">
 
         <a href="#about" class="nav-link">About</a>
+
         <a href="#skills" class="nav-link">Skills</a>
+
         <a href="#projects" class="nav-link">Projects</a>
-        <a href="#certifications" class="nav-link">Certifications</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#achievements" class="nav-link">Achievements</a>
+
+        <a href="#certifications" class="nav-link">
+          Certifications
+        </a>
+
+        <a href="#education" class="nav-link">
+          Education
+        </a>
+
+        <a href="#achievements" class="nav-link">
+          Achievements
+        </a>
 
         <a href="#contact" class="nav-btn">
           Contact Me
@@ -87,28 +101,43 @@
 
       </nav>
 
-      <!-- Mobile Menu Button -->
+
+      <!-- Mobile Toggle -->
+
       <button
+        type="button"
         class="mobile-toggle"
         id="mobile-toggle"
         aria-expanded="false"
-        aria-label="Toggle navigation menu">
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu">
 
         <i data-lucide="menu" class="menu-icon"></i>
-        <i data-lucide="x" class="close-icon" style="display: none;"></i>
+
+        <i
+          data-lucide="x"
+          class="close-icon"
+          style="display: none;">
+        </i>
 
       </button>
 
     </div>
 
+
     <!-- Scroll Progress -->
-    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <div
+      class="scroll-progress-bar"
+      id="scroll-progress"
+      aria-hidden="true">
+    </div>
 
   </header>
 
 
   <!-- =========================
-       MOBILE NAVIGATION
+       MOBILE MENU
   ========================== -->
 
   <div
@@ -116,14 +145,33 @@
     id="mobile-menu"
     aria-hidden="true">
 
-    <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+    <nav
+      class="mobile-nav-links"
+      aria-label="Mobile Navigation">
 
-      <a href="#about" class="mobile-link">About</a>
-      <a href="#skills" class="mobile-link">Skills</a>
-      <a href="#projects" class="mobile-link">Projects</a>
-      <a href="#certifications" class="mobile-link">Certifications</a>
-      <a href="#education" class="mobile-link">Education</a>
-      <a href="#achievements" class="mobile-link">Achievements</a>
+      <a href="#about" class="mobile-link">
+        About
+      </a>
+
+      <a href="#skills" class="mobile-link">
+        Skills
+      </a>
+
+      <a href="#projects" class="mobile-link">
+        Projects
+      </a>
+
+      <a href="#certifications" class="mobile-link">
+        Certifications
+      </a>
+
+      <a href="#education" class="mobile-link">
+        Education
+      </a>
+
+      <a href="#achievements" class="mobile-link">
+        Achievements
+      </a>
 
       <a href="#contact" class="mobile-link mobile-btn">
         Contact Me
@@ -142,14 +190,18 @@
 
 
     <!-- =========================
-         HERO SECTION
+         HERO
     ========================== -->
 
-    <section id="hero" class="hero-section">
+    <section
+      id="hero"
+      class="hero-section">
 
       <div class="hero-container container">
 
-        <!-- Hero Text -->
+
+        <!-- Hero Content -->
+
         <div class="hero-content scroll-reveal">
 
           <div class="badge-container">
@@ -161,34 +213,57 @@
 
           </div>
 
+
           <h1 class="hero-title">
+
             Hi, I'm
+
             <span class="highlight-text">
               Krishika Amin
             </span>
+
           </h1>
+
 
           <h2 class="hero-subtitle">
             AI &amp; Data Science Engineering Student
           </h2>
 
+
           <p class="hero-description">
-            I am passionate about Artificial Intelligence, Data Science,
-            machine learning, software development, and problem solving.
-            I enjoy transforming ideas into practical and intelligent
-            technology solutions.
+            I am a B.Tech Artificial Intelligence and Data Science
+            student passionate about machine learning, data science,
+            software development, programming, and problem solving.
+            I enjoy transforming ideas into practical technology
+            solutions and continuously improving my technical skills.
           </p>
+
 
           <div class="hero-actions">
 
-            <a href="#projects" class="btn btn-primary">
-              <span>View Projects</span>
+            <a
+              href="#projects"
+              class="btn btn-primary">
+
+              <span>
+                View Projects
+              </span>
+
               <i data-lucide="arrow-right"></i>
+
             </a>
 
-            <a href="#contact" class="btn btn-secondary">
-              <span>Get in Touch</span>
+
+            <a
+              href="#contact"
+              class="btn btn-secondary">
+
+              <span>
+                Get in Touch
+              </span>
+
               <i data-lucide="send"></i>
+
             </a>
 
           </div>
@@ -197,6 +272,7 @@
 
 
         <!-- Hero Image -->
+
         <div class="hero-visual scroll-reveal">
 
           <div class="avatar-glow-wrapper">
@@ -205,22 +281,31 @@
 
               <img
                 src="assets/avatar.png"
-                alt="Krishika Amin - AI and Data Science Engineering Student"
-                class="avatar-img">
+                alt="Krishika Amin"
+                class="avatar-img"
+                loading="eager">
 
             </div>
+
 
             <div class="floating-badge badge-top-right">
 
               <i data-lucide="brain"></i>
-              <span>AI &amp; ML</span>
+
+              <span>
+                AI &amp; ML
+              </span>
 
             </div>
+
 
             <div class="floating-badge badge-bottom-left">
 
               <i data-lucide="bar-chart-2"></i>
-              <span>Data Science</span>
+
+              <span>
+                Data Science
+              </span>
 
             </div>
 
@@ -231,6 +316,8 @@
       </div>
 
 
+      <!-- Scroll Indicator -->
+
       <a
         href="#about"
         class="scroll-down"
@@ -238,16 +325,16 @@
 
         <i
           data-lucide="chevrons-down"
-          class="scroll-down-icon"></i>
+          class="scroll-down-icon">
+        </i>
 
       </a>
 
     </section>
 
 
-
     <!-- =========================
-         ABOUT SECTION
+         ABOUT
     ========================== -->
 
     <section
@@ -275,18 +362,21 @@
         <div class="about-text-wrapper scroll-reveal">
 
           <p class="about-p">
-            I am an Artificial Intelligence and Data Science engineering
-            student with a strong interest in programming, machine learning,
-            data analysis, and mathematical problem-solving. I enjoy learning
-            how data can be transformed into meaningful insights and how
-            intelligent systems can solve real-world problems.
+            I am an Artificial Intelligence and Data Science
+            engineering student with a strong interest in programming,
+            machine learning, data analysis, and mathematical
+            problem-solving. I enjoy understanding how data can be
+            transformed into meaningful insights and how intelligent
+            systems can be used to solve real-world problems.
           </p>
 
+
           <p class="about-p">
-            My goal is to build strong technical skills and gain practical
-            industry experience by working on meaningful projects. I
-            continuously improve my knowledge of Python, C, SQL, data
-            structures, machine learning, and web technologies.
+            I am currently building my technical foundation in Python,
+            C programming, SQL, data structures, machine learning,
+            web development, and software development. My goal is to
+            gain practical experience, work on meaningful projects,
+            and grow into a skilled technology professional.
           </p>
 
 
@@ -294,10 +384,13 @@
 
 
             <!-- Problem Solving -->
+
             <div class="focus-card glass-card">
 
               <div class="focus-icon-box cyan-bg">
+
                 <i data-lucide="binary"></i>
+
               </div>
 
               <h3>
@@ -305,18 +398,22 @@
               </h3>
 
               <p>
-                Developing logical thinking and efficient algorithms to
-                solve programming and real-world problems.
+                Building logical thinking and algorithmic skills
+                through programming practice and real-world
+                problem solving.
               </p>
 
             </div>
 
 
             <!-- Data & Mathematics -->
+
             <div class="focus-card glass-card">
 
               <div class="focus-icon-box purple-bg">
+
                 <i data-lucide="sigma"></i>
+
               </div>
 
               <h3>
@@ -324,8 +421,9 @@
               </h3>
 
               <p>
-                Applying mathematics, statistics, and analytical thinking
-                to understand data and machine learning models.
+                Exploring mathematics, statistics, data analysis,
+                and machine learning concepts to understand
+                data-driven solutions.
               </p>
 
             </div>
@@ -335,7 +433,8 @@
         </div>
 
 
-        <!-- About Stats -->
+        <!-- Quick Details -->
+
         <div class="about-stats-wrapper scroll-reveal">
 
           <div class="stat-box glass-card">
@@ -357,29 +456,50 @@
               Quick Details
             </h3>
 
+
             <ul class="info-list">
 
               <li>
+
                 <span class="info-label">
-                  Current Role:
+                  Degree:
                 </span>
 
                 <span class="info-val">
-                  B.Tech AI &amp; Data Science Student
+                  B.Tech AI &amp; Data Science
                 </span>
+
               </li>
 
+
               <li>
+
+                <span class="info-label">
+                  University:
+                </span>
+
+                <span class="info-val">
+                  Reva University
+                </span>
+
+              </li>
+
+
+              <li>
+
                 <span class="info-label">
                   Core Focus:
                 </span>
 
                 <span class="info-val">
-                  Machine Learning &amp; Data Analysis
+                  AI, ML &amp; Data Science
                 </span>
+
               </li>
 
+
               <li>
+
                 <span class="info-label">
                   Programming:
                 </span>
@@ -387,19 +507,25 @@
                 <span class="info-val">
                   Python, C, SQL
                 </span>
+
               </li>
 
+
               <li>
+
                 <span class="info-label">
-                  Interests:
+                  GitHub:
                 </span>
 
                 <span class="info-val">
-                  AI, Data Science, Algorithms &amp; Software
+                  krishika2007
                 </span>
+
               </li>
 
+
               <li>
+
                 <span class="info-label">
                   Location:
                 </span>
@@ -407,6 +533,7 @@
                 <span class="info-val">
                   Bengaluru, Karnataka, India
                 </span>
+
               </li>
 
             </ul>
@@ -420,9 +547,8 @@
     </section>
 
 
-
     <!-- =========================
-         SKILLS SECTION
+         SKILLS
     ========================== -->
 
     <section
@@ -448,7 +574,10 @@
 
 
         <!-- Python -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -474,10 +603,12 @@
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 75%;">
               </div>
+
             </div>
 
           </div>
@@ -486,7 +617,10 @@
 
 
         <!-- C -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -507,15 +641,18 @@
             </h3>
 
             <p class="skill-desc">
-              Strong foundation in C programming, functions, arrays,
-              pointers, structures, recursion, and problem solving.
+              C programming fundamentals including arrays,
+              functions, pointers, structures, recursion,
+              and problem solving.
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 75%;">
               </div>
+
             </div>
 
           </div>
@@ -524,7 +661,10 @@
 
 
         <!-- Data Structures -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -550,10 +690,12 @@
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 70%;">
               </div>
+
             </div>
 
           </div>
@@ -561,8 +703,11 @@
         </div>
 
 
-        <!-- Artificial Intelligence -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+        <!-- AI -->
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -584,14 +729,16 @@
 
             <p class="skill-desc">
               Fundamentals of artificial intelligence, intelligent
-              systems, search strategies, and AI problem solving.
+              systems, search strategies, and AI-based problem solving.
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 65%;">
               </div>
+
             </div>
 
           </div>
@@ -600,7 +747,10 @@
 
 
         <!-- Machine Learning -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -621,15 +771,17 @@
             </h3>
 
             <p class="skill-desc">
-              Fundamentals of regression, classification, model evaluation,
-              preprocessing, and basic machine learning workflows.
+              Regression, classification, preprocessing, model
+              evaluation, feature scaling, and basic ML workflows.
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 65%;">
               </div>
+
             </div>
 
           </div>
@@ -638,7 +790,10 @@
 
 
         <!-- SQL -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -659,15 +814,17 @@
             </h3>
 
             <p class="skill-desc">
-              Database fundamentals, queries, joins, filtering,
-              aggregation, table design, and relational databases.
+              SQL queries, joins, filtering, aggregation, database
+              fundamentals, table design, and relational databases.
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 70%;">
               </div>
+
             </div>
 
           </div>
@@ -676,7 +833,10 @@
 
 
         <!-- Web Development -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -698,14 +858,16 @@
 
             <p class="skill-desc">
               Building responsive websites with modern layouts,
-              animations, interactive elements, and clean interfaces.
+              animations, interactive components, and clean interfaces.
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 70%;">
               </div>
+
             </div>
 
           </div>
@@ -714,7 +876,10 @@
 
 
         <!-- GitHub -->
-        <div class="skill-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="skill-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="skill-card-inner">
 
@@ -736,14 +901,16 @@
 
             <p class="skill-desc">
               Version control, repositories, commits, branches,
-              project management, and maintaining coding projects.
+              GitHub projects, and maintaining coding projects.
             </p>
 
             <div class="skill-progress-bar">
+
               <div
                 class="skill-progress-fill"
                 style="--width: 65%;">
               </div>
+
             </div>
 
           </div>
@@ -755,9 +922,8 @@
     </section>
 
 
-
     <!-- =========================
-         PROJECTS SECTION
+         PROJECTS
     ========================== -->
 
     <section
@@ -779,28 +945,33 @@
       </div>
 
 
-      <!-- Project Filters -->
+      <!-- Filters -->
+
       <div class="project-filters scroll-reveal">
 
         <button
+          type="button"
           class="filter-btn active"
           data-filter="all">
           All Projects
         </button>
 
         <button
+          type="button"
           class="filter-btn"
           data-filter="ai-ml">
           AI &amp; ML
         </button>
 
         <button
+          type="button"
           class="filter-btn"
           data-filter="software">
           Software Development
         </button>
 
         <button
+          type="button"
           class="filter-btn"
           data-filter="web">
           Web Applications
@@ -812,7 +983,10 @@
       <div class="projects-grid">
 
 
-        <!-- Project 1 -->
+        <!-- =========================
+             PROJECT 1
+        ========================== -->
+
         <div
           class="project-card glass-card scroll-reveal"
           data-category="ai-ml">
@@ -821,11 +995,14 @@
 
             <div class="project-glow"></div>
 
-            <div class="project-img-placeholder purple-gradient">
+            <div
+              class="project-img-placeholder purple-gradient">
+
               <i
                 data-lucide="eye"
                 class="proj-placeholder-icon">
               </i>
+
             </div>
 
             <div class="project-category-tag">
@@ -834,6 +1011,7 @@
 
           </div>
 
+
           <div class="project-info">
 
             <h3 class="project-title">
@@ -841,37 +1019,52 @@
             </h3>
 
             <p class="project-description">
-              An AI-based healthcare concept designed to explore anemia
-              detection using visual indicators such as eye color and
-              nail pallor, with the goal of supporting early screening.
+              An AI-based healthcare project concept exploring
+              computer vision techniques for identifying visual
+              indicators associated with anemia, such as eye
+              appearance and nail pallor.
             </p>
 
             <div class="project-tags">
 
-              <span class="tag">Python</span>
-              <span class="tag">Machine Learning</span>
-              <span class="tag">Computer Vision</span>
+              <span class="tag">
+                Python
+              </span>
+
+              <span class="tag">
+                Machine Learning
+              </span>
+
+              <span class="tag">
+                Computer Vision
+              </span>
 
             </div>
+
 
             <div class="project-links">
 
               <a
-                href="#"
+                href="https://github.com/krishika2007"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="proj-link"
-                aria-label="View anemia detection source code">
+                aria-label="View AI anemia detection project on GitHub">
 
                 <i data-lucide="github"></i>
+
                 Code
 
               </a>
 
+
               <a
-                href="#"
+                href="#contact"
                 class="proj-link"
-                aria-label="View anemia detection project">
+                aria-label="Ask about AI anemia detection project">
 
                 <i data-lucide="external-link"></i>
+
                 Details
 
               </a>
@@ -883,7 +1076,10 @@
         </div>
 
 
-        <!-- Project 2 -->
+        <!-- =========================
+             PROJECT 2
+        ========================== -->
+
         <div
           class="project-card glass-card scroll-reveal"
           data-category="software">
@@ -892,7 +1088,8 @@
 
             <div class="project-glow"></div>
 
-            <div class="project-img-placeholder cyan-gradient">
+            <div
+              class="project-img-placeholder cyan-gradient">
 
               <i
                 data-lucide="lock"
@@ -907,6 +1104,7 @@
 
           </div>
 
+
           <div class="project-info">
 
             <h3 class="project-title">
@@ -915,36 +1113,50 @@
 
             <p class="project-description">
               An IoT-based smart door lock system developed using
-              Arduino Uno to demonstrate electronic access control
-              and automated security.
+              Arduino Uno to demonstrate electronic access control,
+              automation, and security concepts.
             </p>
 
             <div class="project-tags">
 
-              <span class="tag">Arduino Uno</span>
-              <span class="tag">IoT</span>
-              <span class="tag">Embedded Systems</span>
+              <span class="tag">
+                Arduino Uno
+              </span>
+
+              <span class="tag">
+                IoT
+              </span>
+
+              <span class="tag">
+                Embedded Systems
+              </span>
 
             </div>
+
 
             <div class="project-links">
 
               <a
-                href="#"
+                href="https://github.com/krishika2007"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="proj-link"
-                aria-label="View smart door lock source code">
+                aria-label="View smart door lock project on GitHub">
 
                 <i data-lucide="github"></i>
+
                 Code
 
               </a>
 
+
               <a
-                href="#"
+                href="#contact"
                 class="proj-link"
-                aria-label="View smart door lock project">
+                aria-label="Ask about smart door lock project">
 
                 <i data-lucide="external-link"></i>
+
                 Details
 
               </a>
@@ -956,7 +1168,10 @@
         </div>
 
 
-        <!-- Project 3 -->
+        <!-- =========================
+             PROJECT 3
+        ========================== -->
+
         <div
           class="project-card glass-card scroll-reveal"
           data-category="software">
@@ -965,7 +1180,8 @@
 
             <div class="project-glow"></div>
 
-            <div class="project-img-placeholder blue-gradient">
+            <div
+              class="project-img-placeholder blue-gradient">
 
               <i
                 data-lucide="bus"
@@ -980,6 +1196,7 @@
 
           </div>
 
+
           <div class="project-info">
 
             <h3 class="project-title">
@@ -987,37 +1204,51 @@
             </h3>
 
             <p class="project-description">
-              A software project focused on managing bus routes,
-              passenger details, ticket reservations, and basic
-              booking operations.
+              A software project designed to manage bus routes,
+              passenger information, ticket reservations, and
+              basic booking operations.
             </p>
 
             <div class="project-tags">
 
-              <span class="tag">C</span>
-              <span class="tag">Data Structures</span>
-              <span class="tag">Database</span>
+              <span class="tag">
+                C
+              </span>
+
+              <span class="tag">
+                Data Structures
+              </span>
+
+              <span class="tag">
+                Database
+              </span>
 
             </div>
+
 
             <div class="project-links">
 
               <a
-                href="#"
+                href="https://github.com/krishika2007"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="proj-link"
-                aria-label="View bus reservation source code">
+                aria-label="View bus reservation project on GitHub">
 
                 <i data-lucide="github"></i>
+
                 Code
 
               </a>
 
+
               <a
-                href="#"
+                href="#contact"
                 class="proj-link"
-                aria-label="View bus reservation project">
+                aria-label="Ask about bus reservation project">
 
                 <i data-lucide="external-link"></i>
+
                 Details
 
               </a>
@@ -1029,7 +1260,10 @@
         </div>
 
 
-        <!-- Project 4 -->
+        <!-- =========================
+             PROJECT 4
+        ========================== -->
+
         <div
           class="project-card glass-card scroll-reveal"
           data-category="web">
@@ -1038,7 +1272,8 @@
 
             <div class="project-glow"></div>
 
-            <div class="project-img-placeholder mixed-gradient">
+            <div
+              class="project-img-placeholder mixed-gradient">
 
               <i
                 data-lucide="layout"
@@ -1053,6 +1288,7 @@
 
           </div>
 
+
           <div class="project-info">
 
             <h3 class="project-title">
@@ -1060,18 +1296,27 @@
             </h3>
 
             <p class="project-description">
-              A responsive personal portfolio website designed to
-              showcase my technical skills, projects, certifications,
-              education, and achievements.
+              A responsive personal portfolio website created to
+              showcase my technical skills, projects,
+              certifications, education, and achievements.
             </p>
 
             <div class="project-tags">
 
-              <span class="tag">HTML5</span>
-              <span class="tag">CSS3</span>
-              <span class="tag">JavaScript</span>
+              <span class="tag">
+                HTML5
+              </span>
+
+              <span class="tag">
+                CSS3
+              </span>
+
+              <span class="tag">
+                JavaScript
+              </span>
 
             </div>
+
 
             <div class="project-links">
 
@@ -1080,12 +1325,14 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="proj-link"
-                aria-label="View portfolio source code">
+                aria-label="View portfolio GitHub profile">
 
                 <i data-lucide="github"></i>
+
                 Code
 
               </a>
+
 
               <a
                 href="#hero"
@@ -1093,6 +1340,7 @@
                 aria-label="View live portfolio">
 
                 <i data-lucide="external-link"></i>
+
                 Live Demo
 
               </a>
@@ -1106,7 +1354,6 @@
       </div>
 
     </section>
-
 
 
     <!-- =========================
@@ -1136,10 +1383,15 @@
 
 
         <!-- IBM -->
-        <div class="cert-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="cert-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="cert-icon-box">
+
             <i data-lucide="award"></i>
+
           </div>
 
           <div class="cert-details">
@@ -1162,10 +1414,15 @@
 
 
         <!-- Wadhwani -->
-        <div class="cert-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="cert-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="cert-icon-box">
+
             <i data-lucide="award"></i>
+
           </div>
 
           <div class="cert-details">
@@ -1188,10 +1445,15 @@
 
 
         <!-- NPTEL -->
-        <div class="cert-card glass-card scroll-reveal" data-glow>
+
+        <div
+          class="cert-card glass-card scroll-reveal"
+          data-glow>
 
           <div class="cert-icon-box">
+
             <i data-lucide="award"></i>
+
           </div>
 
           <div class="cert-details">
@@ -1215,7 +1477,6 @@
       </div>
 
     </section>
-
 
 
     <!-- =========================
@@ -1247,6 +1508,7 @@
 
 
         <!-- B.Tech -->
+
         <div class="timeline-item scroll-reveal">
 
           <div class="timeline-dot"></div>
@@ -1258,7 +1520,7 @@
             </span>
 
             <h3>
-              Bachelor of Technology (B.Tech)
+              Bachelor of Technology
             </h3>
 
             <h4>
@@ -1266,10 +1528,10 @@
             </h4>
 
             <p>
-              Reva University, School of Computer Science and Engineering.
-              Currently developing skills in programming, data structures,
-              databases, artificial intelligence, machine learning,
-              mathematics, and software development.
+              Reva University, School of Computer Science and
+              Engineering. Building knowledge in programming,
+              data structures, databases, artificial intelligence,
+              machine learning, mathematics, and software development.
             </p>
 
           </div>
@@ -1278,6 +1540,7 @@
 
 
         <!-- Pre-University -->
+
         <div class="timeline-item scroll-reveal">
 
           <div class="timeline-dot"></div>
@@ -1310,7 +1573,6 @@
     </section>
 
 
-
     <!-- =========================
          ACHIEVEMENTS
     ========================== -->
@@ -1337,11 +1599,15 @@
       <div class="achieve-grid">
 
 
-        <!-- Achievement 1 -->
-        <div class="achieve-card glass-card scroll-reveal">
+        <!-- Coding -->
+
+        <div
+          class="achieve-card glass-card scroll-reveal">
 
           <div class="achieve-badge">
+
             <i data-lucide="code-2"></i>
+
           </div>
 
           <h3>
@@ -1356,11 +1622,15 @@
         </div>
 
 
-        <!-- Achievement 2 -->
-        <div class="achieve-card glass-card scroll-reveal">
+        <!-- Projects -->
+
+        <div
+          class="achieve-card glass-card scroll-reveal">
 
           <div class="achieve-badge">
+
             <i data-lucide="brain"></i>
+
           </div>
 
           <h3>
@@ -1368,19 +1638,23 @@
           </h3>
 
           <p>
-            Worked on projects exploring artificial intelligence,
-            machine learning, IoT, software development, and data-driven
-            solutions.
+            Developing projects across artificial intelligence,
+            machine learning, IoT, software development, and
+            data-driven technology.
           </p>
 
         </div>
 
 
-        <!-- Achievement 3 -->
-        <div class="achieve-card glass-card scroll-reveal">
+        <!-- Learning -->
+
+        <div
+          class="achieve-card glass-card scroll-reveal">
 
           <div class="achieve-badge">
+
             <i data-lucide="rocket"></i>
+
           </div>
 
           <h3>
@@ -1388,9 +1662,9 @@
           </h3>
 
           <p>
-            Continuously building technical knowledge through
-            certifications, academic projects, coding practice,
-            and hands-on learning.
+            Building technical knowledge through certifications,
+            academic projects, coding practice, and hands-on
+            learning.
           </p>
 
         </div>
@@ -1398,7 +1672,6 @@
       </div>
 
     </section>
-
 
 
     <!-- =========================
@@ -1428,6 +1701,7 @@
 
 
         <!-- Contact Information -->
+
         <div class="contact-info-column scroll-reveal">
 
           <h3>
@@ -1435,8 +1709,8 @@
           </h3>
 
           <p class="contact-info-subtitle">
-            Feel free to reach out through email or connect with me
-            on professional platforms.
+            Feel free to reach out through email or connect with
+            me on professional platforms.
           </p>
 
 
@@ -1444,17 +1718,22 @@
 
 
             <!-- Email -->
+
             <div class="contact-detail-item">
 
               <div class="contact-detail-icon">
+
                 <i data-lucide="mail"></i>
+
               </div>
+
 
               <div class="contact-detail-text">
 
                 <span class="label">
                   Email Address
                 </span>
+
 
                 <div class="email-copy-wrapper">
 
@@ -1464,10 +1743,12 @@
                     krishika.amin.edu@gmail.com
                   </span>
 
+
                   <button
+                    type="button"
                     class="copy-btn"
                     id="copy-email-btn"
-                    aria-label="Copy email to clipboard">
+                    aria-label="Copy email address">
 
                     <i
                       data-lucide="copy"
@@ -1490,11 +1771,15 @@
 
 
             <!-- Location -->
+
             <div class="contact-detail-item">
 
               <div class="contact-detail-icon">
+
                 <i data-lucide="map-pin"></i>
+
               </div>
+
 
               <div class="contact-detail-text">
 
@@ -1510,12 +1795,15 @@
 
             </div>
 
-
           </div>
 
 
           <!-- Social Links -->
+
           <div class="social-links">
+
+
+            <!-- LinkedIn -->
 
             <a
               href="https://www.linkedin.com/"
@@ -1527,6 +1815,9 @@
               <i data-lucide="linkedin"></i>
 
             </a>
+
+
+            <!-- GitHub -->
 
             <a
               href="https://github.com/krishika2007"
@@ -1544,13 +1835,15 @@
         </div>
 
 
-
         <!-- Contact Form -->
+
         <div class="contact-form-column scroll-reveal">
 
           <form
             class="contact-form glass-card"
-            id="contact-form">
+            id="contact-form"
+            novalidate>
+
 
             <div class="form-group">
 
@@ -1562,6 +1855,7 @@
                 type="text"
                 id="name"
                 name="name"
+                autocomplete="name"
                 required
                 placeholder="Enter your full name">
 
@@ -1578,6 +1872,7 @@
                 type="email"
                 id="email"
                 name="email"
+                autocomplete="email"
                 required
                 placeholder="Enter your email address">
 
@@ -1632,6 +1927,8 @@
             <div
               class="form-status"
               id="form-status"
+              role="status"
+              aria-live="polite"
               style="display: none;">
             </div>
 
@@ -1644,7 +1941,6 @@
     </section>
 
   </main>
-
 
 
   <!-- =========================
@@ -1670,7 +1966,6 @@
   </footer>
 
 
-
   <!-- =========================
        JAVASCRIPT
   ========================== -->
@@ -1681,3 +1976,4 @@
 
 </html>
 ```
+
